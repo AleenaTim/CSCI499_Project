@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <title>FlavorFLow</title>
+</head>
+<body>
+    <div id = mainContent>
+        <div id="mainButton">
+            <button class = "side-button">Filter</button>
+        </div>
+    </div>
+    <div id="sidebar">
+        <div class="filter-box">
+            <div class="search">
+                <input type = "text" placeholder="Search FlavorFLow">
+                <img src="/img/magnify.png" alt="magnifying glass"> 
+            </div>
+            <div class = filters>
+                <div class = "price">
+                    <p>Price</p>
+                    <div class = "price-buttons">
+                        <button>
+                            <span>$</span>
+                        </button>
+                        <button>
+                            <span>$$</span>
+                        </button>
+                        <button>
+                            <span>$$$</span>
+                        </button>
+                        <button>
+                            <span>$$$$</span>
+                        </button>
+                    </div>   
+                </div>
+                <div class = "rating-range">
+                    <p>Rating</p>
+                    <span id = "star1" class="material-symbols-outlined">
+                        star
+                    </span>
+                    <span class="material-symbols-outlined">
+                        star
+                    </span>
+                    <span class="material-symbols-outlined">
+                        star
+                    </span>
+                </div>
+                <div class = "distance">
+                    <p>Distance</p>
+                    <input type="range" min="1" max="10" value="5" class="slider" id="myRange">
+                </div>
+                <div class = "suggested">
+                    <p>Features</p>
+                    <input type="checkbox" id="vegetarian" name = "diet" value="vegetarian">
+                    <label for="vegetarian">Vegetarian</label> </br>
+                    <input type="checkbox" id="gluten-free" name = "diet" value = "gluten-free">
+                    <label for="gluten-free">Gluten Free</label> </br>
+                    <input type="checkbox" id="kosher" name="diet" value="kosher">
+                    <label for="kosher">Kosher</label>
+                </div>
+                <div class = "category">
+                    <p>Category</p>
+                    <button>Itallian</button>
+                    <button>American</button>
+                    <button>Seafood</button>
+                </div>
+            </div>
+        </div>
+        <div class="exit-filter">
+            <button>Cancel</button>
+            <button>Apply Filters</button>
+        </div>
+    </div>
+  
+    <script src="script.js"></script>
+</body>
+</html>

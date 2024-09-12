@@ -1,0 +1,44 @@
+.search{
+    display:flex; 
+    max-height: 30px;
+}
+.search img{
+    max-width: 20px; 
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body{
+  display: flex; 
+  justify-content: flex-end;
+  flex-direction: row-reverse;
+}
+
+#mainContent{
+  background-color: white;
+  min-height: 100%;
+  min-width: 100%; 
+
+}
+
+#sidebar{
+  display: none; 
+}
+
+.side-button{
+  background-color: #f18221; 
+  border: 2px solid #7fcecb; 
+  color: white; 
+  border-radius: 5px;
+}
