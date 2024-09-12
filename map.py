@@ -1,7 +1,7 @@
 import requests
 import folium
 
-API_KEY = 'AIzaSyD3CrT9uYr2Hq9D_u7SHY-HhDGHsLSSJWk'
+API_KEY = 'API GOOGLE KEY'
 
 # Function to get current location using Google Geolocation API
 def get_current_location():
