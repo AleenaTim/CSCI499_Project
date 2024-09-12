@@ -1,0 +1,41 @@
+h1 {
+    font-weight: normal;
+    text-decoration: underline wavy;
+    letter-spacing: 15px;
+    font-size: 70px;
+    text-align: center;
+    font-family: Georgia, Times New Roman, sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+#loc {
+    font-family: monospace;
+}
+
+h2 {
+    color: mediumturquoise;
+}
+
+button {
+    color: orange;
+    background-color: mediumturquoise;
+}
+
+form {
+    letter-spacing: -0.5px;
+    font-family: monospace;
+}
+
+p {
+    color: mediumaquamarine;
+    line-height: 1.75;
+    letter-spacing: 0.5px;
+    font-family: monospace;
+}
+
+body {
+    background-color: #fee300;
+}
