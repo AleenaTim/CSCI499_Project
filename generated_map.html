@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_5de82498c88e90f8831d445dff2aa28c {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_5de82498c88e90f8831d445dff2aa28c" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_5de82498c88e90f8831d445dff2aa28c = L.map(
+                "map_5de82498c88e90f8831d445dff2aa28c",
+                {
+                    center: [40.763392, -73.9704832],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 14,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_5c824f4e74889a8fb4b74c27189c20ff = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e", "detectRetina": false, "maxNativeZoom": 20, "maxZoom": 20, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abcd", "tms": false}
+            );
+        
+    
+            tile_layer_5c824f4e74889a8fb4b74c27189c20ff.addTo(map_5de82498c88e90f8831d445dff2aa28c);
+        
+    
+            var circle_marker_a2facf61af818886002ce9e4b048019e = L.circleMarker(
+                [40.763392, -73.9704832],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_5de82498c88e90f8831d445dff2aa28c);
+        
+    
+        var popup_bda0a7ea8773239543be027feaf52d5e = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_3b33086764aded03d4e5d01cef2a24e8 = $(`<div id="html_3b33086764aded03d4e5d01cef2a24e8" style="width: 100.0%; height: 100.0%;">You are here</div>`)[0];
+                popup_bda0a7ea8773239543be027feaf52d5e.setContent(html_3b33086764aded03d4e5d01cef2a24e8);
+            
+        
+
+        circle_marker_a2facf61af818886002ce9e4b048019e.bindPopup(popup_bda0a7ea8773239543be027feaf52d5e)
+        ;
+
+        
+    
+    
+            var circle_marker_4ec30bcd6d10b54c21039c494f03195e = L.circleMarker(
+                [40.7650735, -73.9752633],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_5de82498c88e90f8831d445dff2aa28c);
+        
+    
+        var popup_4f69862b1ec7f7046ccda841099aa178 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_5d128f1a8e0364c64d8a53575f12fa94 = $(`<div id="html_5d128f1a8e0364c64d8a53575f12fa94" style="width: 100.0%; height: 100.0%;"><b>Park Lane Hotel New York</b><br><a href='https://www.parklanenewyork.com/?utm_source=google&utm_medium=organic&utm_campaign=gbp_listing' target='_blank'>https://www.parklanenewyork.com/?utm_source=google&utm_medium=organic&utm_campaign=gbp_listing</a></div>`)[0];
+                popup_4f69862b1ec7f7046ccda841099aa178.setContent(html_5d128f1a8e0364c64d8a53575f12fa94);
+            
+        
+
+        circle_marker_4ec30bcd6d10b54c21039c494f03195e.bindPopup(popup_4f69862b1ec7f7046ccda841099aa178)
+        ;
+
+        
+    
+    
+            var circle_marker_1a1060dd5b33b5c37a1a7e1805e1de08 = L.circleMarker(
+                [40.7752711, -73.9633994],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_5de82498c88e90f8831d445dff2aa28c);
+        
+    
+        var popup_39cb92b2b54f7e83e30ad7407de4cd64 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_20a7b985583b29bb34994cb4f303bcfe = $(`<div id="html_20a7b985583b29bb34994cb4f303bcfe" style="width: 100.0%; height: 100.0%;"><b>The Mark Hotel</b><br><a href='https://www.themarkhotel.com/?utm_source=gmb&utm_medium=organic' target='_blank'>https://www.themarkhotel.com/?utm_source=gmb&utm_medium=organic</a></div>`)[0];
+                popup_39cb92b2b54f7e83e30ad7407de4cd64.setContent(html_20a7b985583b29bb34994cb4f303bcfe);
+            
+        
+
+        circle_marker_1a1060dd5b33b5c37a1a7e1805e1de08.bindPopup(popup_39cb92b2b54f7e83e30ad7407de4cd64)
+        ;
+
+        
+    
+    
+            var circle_marker_5b8094f7f486e2dc8221bea77a563e6e = L.circleMarker(
+                [40.782425, -73.9811603],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_5de82498c88e90f8831d445dff2aa28c);
+        
+    
+        var popup_59ea2c4feaa7ab3e7976698c813760d3 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_b9e74ebdfa54b59e9bd51832f54f3080 = $(`<div id="html_b9e74ebdfa54b59e9bd51832f54f3080" style="width: 100.0%; height: 100.0%;"><b>Hotel Belleclaire</b><br><a href='https://www.hotelbelleclaire.com/?utm_source=google&utm_medium=organic&utm_campaign=gbp_listing' target='_blank'>https://www.hotelbelleclaire.com/?utm_source=google&utm_medium=organic&utm_campaign=gbp_listing</a></div>`)[0];
+                popup_59ea2c4feaa7ab3e7976698c813760d3.setContent(html_b9e74ebdfa54b59e9bd51832f54f3080);
+            
+        
+
+        circle_marker_5b8094f7f486e2dc8221bea77a563e6e.bindPopup(popup_59ea2c4feaa7ab3e7976698c813760d3)
+        ;
+
+        
+    
+    
+            var circle_marker_67b05243c4f22a83d360953c42aba16a = L.circleMarker(
+                [40.7470222, -73.9900333],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_5de82498c88e90f8831d445dff2aa28c);
+        
+    
+        var popup_9b94da9f98973e5959bf87a54b10876b = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_356d0cce6d9b63fcef4a0f613385c7d3 = $(`<div id="html_356d0cce6d9b63fcef4a0f613385c7d3" style="width: 100.0%; height: 100.0%;"><b>Kimpton Hotel Eventi</b><br><a href='https://www.hoteleventi.com/?&cm_mmc=WEB-_-KI-_-AMER-_-EN-_-EV-_-Google%20Business%20Profile-_-DD-_-eventi' target='_blank'>https://www.hoteleventi.com/?&cm_mmc=WEB-_-KI-_-AMER-_-EN-_-EV-_-Google%20Business%20Profile-_-DD-_-eventi</a></div>`)[0];
+                popup_9b94da9f98973e5959bf87a54b10876b.setContent(html_356d0cce6d9b63fcef4a0f613385c7d3);
+            
+        
+
+        circle_marker_67b05243c4f22a83d360953c42aba16a.bindPopup(popup_9b94da9f98973e5959bf87a54b10876b)
+        ;
+
+        
+    
+    
+            var circle_marker_d52ed94e5214fd20b2ebbdd06055b2df = L.circleMarker(
+                [40.7573681, -73.9835798],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_5de82498c88e90f8831d445dff2aa28c);
+        
+    
+        var popup_df6091fa6b3ecd66b852f47e14d8404d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_429a67b30127378e2dc194d5535485d8 = $(`<div id="html_429a67b30127378e2dc194d5535485d8" style="width: 100.0%; height: 100.0%;"><b>Connolly's</b><br><a href='https://www.connollyspubandrestaurant.com/' target='_blank'>https://www.connollyspubandrestaurant.com/</a></div>`)[0];
+                popup_df6091fa6b3ecd66b852f47e14d8404d.setContent(html_429a67b30127378e2dc194d5535485d8);
+            
+        
+
+        circle_marker_d52ed94e5214fd20b2ebbdd06055b2df.bindPopup(popup_df6091fa6b3ecd66b852f47e14d8404d)
+        ;
+
+        
+    
+    
+            var circle_marker_77e2fa4201caf055d5ab2824ab353cbd = L.circleMarker(
+                [40.7626593, -73.9714411],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_5de82498c88e90f8831d445dff2aa28c);
+        
+    
+        var popup_08c289e6e13a142eab6979b5a4787298 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_add91bae3a1a95134bf155efcf62035d = $(`<div id="html_add91bae3a1a95134bf155efcf62035d" style="width: 100.0%; height: 100.0%;"><b>TAO Uptown</b><br><a href='https://taorestaurant.com/' target='_blank'>https://taorestaurant.com/</a></div>`)[0];
+                popup_08c289e6e13a142eab6979b5a4787298.setContent(html_add91bae3a1a95134bf155efcf62035d);
+            
+        
+
+        circle_marker_77e2fa4201caf055d5ab2824ab353cbd.bindPopup(popup_08c289e6e13a142eab6979b5a4787298)
+        ;
+
+        
+    
+    
+            var circle_marker_68d64f072399e25c96c81bd0b37a1843 = L.circleMarker(
+                [40.7514762, -73.9883517],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_5de82498c88e90f8831d445dff2aa28c);
+        
+    
+        var popup_a8b4252d0bef20ea7a704c8c823be2f3 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_debd90a6883f69b19de2e7feb561da83 = $(`<div id="html_debd90a6883f69b19de2e7feb561da83" style="width: 100.0%; height: 100.0%;"><b>Oohu Szechuan & Canton Cuisines 兀湖</b><br><a href='https://www.oohunyc.com/' target='_blank'>https://www.oohunyc.com/</a></div>`)[0];
+                popup_a8b4252d0bef20ea7a704c8c823be2f3.setContent(html_debd90a6883f69b19de2e7feb561da83);
+            
+        
+
+        circle_marker_68d64f072399e25c96c81bd0b37a1843.bindPopup(popup_a8b4252d0bef20ea7a704c8c823be2f3)
+        ;
+
+        
+    
+    
+            var circle_marker_166352140adccd01ec99ff55e3d64b5a = L.circleMarker(
+                [40.757498, -73.986654],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_5de82498c88e90f8831d445dff2aa28c);
+        
+    
+        var popup_c38bcd9012409d0eff2ba3e48e78a625 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_2a95d1d3beae86d56ebb32a472ad92fa = $(`<div id="html_2a95d1d3beae86d56ebb32a472ad92fa" style="width: 100.0%; height: 100.0%;"><b>Carmine's</b><br><a href='https://www.carminesnyc.com/locations/times-square' target='_blank'>https://www.carminesnyc.com/locations/times-square</a></div>`)[0];
+                popup_c38bcd9012409d0eff2ba3e48e78a625.setContent(html_2a95d1d3beae86d56ebb32a472ad92fa);
+            
+        
+
+        circle_marker_166352140adccd01ec99ff55e3d64b5a.bindPopup(popup_c38bcd9012409d0eff2ba3e48e78a625)
+        ;
+
+        
+    
+    
+            var circle_marker_f7a7851fe4ad367f2643ca78e0e0bbc0 = L.circleMarker(
+                [40.7531999, -73.982957],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_5de82498c88e90f8831d445dff2aa28c);
+        
+    
+        var popup_1da0c5730c9ea63035d884e88f58e93b = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_3004997ca46568d218b2d846f1de7c6f = $(`<div id="html_3004997ca46568d218b2d846f1de7c6f" style="width: 100.0%; height: 100.0%;"><b>Bryant Park Grill</b><br><a href='https://bryantparkgrillnyc.com/' target='_blank'>https://bryantparkgrillnyc.com/</a></div>`)[0];
+                popup_1da0c5730c9ea63035d884e88f58e93b.setContent(html_3004997ca46568d218b2d846f1de7c6f);
+            
+        
+
+        circle_marker_f7a7851fe4ad367f2643ca78e0e0bbc0.bindPopup(popup_1da0c5730c9ea63035d884e88f58e93b)
+        ;
+
+        
+    
+    
+            var circle_marker_2d183be01d8cc6e6450f434cc882c2aa = L.circleMarker(
+                [40.7524823, -73.97743109999999],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_5de82498c88e90f8831d445dff2aa28c);
+        
+    
+        var popup_4b89e7b2f515f16b13603e9de81bce15 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_6373fa5d3d12b6031e968b142251129a = $(`<div id="html_6373fa5d3d12b6031e968b142251129a" style="width: 100.0%; height: 100.0%;"><b>Grand Central Oyster Bar</b><br><a href='http://www.oysterbarny.com/' target='_blank'>http://www.oysterbarny.com/</a></div>`)[0];
+                popup_4b89e7b2f515f16b13603e9de81bce15.setContent(html_6373fa5d3d12b6031e968b142251129a);
+            
+        
+
+        circle_marker_2d183be01d8cc6e6450f434cc882c2aa.bindPopup(popup_4b89e7b2f515f16b13603e9de81bce15)
+        ;
+
+        
+    
+    
+            var circle_marker_e893f2a59d15c6b4a72405164eed0896 = L.circleMarker(
+                [40.7591608, -73.9954657],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_5de82498c88e90f8831d445dff2aa28c);
+        
+    
+        var popup_b3691a3ab6e667495bf7cb9999fbfb23 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_2bfd78215eefc8174f980f7c251da375 = $(`<div id="html_2bfd78215eefc8174f980f7c251da375" style="width: 100.0%; height: 100.0%;"><b>YOTEL New York Times Square</b><br><a href='https://www.yotel.com/en/hotels/yotel-new-york?utm_source=Google&utm_medium=Yext_YONYC' target='_blank'>https://www.yotel.com/en/hotels/yotel-new-york?utm_source=Google&utm_medium=Yext_YONYC</a></div>`)[0];
+                popup_b3691a3ab6e667495bf7cb9999fbfb23.setContent(html_2bfd78215eefc8174f980f7c251da375);
+            
+        
+
+        circle_marker_e893f2a59d15c6b4a72405164eed0896.bindPopup(popup_b3691a3ab6e667495bf7cb9999fbfb23)
+        ;
+
+        
+    
+    
+            var circle_marker_2955551bbb9245239477ac18c7b9868a = L.circleMarker(
+                [40.75937589999999, -73.98532519999999],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_5de82498c88e90f8831d445dff2aa28c);
+        
+    
+        var popup_ac6aeaee415587878e10d98778331cf1 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_2ec4beb922417ed0efee3c9973f57322 = $(`<div id="html_2ec4beb922417ed0efee3c9973f57322" style="width: 100.0%; height: 100.0%;"><b>Blue Fin</b><br><a href='https://www.bluefinnyc.com/location/blue-fin/' target='_blank'>https://www.bluefinnyc.com/location/blue-fin/</a></div>`)[0];
+                popup_ac6aeaee415587878e10d98778331cf1.setContent(html_2ec4beb922417ed0efee3c9973f57322);
+            
+        
+
+        circle_marker_2955551bbb9245239477ac18c7b9868a.bindPopup(popup_ac6aeaee415587878e10d98778331cf1)
+        ;
+
+        
+    
+    
+            var circle_marker_2f91a7f3044f24d70e32d4eff4108b98 = L.circleMarker(
+                [40.7416489, -73.98811189999999],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_5de82498c88e90f8831d445dff2aa28c);
+        
+    
+        var popup_18088692a347cb1339c25b3293df9261 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_3ede39b2540df2282b4599386cddbd19 = $(`<div id="html_3ede39b2540df2282b4599386cddbd19" style="width: 100.0%; height: 100.0%;"><b>Shake Shack Madison Square Park</b><br><a href='https://www.shakeshack.com/location/madison-square-park-ny?utm_source=google&utm_medium=listing' target='_blank'>https://www.shakeshack.com/location/madison-square-park-ny?utm_source=google&utm_medium=listing</a></div>`)[0];
+                popup_18088692a347cb1339c25b3293df9261.setContent(html_3ede39b2540df2282b4599386cddbd19);
+            
+        
+
+        circle_marker_2f91a7f3044f24d70e32d4eff4108b98.bindPopup(popup_18088692a347cb1339c25b3293df9261)
+        ;
+
+        
+    
+    
+            var circle_marker_f4f7e62a6e44e31a96237349f25a321d = L.circleMarker(
+                [40.7584105, -73.98921899999999],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_5de82498c88e90f8831d445dff2aa28c);
+        
+    
+        var popup_b8fbb4ee400eecc0aa9c7fe736773a93 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ff466e5b4686f425438c447ea0a96750 = $(`<div id="html_ff466e5b4686f425438c447ea0a96750" style="width: 100.0%; height: 100.0%;"><b>Shake Shack Theater District</b><br><a href='https://www.shakeshack.com/location/theater-district-ny?utm_source=google&utm_medium=listing' target='_blank'>https://www.shakeshack.com/location/theater-district-ny?utm_source=google&utm_medium=listing</a></div>`)[0];
+                popup_b8fbb4ee400eecc0aa9c7fe736773a93.setContent(html_ff466e5b4686f425438c447ea0a96750);
+            
+        
+
+        circle_marker_f4f7e62a6e44e31a96237349f25a321d.bindPopup(popup_b8fbb4ee400eecc0aa9c7fe736773a93)
+        ;
+
+        
+    
+    
+            var circle_marker_18fcfb27a8f4a534c84903f83d7d0aa1 = L.circleMarker(
+                [40.7618723, -73.98343559999999],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_5de82498c88e90f8831d445dff2aa28c);
+        
+    
+        var popup_ca13654a64eff78c6f12840e826f3c5a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_7b329304402f23eb1976a08d5d891c84 = $(`<div id="html_7b329304402f23eb1976a08d5d891c84" style="width: 100.0%; height: 100.0%;"><b>Ellen's Stardust Diner</b><br><a href='https://www.ellensstardustdiner.com/' target='_blank'>https://www.ellensstardustdiner.com/</a></div>`)[0];
+                popup_ca13654a64eff78c6f12840e826f3c5a.setContent(html_7b329304402f23eb1976a08d5d891c84);
+            
+        
+
+        circle_marker_18fcfb27a8f4a534c84903f83d7d0aa1.bindPopup(popup_ca13654a64eff78c6f12840e826f3c5a)
+        ;
+
+        
+    
+    
+            var circle_marker_3a212f5f5a9d65a7c5ab457833c1a56c = L.circleMarker(
+                [40.7594099, -73.98222],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_5de82498c88e90f8831d445dff2aa28c);
+        
+    
+        var popup_83d24e8c2730b07da282527aca99f7c8 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_c8d259ccc3d03fc5991d65ac02d44849 = $(`<div id="html_c8d259ccc3d03fc5991d65ac02d44849" style="width: 100.0%; height: 100.0%;"><b>Del Frisco's Double Eagle Steakhouse</b><br><a href='https://www.delfriscos.com/location/del-friscos-double-eagle-steakhouse-new-york-ny/' target='_blank'>https://www.delfriscos.com/location/del-friscos-double-eagle-steakhouse-new-york-ny/</a></div>`)[0];
+                popup_83d24e8c2730b07da282527aca99f7c8.setContent(html_c8d259ccc3d03fc5991d65ac02d44849);
+            
+        
+
+        circle_marker_3a212f5f5a9d65a7c5ab457833c1a56c.bindPopup(popup_83d24e8c2730b07da282527aca99f7c8)
+        ;
+
+        
+    
+    
+            var circle_marker_310d2a5e76f5c636b1644490b87af9b4 = L.circleMarker(
+                [40.7607, -74.01803509999999],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_5de82498c88e90f8831d445dff2aa28c);
+        
+    
+        var popup_06ba424f29284037f05f20836333dfcd = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_5afebee8f1abbd147ae57acf7f6294ed = $(`<div id="html_5afebee8f1abbd147ae57acf7f6294ed" style="width: 100.0%; height: 100.0%;"><b>Chart House</b><br><a href='https://www.chart-house.com/location/chart-house-weehawken-nj/' target='_blank'>https://www.chart-house.com/location/chart-house-weehawken-nj/</a></div>`)[0];
+                popup_06ba424f29284037f05f20836333dfcd.setContent(html_5afebee8f1abbd147ae57acf7f6294ed);
+            
+        
+
+        circle_marker_310d2a5e76f5c636b1644490b87af9b4.bindPopup(popup_06ba424f29284037f05f20836333dfcd)
+        ;
+
+        
+    
+    
+            var circle_marker_61100e64f9ada476d1722b09f857ea86 = L.circleMarker(
+                [40.7552153, -73.9787657],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_5de82498c88e90f8831d445dff2aa28c);
+        
+    
+        var popup_8a473d5e2c3cff8239944dca13493410 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_7a29e7cbd0b19e467bb2f3b6e036f5d7 = $(`<div id="html_7a29e7cbd0b19e467bb2f3b6e036f5d7" style="width: 100.0%; height: 100.0%;"><b>Morton's The Steakhouse</b><br><a href='https://www.mortons.com/location/mortons-the-steakhouse-new-york-ny-manhattan/' target='_blank'>https://www.mortons.com/location/mortons-the-steakhouse-new-york-ny-manhattan/</a></div>`)[0];
+                popup_8a473d5e2c3cff8239944dca13493410.setContent(html_7a29e7cbd0b19e467bb2f3b6e036f5d7);
+            
+        
+
+        circle_marker_61100e64f9ada476d1722b09f857ea86.bindPopup(popup_8a473d5e2c3cff8239944dca13493410)
+        ;
+
+        
+    
+    
+            var circle_marker_26f47fe609e3a7cf174ef8f2f9ff85a9 = L.circleMarker(
+                [40.7507861, -73.9864611],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_5de82498c88e90f8831d445dff2aa28c);
+        
+    
+        var popup_623bfabbaf594dfccda73eb255afc6cd = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_da3a5a073555ef3da4c2fdcb255a03e2 = $(`<div id="html_da3a5a073555ef3da4c2fdcb255a03e2" style="width: 100.0%; height: 100.0%;"><b>Keens Steakhouse</b><br><a href='http://www.keens.com/' target='_blank'>http://www.keens.com/</a></div>`)[0];
+                popup_623bfabbaf594dfccda73eb255afc6cd.setContent(html_da3a5a073555ef3da4c2fdcb255a03e2);
+            
+        
+
+        circle_marker_26f47fe609e3a7cf174ef8f2f9ff85a9.bindPopup(popup_623bfabbaf594dfccda73eb255afc6cd)
+        ;
+
+        
+    
+    
+            var circle_marker_0e7f6fced1245a93a35f50d34bbbe037 = L.circleMarker(
+                [40.7520244, -73.97782579999999],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_5de82498c88e90f8831d445dff2aa28c);
+        
+    
+        var popup_1e160a5a196926545106d0301f458966 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1f73d660c7372cc67defcc3dbeda95cb = $(`<div id="html_1f73d660c7372cc67defcc3dbeda95cb" style="width: 100.0%; height: 100.0%;"><b>Pershing Square</b><br><a href='https://pershingsquare.com/' target='_blank'>https://pershingsquare.com/</a></div>`)[0];
+                popup_1e160a5a196926545106d0301f458966.setContent(html_1f73d660c7372cc67defcc3dbeda95cb);
+            
+        
+
+        circle_marker_0e7f6fced1245a93a35f50d34bbbe037.bindPopup(popup_1e160a5a196926545106d0301f458966)
+        ;
+
+        
+    
+</script>
+</html>
