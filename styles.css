@@ -29,16 +29,47 @@ body{
   background-color: white;
   min-height: 100%;
   min-width: 100%; 
-
+  display:flex; 
+  justify-content: flex-start;
 }
 
 #sidebar{
   display: none; 
+  background-color: rgba(245, 245, 245, 0.284);
 }
 
-.side-button{
-  background-color: #f18221; 
-  border: 2px solid #7fcecb; 
-  color: white; 
+.buttons{
+  border: 1px solid #7fcecb; 
+  background-color: white; 
+  color: black; 
   border-radius: 5px;
+}
+
+.cancel{
+  color: black; 
+}
+
+
+.apply-filter{
+  background: #7fcecb; 
+  color: white; 
+  border: transparent; 
+  border-radius: 2px;
+  height: 32px;
+  margin-left: 10px; 
+}
+
+.exit-filter{
+  margin-top: 20px; 
+}
+
+.filters{
+  accent-color: #7fcecb;
+  color:  rgb(16, 16, 16); 
+}
+
+.see-more{
+  margin-top: 0px; 
+  color: #7fcecb; 
+  
 }

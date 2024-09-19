@@ -9,30 +9,38 @@
 </head>
 <body>
     <div id = mainContent>
-        <div id="mainButton">
-            <button class = "side-button">Filter</button>
+        <div id="mainButtons">
+            <button class = "buttons" id="side-button">Filter</button>
+            <button class="buttons">Price</button>
+            <button class="buttons">Open Now</button>
+            <button class="buttons">Reservation</button>
+            <button class="buttons">Offers Delivery</button>
+            <button class="buttons">Offers Takeout</button>
         </div>
     </div>
     <div id="sidebar">
         <div class="filter-box">
             <div class="search">
-                <input type = "text" placeholder="Search FlavorFLow">
+                <input type = "text" placeholder="Search FlavorFlow">
                 <img src="/img/magnify.png" alt="magnifying glass"> 
             </div>
             <div class = filters>
+                <div class="active-filters">
+                    <p>Applied Filters</p>
+                </div>
                 <div class = "price">
                     <p>Price</p>
                     <div class = "price-buttons">
-                        <button>
+                        <button id="affordable" class="buttons">
                             <span>$</span>
                         </button>
-                        <button>
+                        <button id="semi-affordable" class="buttons">
                             <span>$$</span>
                         </button>
-                        <button>
+                        <button id="semi-expensive" class="buttons">
                             <span>$$$</span>
                         </button>
-                        <button>
+                        <button id="expensive" class="buttons">
                             <span>$$$$</span>
                         </button>
                     </div>   
@@ -42,10 +50,10 @@
                     <span id = "star1" class="material-symbols-outlined">
                         star
                     </span>
-                    <span class="material-symbols-outlined">
+                    <span id="star2" class="material-symbols-outlined">
                         star
                     </span>
-                    <span class="material-symbols-outlined">
+                    <span id="star3" class="material-symbols-outlined">
                         star
                     </span>
                 </div>
@@ -61,18 +69,20 @@
                     <label for="gluten-free">Gluten Free</label> </br>
                     <input type="checkbox" id="kosher" name="diet" value="kosher">
                     <label for="kosher">Kosher</label>
+                    <p class="see-more">See More</p>
                 </div>
                 <div class = "category">
                     <p>Category</p>
-                    <button>Itallian</button>
-                    <button>American</button>
-                    <button>Seafood</button>
+                    <button class="buttons" id="itallian">Itallian</button>
+                    <button class="buttons" id="american">American</button>
+                    <button class="buttons" id="seafood">Seafood</button>
+                    <p class="see-more">See More</p>
                 </div>
             </div>
         </div>
         <div class="exit-filter">
-            <button>Cancel</button>
-            <button>Apply Filters</button>
+            <span class="cancel">Cancel</span>
+            <button class="apply-filter">Apply Filters</button>
         </div>
     </div>
   
