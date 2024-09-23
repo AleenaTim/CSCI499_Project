@@ -85,7 +85,7 @@ function choosePriceRange(){
     const pButtons = document.querySelector(".price-buttons"); 
     pButtons.addEventListener("click", function(e){
         selectedID.id = e.target.id; 
-        validID(selectedID)
+        validID(selectedID);
         if(selectedID.valid == true){
             selectButton(selectedID.id, e.target.textContent); 
         }
@@ -164,7 +164,7 @@ function chooseCategories(){
 function selectedFilters(textField){
     const activeFilter = document.querySelector(".active-filters"); 
     const filter = document.createElement("span"); 
-    filter.textContent =  " ◦ " + textField; 
+    filter.textContent =  " ◦ " + textField[0].toUpperCase() + textField.substring(1); 
     filter.color = "#7fcecb"; 
     filter.id = "active" + textField; 
     activeFilter.appendChild(filter); 
@@ -180,7 +180,17 @@ function removeFilter(currFilter){
     }
 }
 
+function chooseDistance(){
+    var distanceSlider = document.getElementById("myRange"); 
+    const filter = document.getElementById("distanceFilter"); 
+    distanceSlider.oninput = function(){
+        filter.textContent = "◦ distance : " + "< " + distanceSlider.value + "mi"; 
+    }
+}
+
 chooseRating(); 
 choosePriceRange(); 
 chooseCategories(); 
 chooseFeature(); 
+chooseDistance(); 
+
