@@ -6,6 +6,9 @@
     max-width: 20px; 
 }
 
+span{
+  border: 5px dotted black; 
+}
 .material-symbols-outlined {
   font-variation-settings:
   'FILL' 0,

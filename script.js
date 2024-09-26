@@ -29,58 +29,26 @@ function closeSideBar(){
 function chooseRating(){
     const stars = document.querySelector(".rating-range"); 
     stars.addEventListener("click", function(e){
-        if(e.target.id == "star1"){
-            if(document.getElementById("star2").style.color != "gold"){
-                document.getElementById("star1").style.color = "gold"; 
+        let el = e.target; 
+        if(document.getElementById(el.id).style.color != "gold"){
+            while(el){
+                document.getElementById(el.id).style.color = "gold"; 
+                el = el.previousElementSibling;    
             }
-            else{
-                document.getElementById("star2").style.color = "black"; 
-                document.getElementById("star1").style.color = "gold"; 
-            }
-            if(document.getElementById("star3").style.color != "gold"){
-                document.getElementById("star1").style.color = "gold"; 
-            }
-            else{
-                document.getElementById("star3").style.color = "black"; 
-                document.getElementById("star1").style.color = "gold"; 
-            } 
-            
         }
-        if(e.target.id == "star2"){
-            if(document.getElementById("star1").style.color != "gold"){
-                document.getElementById("star2").style.color = "gold"; 
-            }
-            else{
+        else{
+            if(el.id == "star1" && document.getElementById(el.nextElementSibling.id).style.color == "black"){
                 document.getElementById("star1").style.color = "black"; 
-                document.getElementById("star2").style.color = "gold"; 
-            }
-            if(document.getElementById("star3").style.color != "gold"){
-                document.getElementById("star2").style.color = "gold"; 
             }
             else{
-                document.getElementById("star3").style.color = "black"; 
-                document.getElementById("star2").style.color = "gold"; 
-            } 
+                while(el){
+                    el = el.nextElementSibling; 
+                    document.getElementById(el.id).style.color = "black"; 
+                }
+            }
         }
-        if(e.target.id == "star3"){
-            if(document.getElementById("star1").style.color != "gold"){
-                document.getElementById("star3").style.color = "gold"; 
-            }
-            else{
-                document.getElementById("star1").style.color = "black"; 
-                document.getElementById("star3").style.color = "gold"; 
-            }
-            if(document.getElementById("star2").style.color != "gold"){
-                document.getElementById("star3").style.color = "gold"; 
-            }
-            else{
-                document.getElementById("star2").style.color = "black"; 
-                document.getElementById("star3").style.color = "gold"; 
-            } 
-        }
-    });  
+    }); 
 }
-
 function choosePriceRange(){
     const pButtons = document.querySelector(".price-buttons"); 
     pButtons.addEventListener("click", function(e){
@@ -184,7 +152,7 @@ function chooseDistance(){
     var distanceSlider = document.getElementById("myRange"); 
     const filter = document.getElementById("distanceFilter"); 
     distanceSlider.oninput = function(){
-        filter.textContent = "◦ distance : " + "< " + distanceSlider.value + "mi"; 
+        filter.textContent = "◦ Distance : " + "< " + distanceSlider.value + "mi"; 
     }
 }
 
