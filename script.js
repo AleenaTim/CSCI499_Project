@@ -14,6 +14,20 @@ mainButton.addEventListener("click", function(){
     }
  }); 
 
+function openPriceDropDown(){
+    const pricedBttn = document.querySelector("#priceDropDownBttn"); 
+    pricedBttn.addEventListener("click", function(){
+        console.log("clicked"); 
+        if(document.getElementById("price-checkboxes").style.display == "block"){
+            document.getElementById("price-checkboxes").style.display = "none"; 
+        }
+        else{
+            document.getElementById("price-checkboxes").style.display = "block";
+        }
+   
+    });
+}
+
 function openSideBar(){
     document.getElementById("sidebar").style.display = "block"; 
     document.getElementById("sidebar").style.width = "250px"; 
@@ -24,7 +38,6 @@ function closeSideBar(){
     document.getElementById("sidebar").style.display = "none"; 
     document.getElementById("mainContent").style.marginLeft = "0px"; 
 }
-
 
 function chooseRating(){
     const stars = document.querySelector(".rating-range"); 
@@ -129,6 +142,7 @@ function chooseCategories(){
 }
 
 
+
 function selectedFilters(textField){
     const activeFilter = document.querySelector(".active-filters"); 
     const filter = document.createElement("span"); 
@@ -161,4 +175,5 @@ choosePriceRange();
 chooseCategories(); 
 chooseFeature(); 
 chooseDistance(); 
+openPriceDropDown(); 
 

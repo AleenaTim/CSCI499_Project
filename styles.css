@@ -6,9 +6,6 @@
     max-width: 20px; 
 }
 
-span{
-  border: 5px dotted black; 
-}
 .material-symbols-outlined {
   font-variation-settings:
   'FILL' 0,
@@ -27,6 +24,16 @@ body{
   justify-content: flex-end;
   flex-direction: row-reverse;
 }
+ul{
+  list-style: none;
+}
+
+#price-checkboxes{
+  display:none;
+  position: absolute;
+  padding-left: 0px;
+  background-color: rgba(245, 245, 245, 0.284);
+}
 
 #mainContent{
   background-color: white;
@@ -34,6 +41,19 @@ body{
   min-width: 100%; 
   display:flex; 
   justify-content: flex-start;
+}
+
+#mainButtons{
+  display: flex; 
+  white-space: nowrap;
+  gap: 4px; 
+}
+
+#section-one-buttons{
+  display: flex; 
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 4px; 
 }
 
 #sidebar{
@@ -74,5 +94,8 @@ body{
 .see-more{
   margin-top: 0px; 
   color: #7fcecb; 
-  
+}
+
+.see-more-items{
+  display: none; 
 }

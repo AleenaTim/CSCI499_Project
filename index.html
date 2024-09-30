@@ -10,12 +10,36 @@
 <body>
     <div id = mainContent>
         <div id="mainButtons">
-            <button class = "buttons" id="side-button">Filter</button>
-            <button class="buttons">Price</button>
-            <button class="buttons">Open Now</button>
+            <div id="section-one-buttons">
+                    <button class = "buttons" id="side-button">Filter</button>
+                <div id="price-drop-down">
+                    <button id="priceDropDownBttn"class="buttons">Price</button>
+                    <ul id="price-checkboxes">
+                        <li>
+                            <input type="checkbox" id="affordable-d" name = "affordable" value="affordable">
+                            <label for="affordable-d">$</label> <br> 
+                        </li>
+                        <li>
+                            <input type="checkbox" id="semi-affordable-d" name = "semi-affordable" value="semi-affordable">
+                            <label for="semi-affordable-d">$$</label> <br> 
+                        </li>
+                        <li>
+                            <input type="checkbox" id="semi-expensive-d" name = "semi-expensive" value="semi-expensive">
+                            <label for="semi-expensive-d">$$$</label> <br>  
+                        </li>
+                        <li>
+                            <input type="checkbox" id="expensive-d" name = "expensive" value="expensive">
+                            <label for="expensive-d">$$$$</label> <br>  
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div id="section-two-buttons">
+            <button class="buttons">Open Now</button> 
             <button class="buttons">Reservation</button>
             <button class="buttons">Offers Delivery</button>
             <button class="buttons">Offers Takeout</button>
+            </div>
         </div>
     </div>
     <div id="sidebar">
@@ -57,6 +81,12 @@
                     <span id="star3" class="material-symbols-outlined">
                         star
                     </span>
+                    <span id="star4" class="material-symbols-outlined">
+                        star
+                    </span>
+                    <span id="star5" class="material-symbols-outlined">
+                        star
+                    </span>
                 </div>
                 <div class = "distance">
                     <p>Distance</p>
@@ -65,25 +95,123 @@
                 <div class = "suggested">
                     <p>Features</p>
                     <input type="checkbox" id="vegetarian" name = "diet" value="vegetarian">
-                    <label for="vegetarian">Vegetarian</label> </br>
+                    <label for="vegetarian">Vegetarian</label> <br>
                     <input type="checkbox" id="gluten-free" name = "diet" value = "gluten-free">
-                    <label for="gluten-free">Gluten Free</label> </br>
+                    <label for="gluten-free">Gluten Free</label> <br>
                     <input type="checkbox" id="kosher" name="diet" value="kosher">
-                    <label for="kosher">Kosher</label>
+                    <label for="kosher">Kosher</label> <br>
                     <p class="see-more">See More</p>
+                        <div class="see-more-items">
+                            <ul>
+                                <li>
+                                    <input type="checkbox" id="halal" name = "diet" value="halal">
+                                    <label for="halal">Halal</label> <br>
+                                </li>
+
+                                <li>
+                                    <input type="checkbox" id="allergy-friendly" name = "diet" value="allergy-friendly">
+                                    <label for="allergy-friendly">Allergy Friendly</label> <br>
+                                </li>
+
+                                <li>
+                                    <input type="checkbox" id="vegan" name = "diet" value="vegan">
+                                    <label for="vegan">Vegan</label> <br>
+                                </li>
+
+                                <li>
+                                    <input type="checkbox" id="organic" name = "food-type" value="organic">
+                                    <label for="organic">Organic</label> <br>
+                                </li>
+
+                                <li>
+                                    <input type="checkbox" id="low-sodium" name = "diet" value="low-sodium">
+                                    <label for="low-sodium">Low Sodium</label> <br>
+                                </li>
+
+                                <li>
+                                    <input type="checkbox" id="heart-healthy-menu" name = "diet" value="heart-healthy-menu">
+                                    <label for="heart-healthy-menu">Heart-healthy Menu</label> <br>
+                                </li>
+
+                                <li>
+                                    <input type="checkbox" id="kids-menu" name = "diet" value="kids-menu">
+                                    <label for="kids-menu">Kids-menu</label> <br>
+                                </li>
+
+                                <li>
+                                    <input type="checkbox" id="live-music" name = "diet" value="live-music">
+                                    <label for="live-music">Live music</label> <br>
+                                </li>
+
+                                <li>
+                                    <input type="checkbox" id="eat-in" name = "diet" value="eat-in">
+                                    <label for="eat-in">Eat in</label> <br>
+        
+                                </li>
+                            
+                                <li>
+                                    <input type="checkbox" id="take-out" name = "diet" value="take-out">
+                                    <label for="take-out">Take out</label> <br>
+                                </li>
+
+                            </ul>
+                        </div>
                 </div>
                 <div class = "category">
                     <p>Category</p>
-                    <button class="buttons" id="itallian">Itallian</button>
+                    <button class="buttons" id="itallian">Italian</button>
                     <button class="buttons" id="american">American</button>
                     <button class="buttons" id="seafood">Seafood</button>
-                    <p class="see-more">See More</p>
+                    <p class="see-more">See More</p> 
+                    <div class = "see-more-items"> 
+                        <ul>
+                             <li>
+                                 <input type="checkbox" id="foodCourt" name="diet" value="foodCourt">
+                                 <label for="foodCourt">foodCourt</label><br>
+                             </li>
+                             <li>
+                                 <input type="checkbox" id="soulFood" name="diet" value="soulFood">
+                                 <label for="soulFood">soulFood</label><br>
+                             </li>
+                             <li>
+                                 <input type="checkbox" id="hawaiian" name="diet" value="hawaiian">
+                                 <label for="hawaiian">hawaiian</label><br>
+                             </li>
+                             <li>
+                                 <input type="checkbox" id="venezuelan" name="diet" value="venezuelan">
+                                 <label for="venezuelan">venezuelan</label><br>
+                             </li>
+                             <li>
+                                <input type="checkbox" id="thai" name="diet" value="thai">
+                                <label for="thai">thai</label><br>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="Chinese" name="diet" value="Chinese">
+                                <label for="Chinese">Chinese</label><br>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="Mediterranean" name="diet" value="Mediterranean">
+                                <label for="Mediterranean">Mediterranean</label><br>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="Filipino" name="diet" value="Filipino">
+                                <label for="Filipino">Filipino</label><br>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="Greek" name="diet" value="Greek">
+                                <label for="Greek">Greek</label><br>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="Mexican" name="diet" value="Mexican">
+                                <label for="Mexican">Mexican</label><br>
+                            </li>
+                        </ul>
+                     </div>
                 </div>
             </div>
         </div>
         <div class="exit-filter">
-            <span class="cancel">Cancel</span>
-            <button class="apply-filter">Apply Filters</button>
+            <button class="cancel">Cancel</button>
         </div>
     </div>
   
