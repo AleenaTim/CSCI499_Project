@@ -1,3 +1,27 @@
+## Getting Started
+
+1. Clone the repository to your local machine:
+
+    ```
+    https://github.com/AleenaTim/CSCI499_Project
+    ```
+2. Install dependencies:
+
+    ```
+    cd flavorflow
+    npm install
+    ```
+
+3. Start the development server:
+
+    ```
+    npm run start
+    ```
+
+4. Open your browser and navigate to `http://localhost:3000` to view the application.
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
