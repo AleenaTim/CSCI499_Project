@@ -4,44 +4,32 @@ html {
     font-family: Raleway, Times New Roman, sans-serif;
 }
 
-h1 {
-    font-weight: normal;
-    letter-spacing: 15px;
-    font-size: 70px;
-    text-align: center;
-}
-
-header nav {
-    height: 100px;
-    list-style-type: none;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
+body{
+    padding-top: 70px; /*Matches Navbar height*/
 }
 
 a {
+    margin: 0px 2.5px;
     /*remove blue text and underline from anchor*/
     text-decoration: none;
 }
 
-#signup {
-    /*border style*/
-    border-width: 1px;
-    border-style: solid;
-    border-color: silver;
-    border-radius: 10px;
-    /*font color*/
-    color: teal;
-
-    padding: 7.5px 7.5px;
-    margin: 0px 5px;
-    transition: background-color 200ms ease-in-out;
-
+a span{
+    color:blue;
 }
 
-#signup:hover,
-#signup:focus {
-    background-color: aquamarine;
+.navbar.scrolled{
+    background: white;
+    transition: background 550ms;
+}
+
+.nav-link.active{
+    transition: color 225ms ease-in-out;
+}
+
+.nav-link.active:hover,
+.nav-link.active:focus {
+    color: aquamarine;
 }
 
 #loc {
@@ -59,20 +47,22 @@ h2 {
 }
 
 button {
-    background: none;
-    color: orange;
-    border: 2px solid;
-    padding: 0.5em 1em;
-    font-size: 1em;
+    /*border style*/
+    border-width: 1px;
+    border-style: solid;
+    border-color: silver;
+    border-radius: 15px;
+    /*font color*/
+    color: teal;
+
+    padding: 7.5px 7.5px;
+    transition: background-color 200ms ease-in-out;
 
 }
 
-button:hover {
-    border-color: turquoise;
-    color: white;
-    box-shadow: 0 0.5em 0.5em -0.4em orange;
-    transform: translateY(-0.25em);
-    cursor: pointer;
+button:hover,
+button:focus {
+    background-color: aquamarine;
 }
 
 form {
