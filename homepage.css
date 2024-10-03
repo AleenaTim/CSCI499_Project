@@ -1,18 +1,57 @@
+html {
+    /*Set overall width, including border*/
+    box-sizing: border-box;
+    font-family: Raleway, Times New Roman, sans-serif;
+}
+
 h1 {
     font-weight: normal;
-    text-decoration: underline wavy;
     letter-spacing: 15px;
     font-size: 70px;
     text-align: center;
-    font-family: Georgia, Times New Roman, sans-serif;
+}
+
+header nav {
+    height: 100px;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 a {
+    /*remove blue text and underline from anchor*/
     text-decoration: none;
 }
 
+#signup {
+    /*border style*/
+    border-width: 1px;
+    border-style: solid;
+    border-color: silver;
+    border-radius: 10px;
+    /*font color*/
+    color: teal;
+
+    padding: 7.5px 7.5px;
+    margin: 0px 5px;
+    transition: background-color 200ms ease-in-out;
+
+}
+
+#signup:hover,
+#signup:focus {
+    background-color: aquamarine;
+}
+
 #loc {
-    font-family: monospace;
+    width: 300px;
+    height: 25px;
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    box-sizing: border-box;
+    border-radius: 100px;
 }
 
 h2 {
@@ -20,20 +59,30 @@ h2 {
 }
 
 button {
+    background: none;
     color: orange;
-    background-color: mediumturquoise;
+    border: 2px solid;
+    padding: 0.5em 1em;
+    font-size: 1em;
+
+}
+
+button:hover {
+    border-color: turquoise;
+    color: white;
+    box-shadow: 0 0.5em 0.5em -0.4em orange;
+    transform: translateY(-0.25em);
+    cursor: pointer;
 }
 
 form {
     letter-spacing: -0.5px;
-    font-family: monospace;
 }
 
 p {
     color: mediumaquamarine;
     line-height: 1.75;
     letter-spacing: 0.5px;
-    font-family: monospace;
 }
 
 body {
