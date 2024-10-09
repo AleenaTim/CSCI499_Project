@@ -6,14 +6,14 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <title>FlavorFLow</title>
-</head>
-<body>
-    <div id = mainContent>
+</head> 
+<body class="screen">
+    <div id = "mainContent">
         <div id="mainButtons">
             <div id="section-one-buttons">
                     <button class = "buttons" id="side-button">Filter</button>
                 <div id="price-drop-down">
-                    <button id="priceDropDownBttn"class="buttons">Price</button>
+                    <button id="priceDropDownBttn"class="buttons">Price ↓</button>
                     <ul id="price-checkboxes">
                         <li>
                             <input type="checkbox" id="affordable-d" name = "affordable" value="affordable">
@@ -35,10 +35,10 @@
                 </div>
             </div>
             <div id="section-two-buttons">
-            <button class="buttons">Open Now</button> 
-            <button class="buttons">Reservation</button>
-            <button class="buttons">Offers Delivery</button>
-            <button class="buttons">Offers Takeout</button>
+                <button class="buttons" id="open-main">Open Now</button> 
+                <button class="buttons" id="reservation-main">Reservation</button>
+                <button class="buttons" id="delivery-main" >Offers Delivery</button>
+                <button class="buttons" id="takeout-main">Offers Takeout</button>
             </div>
         </div>
     </div>
@@ -56,16 +56,16 @@
                 <div class = "price">
                     <p>Price</p>
                     <div class = "price-buttons">
-                        <button id="affordable" class="buttons">
+                        <button id="affordable" class="buttons toGrey">
                             <span>$</span>
                         </button>
-                        <button id="semi-affordable" class="buttons">
+                        <button id="semi-affordable" class="buttons toGrey">
                             <span>$$</span>
                         </button>
-                        <button id="semi-expensive" class="buttons">
+                        <button id="semi-expensive" class="buttons toGrey">
                             <span>$$$</span>
                         </button>
-                        <button id="expensive" class="buttons">
+                        <button id="expensive" class="buttons toGrey">
                             <span>$$$$</span>
                         </button>
                     </div>   
@@ -100,8 +100,8 @@
                     <label for="gluten-free">Gluten Free</label> <br>
                     <input type="checkbox" id="kosher" name="diet" value="kosher">
                     <label for="kosher">Kosher</label> <br>
-                    <p class="see-more">See More</p>
-                        <div class="see-more-items">
+                    <p class="see-more" id="see-more-features">See More</p>
+                        <div id="see-more-f">
                             <ul>
                                 <li>
                                     <input type="checkbox" id="halal" name = "diet" value="halal">
@@ -162,28 +162,28 @@
                     <button class="buttons" id="itallian">Italian</button>
                     <button class="buttons" id="american">American</button>
                     <button class="buttons" id="seafood">Seafood</button>
-                    <p class="see-more">See More</p> 
-                    <div class = "see-more-items"> 
+                    <p class="see-more" id="see-more-categories">See More</p> 
+                    <div id="see-more-c"> 
                         <ul>
                              <li>
                                  <input type="checkbox" id="foodCourt" name="diet" value="foodCourt">
-                                 <label for="foodCourt">foodCourt</label><br>
+                                 <label for="foodCourt">Food Court</label><br>
                              </li>
                              <li>
                                  <input type="checkbox" id="soulFood" name="diet" value="soulFood">
-                                 <label for="soulFood">soulFood</label><br>
+                                 <label for="soulFood">Soul Food</label><br>
                              </li>
                              <li>
                                  <input type="checkbox" id="hawaiian" name="diet" value="hawaiian">
-                                 <label for="hawaiian">hawaiian</label><br>
+                                 <label for="hawaiian">Hawaiian</label><br>
                              </li>
                              <li>
                                  <input type="checkbox" id="venezuelan" name="diet" value="venezuelan">
-                                 <label for="venezuelan">venezuelan</label><br>
+                                 <label for="venezuelan">Venezuelan</label><br>
                              </li>
                              <li>
                                 <input type="checkbox" id="thai" name="diet" value="thai">
-                                <label for="thai">thai</label><br>
+                                <label for="thai">Thai</label><br>
                             </li>
                             <li>
                                 <input type="checkbox" id="Chinese" name="diet" value="Chinese">

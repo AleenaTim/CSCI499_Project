@@ -28,6 +28,19 @@ function openPriceDropDown(){
     });
 }
 
+
+function chooseMainFilter(){
+    const mainFilter = document.querySelector("#section-two-buttons"); 
+    mainFilter.addEventListener("click", function(e){
+        if(document.getElementById(e.target.id).style.color != "rgb(127, 206, 203)"){
+            document.getElementById(e.target.id).style.color = "rgb(127, 206, 203)"; 
+        }//works only with rgb not hex 
+        else{
+            document.getElementById(e.target.id).style.color = "black"; 
+        }
+        
+    }); 
+}
 function openSideBar(){
     document.getElementById("sidebar").style.display = "block"; 
     document.getElementById("sidebar").style.width = "250px"; 
@@ -93,7 +106,10 @@ function selectCheckbox(feature){
 }
 
 function validID(selectedID){
-    if(selectedID.id == "itallian" || selectedID.id == "american" || selectedID.id == "seafood"){
+    if(selectedID.id == "itallian" || selectedID.id == "american" || selectedID.id == "seafood" 
+        || selectedID.id == "foodCourt" || selectedID == "soulFood" || selectedID == "hawaiian" || selectedID == "venezuelan"
+        || selectedID.id == "thai" || selectedID.id == "Chinese" || selectedID.id == "Mediterranean"
+        || selectedID.id == "Filipino" || selectedID.id == "Greek" || selectedID.id == "Mexican"){
         selectedID.valid = true; 
     }
     if(selectedID.id == "affordable" || selectedID.id == "semi-affordable" || selectedID.id == "semi-expensive" || selectedID.id == "expensive"){
@@ -134,8 +150,11 @@ function chooseCategories(){
     catButton.addEventListener("click", function(e){
         selectedID.id = e.target.id; 
         validID(selectedID)
-        if(selectedID.valid == true){
+        if(selectedID.valid == true &&  e.target.tagName == "BUTTON"){
             selectButton(selectedID.id); 
+        }
+        if(selectedID.valid == true && e.target.tagName == "INPUT"){
+            selectCheckbox(selectedID.id); 
         }
         
     })
@@ -170,10 +189,36 @@ function chooseDistance(){
     }
 }
 
+function seeMoreFeatures(){
+    const seeMore = document.querySelector("#see-more-features"); 
+    seeMore.addEventListener("click", function(){
+        if(document.getElementById("see-more-f").style.display != "block"){
+            document.getElementById("see-more-f").style.display = "block"; 
+        }
+        else{
+            document.getElementById("see-more-f").style.display = "none"; 
+        }
+    }); 
+}
+
+function seeMoreCategories(){
+    const seeMoreC = document.querySelector("#see-more-categories"); 
+    seeMoreC.addEventListener("click", function(){
+        if(document.getElementById("see-more-c").style.display != "block"){
+            document.getElementById("see-more-c").style.display = "block"; 
+         }
+         else{
+             document.getElementById("see-more-c").style.display = "none"; 
+         }
+    }); 
+}
 chooseRating(); 
 choosePriceRange(); 
 chooseCategories(); 
 chooseFeature(); 
 chooseDistance(); 
 openPriceDropDown(); 
+chooseMainFilter(); 
+seeMoreFeatures(); 
+seeMoreCategories(); 
 
