@@ -44,6 +44,7 @@ function chooseMainFilter(){
 function openSideBar(){
     document.getElementById("sidebar").style.display = "block"; 
     document.getElementById("sidebar").style.width = "250px"; 
+    document.getElementById("sidebar").style.width = "250px"; 
 }
    
 function closeSideBar(){
