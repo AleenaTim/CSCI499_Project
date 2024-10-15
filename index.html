@@ -8,40 +8,6 @@
     <title>FlavorFLow</title>
 </head> 
 <body class="screen">
-    <div id = "mainContent">
-        <div id="mainButtons">
-            <div id="section-one-buttons">
-                    <button class = "buttons" id="side-button">Filter</button>
-                <div id="price-drop-down">
-                    <button id="priceDropDownBttn"class="buttons">Price ↓</button>
-                    <ul id="price-checkboxes">
-                        <li>
-                            <input type="checkbox" id="affordable-d" name = "affordable" value="affordable">
-                            <label for="affordable-d">$</label> <br> 
-                        </li>
-                        <li>
-                            <input type="checkbox" id="semi-affordable-d" name = "semi-affordable" value="semi-affordable">
-                            <label for="semi-affordable-d">$$</label> <br> 
-                        </li>
-                        <li>
-                            <input type="checkbox" id="semi-expensive-d" name = "semi-expensive" value="semi-expensive">
-                            <label for="semi-expensive-d">$$$</label> <br>  
-                        </li>
-                        <li>
-                            <input type="checkbox" id="expensive-d" name = "expensive" value="expensive">
-                            <label for="expensive-d">$$$$</label> <br>  
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div id="section-two-buttons">
-                <button class="buttons" id="open-main">Open Now</button> 
-                <button class="buttons" id="reservation-main">Reservation</button>
-                <button class="buttons" id="delivery-main" >Offers Delivery</button>
-                <button class="buttons" id="takeout-main">Offers Takeout</button>
-            </div>
-        </div>
-    </div>
     <div id="sidebar">
         <div class="filter-box">
             <div class="search">
@@ -155,6 +121,9 @@
                                 </li>
 
                             </ul>
+                            <span class="material-symbols-outlined close-filter">
+                                close
+                            </span>
                         </div>
                 </div>
                 <div class = "category">
@@ -206,15 +175,67 @@
                                 <label for="Mexican">Mexican</label><br>
                             </li>
                         </ul>
+                        <span class="material-symbols-outlined close-category">
+                            close
+                        </span>
                      </div>
                 </div>
             </div>
         </div>
         <div class="exit-filter">
             <button class="cancel">Cancel</button>
+            <button class="cancel">Clear</button>
         </div>
     </div>
+    <div id="opacitySet">
+    </div>
+    <div id = "mainContent">
+        <div id="mainButtons">
+            <div id="section-one-buttons">
+                    <button class = "buttons" id="side-button">
+                        <span class="material-symbols-outlined">
+                            filter_list
+                        </span>
+                        Filter
+                    </button>
+                <div id="price-drop-down">
+                    <button id="priceDropDownBttn"class="buttons">
+                        Price
+                        <span class="material-symbols-outlined my-arrow">
+                            arrow_drop_down
+                        </span>
+                    </button>
+                    <ul id="price-checkboxes">
+                        <li>
+                            <input type="checkbox" id="affordable-d" name = "affordable" value="affordable">
+                            <label for="affordable-d">$</label> <br> 
+                        </li>
+                        <li>
+                            <input type="checkbox" id="semi-affordable-d" name = "semi-affordable" value="semi-affordable">
+                            <label for="semi-affordable-d">$$</label> <br> 
+                        </li>
+                        <li>
+                            <input type="checkbox" id="semi-expensive-d" name = "semi-expensive" value="semi-expensive">
+                            <label for="semi-expensive-d">$$$</label> <br>  
+                        </li>
+                        <li>
+                            <input type="checkbox" id="expensive-d" name = "expensive" value="expensive">
+                            <label for="expensive-d">$$$$</label> <br>  
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div id="section-two-buttons">
+                <button class="buttons" id="open-main">Open Now</button> 
+                <button class="buttons" id="reservation-main">Reservation</button>
+                <button class="buttons" id="delivery-main" >Offers Delivery</button>
+                <button class="buttons" id="takeout-main">Offers Takeout</button>
+            </div>
+        </div>
+    </div>
+
+
   
-    <script src="script.js"></script>
+ <script src="script.js"></script>
 </body>
 </html>

@@ -6,12 +6,14 @@ const selectedID = {
 const mainButton = document.querySelector("#side-button"); 
 
 mainButton.addEventListener("click", function(){
-    if(document.getElementById("sidebar").style.display == "none"){
-        openSideBar(); 
-    }
-    else{
-       closeSideBar(); 
-    }
+    openSideBar(); 
+    addOpacity(); 
+ }); 
+
+ const theGrey = document.querySelector("#opacitySet"); 
+ theGrey.addEventListener("click", function(){
+    closeSideBar(); 
+    removeOpacity(); 
  }); 
 
 function openPriceDropDown(){
@@ -20,14 +22,15 @@ function openPriceDropDown(){
         console.log("clicked"); 
         if(document.getElementById("price-checkboxes").style.display == "block"){
             document.getElementById("price-checkboxes").style.display = "none"; 
+            document.querySelector(".my-arrow").textContent = 'arrow_drop_down'; 
         }
         else{
             document.getElementById("price-checkboxes").style.display = "block";
+            document.querySelector(".my-arrow").textContent = 'arrow_drop_up'; 
         }
    
     });
 }
-
 
 function chooseMainFilter(){
     const mainFilter = document.querySelector("#section-two-buttons"); 
@@ -43,8 +46,16 @@ function chooseMainFilter(){
 }
 function openSideBar(){
     document.getElementById("sidebar").style.display = "block"; 
-    document.getElementById("sidebar").style.width = "250px"; 
-    document.getElementById("sidebar").style.width = "250px"; 
+    document.getElementById("sidebar").style.width = "225px"; 
+    document.getElementById("mainContent").style.marginLeft = "225px"; 
+}
+
+function addOpacity(){
+    document.getElementById("opacitySet").style.display = "block"; 
+}
+
+function removeOpacity(){
+    document.getElementById("opacitySet").style.display = "none"; 
 }
    
 function closeSideBar(){
@@ -167,7 +178,7 @@ function selectedFilters(textField){
     const activeFilter = document.querySelector(".active-filters"); 
     const filter = document.createElement("span"); 
     filter.textContent =  " ◦ " + textField[0].toUpperCase() + textField.substring(1); 
-    filter.color = "#7fcecb"; 
+    filter.style.fontSize = "10px"; 
     filter.id = "active" + textField; 
     activeFilter.appendChild(filter); 
 
@@ -193,8 +204,9 @@ function chooseDistance(){
 function seeMoreFeatures(){
     const seeMore = document.querySelector("#see-more-features"); 
     seeMore.addEventListener("click", function(){
-        if(document.getElementById("see-more-f").style.display != "block"){
-            document.getElementById("see-more-f").style.display = "block"; 
+        if(document.getElementById("see-more-f").style.display != "flex"){
+            document.getElementById("see-more-f").style.display = "flex"; 
+            document.getElementById("see-more-c").style.display = "none"; 
         }
         else{
             document.getElementById("see-more-f").style.display = "none"; 
@@ -205,12 +217,27 @@ function seeMoreFeatures(){
 function seeMoreCategories(){
     const seeMoreC = document.querySelector("#see-more-categories"); 
     seeMoreC.addEventListener("click", function(){
-        if(document.getElementById("see-more-c").style.display != "block"){
-            document.getElementById("see-more-c").style.display = "block"; 
+        if(document.getElementById("see-more-c").style.display != "flex"){
+            document.getElementById("see-more-c").style.display = "flex"; 
+            document.getElementById("see-more-f").style.display = "none"; 
          }
          else{
              document.getElementById("see-more-c").style.display = "none"; 
          }
+    }); 
+}
+
+function exitCategories(){
+    const myCat = document.querySelector(".close-category"); 
+    myCat.addEventListener("click",function(){
+        document.getElementById("see-more-c").style.display = "none"; 
+    }); 
+}
+
+function exitFeatures(){
+    const myFeat = document.querySelector(".close-filter"); 
+    myFeat.addEventListener("click", function(){
+        document.getElementById("see-more-f").style.display = "none"; 
     }); 
 }
 chooseRating(); 
@@ -222,4 +249,6 @@ openPriceDropDown();
 chooseMainFilter(); 
 seeMoreFeatures(); 
 seeMoreCategories(); 
+exitCategories(); 
+exitFeatures(); 
 
