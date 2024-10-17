@@ -3,6 +3,7 @@ const selectedID = {
     valid: false, 
     id: "", 
 };
+
 const mainButton = document.querySelector("#side-button"); 
 
 mainButton.addEventListener("click", function(){
@@ -173,7 +174,7 @@ function chooseCategories(){
 }
 
 
-
+const activeFilters = new Map(); 
 function selectedFilters(textField){
     const activeFilter = document.querySelector(".active-filters"); 
     const filter = document.createElement("span"); 
@@ -181,7 +182,8 @@ function selectedFilters(textField){
     filter.style.fontSize = "10px"; 
     filter.id = "active" + textField; 
     activeFilter.appendChild(filter); 
-
+    activeFilters.set(filter, filter); 
+    console.log(`Add ${activeFilters.size}`); 
 }
 
 
@@ -189,7 +191,9 @@ function removeFilter(currFilter){
     const activeFilter = document.querySelector(".active-filters"); 
     const filter = document.getElementById(currFilter); 
     if(filter){
+        activeFilters.delete(filter); 
         activeFilter.removeChild(filter); 
+        console.log(`Remove ${activeFilters.size}`); 
     }
 }
 
@@ -198,7 +202,20 @@ function chooseDistance(){
     const filter = document.getElementById("distanceFilter"); 
     distanceSlider.oninput = function(){
         filter.textContent = "◦ Distance : " + "< " + distanceSlider.value + "mi"; 
+        addDistance(filter.textContent, filter.textContent); 
     }
+
+}
+
+function addDistance(distance){
+    let distS = "distance";
+    for(const key of activeFilters.keys()){
+        if(key.includes(distS)){
+            activeFilters.delete(key); 
+        }
+    }
+    activeFilters.set(distance, distance); 
+    console.log(` Distance size: ${activeFilters.size}`); 
 }
 
 function seeMoreFeatures(){
