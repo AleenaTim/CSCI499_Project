@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Sign Up | Flavor Flow</title>
+	<title>Profile Page | Flavor Flow</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -27,7 +27,7 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
 </head>
-<body class="noselect">
+<body>
 	
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('images/wallpaper.jpg');">
@@ -38,26 +38,16 @@
 					</span>
 
 					<span class="login100-form-title p-b-34 p-t-27">
-						Create an Account
+						Log in
 					</span>
-                    <!--USERNAME-->
+
 					<div class="wrap-input100 validate-input" data-validate = "Enter username">
 						<input class="input100" type="text" name="username" placeholder="Username">
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>
 					</div>
-                    <!--EMAIL-->
-                    <div class="wrap-input100 validate-input" data-validate = "Enter email">
-						<input class="input100" type="email" name="email" placeholder="Email">
-						<span class="focus-input100" data-placeholder="&#xf207;"></span>
-					</div>
-                    <!--ENTER PASSWORD-->
+
 					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<input class="input100" type="password" name="pass" placeholder="Enter Password">
-						<span class="focus-input100" data-placeholder="&#xf191;"></span>
-					</div>
-                    <!--CONFIRM PASSWORD-->
-                    <div class="wrap-input100 validate-input" data-validate="Confirm password">
-						<input class="input100" type="password" name="pass" placeholder="Confirm Password">
+						<input class="input100" type="password" name="pass" placeholder="Password">
 						<span class="focus-input100" data-placeholder="&#xf191;"></span>
 					</div>
 
@@ -69,13 +59,17 @@
 					</div>
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
-							Register
+						<button class="login100-form-btn" href="index.html">
+							Login
 						</button>
 					</div>
 					<div class="text-center p-t-90">
-						<a class="txt1" href="login.html">
-							Already have an account? Login here!
+						<a class="txt1" href="register.html">
+							Don't have an account? Register now!
+						</a>
+					<br>
+						<a class="txt1" href="password.html">
+							Forgot Password?
 						</a>
 					</div>
 				</form>
@@ -105,3 +99,12 @@
 
 </body>
 </html>
+
+
+<!-- import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+const myFirstElement = <h1>Hello React!</h1>
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(myFirstElement); -->
