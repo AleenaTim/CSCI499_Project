@@ -3,6 +3,7 @@ const selectedID = {
     valid: false, 
     id: "", 
 };
+const activeFilters = new Map(); 
 
 const mainButton = document.querySelector("#side-button"); 
 
@@ -120,7 +121,7 @@ function selectCheckbox(feature){
 
 function validID(selectedID){
     if(selectedID.id == "itallian" || selectedID.id == "american" || selectedID.id == "seafood" 
-        || selectedID.id == "foodCourt" || selectedID == "soulFood" || selectedID == "hawaiian" || selectedID == "venezuelan"
+        || selectedID.id == "food-court" || selectedID == "soul-food" || selectedID == "hawaiian" || selectedID == "venezuelan"
         || selectedID.id == "thai" || selectedID.id == "Chinese" || selectedID.id == "Mediterranean"
         || selectedID.id == "Filipino" || selectedID.id == "Greek" || selectedID.id == "Mexican"){
         selectedID.valid = true; 
@@ -174,17 +175,30 @@ function chooseCategories(){
 }
 
 
-const activeFilters = new Map(); 
+
 function selectedFilters(textField){
     const activeFilter = document.querySelector(".active-filters"); 
     const filter = document.createElement("span"); 
-    filter.textContent =  " ◦ " + textField[0].toUpperCase() + textField.substring(1); 
+    if(textField.includes('-')){
+        const multiWord = textField.split('-'); 
+        filter.textContent = " ◦ " + multiWord.map(upper).join(' ');
+    }
+    else{
+        filter.textContent =  " ◦ " + upper(textField); 
+    }
     filter.style.fontSize = "10px"; 
     filter.id = "active" + textField; 
     activeFilter.appendChild(filter); 
-    activeFilters.set(filter, filter); 
-    console.log(`Add ${activeFilters.size}`); 
+    activeFilters.set(textField, textField); 
+    console.log(filter.textContent); 
+    console.log(textField); 
+    console.log(activeFilters); 
 }
+
+function upper(word){
+    return  word[0].toUpperCase()+word.substring(1); 
+}
+
 
 
 function removeFilter(currFilter){
@@ -200,22 +214,25 @@ function removeFilter(currFilter){
 function chooseDistance(){
     var distanceSlider = document.getElementById("myRange"); 
     const filter = document.getElementById("distanceFilter"); 
+    filter.style.fontSize = "10px"; 
     distanceSlider.oninput = function(){
         filter.textContent = "◦ Distance : " + "< " + distanceSlider.value + "mi"; 
-        addDistance(filter.textContent, filter.textContent); 
+        addDistance(filter.textContent.substring(13)); 
     }
 
 }
 
 function addDistance(distance){
-    let distS = "distance";
-    for(const key of activeFilters.keys()){
-        if(key.includes(distS)){
-            activeFilters.delete(key); 
+    let distS = "mi";
+    if(activeFilters.size > 0){
+        for(const key of activeFilters.keys()){
+            console.log(typeof key); 
+            if(key.includes(distS)){
+                activeFilters.delete(key); 
+            }
         }
-    }
-    activeFilters.set(distance, distance); 
-    console.log(` Distance size: ${activeFilters.size}`); 
+   } 
+   activeFilters.set(distance, distance); 
 }
 
 function seeMoreFeatures(){
