@@ -10,18 +10,17 @@ const mainButton = document.querySelector("#side-button");
 mainButton.addEventListener("click", function(){
     openSideBar(); 
     addOpacity(); 
- }); 
+}); 
 
- const theGrey = document.querySelector("#opacitySet"); 
+const theGrey = document.querySelector("#opacitySet"); 
  theGrey.addEventListener("click", function(){
     closeSideBar(); 
     removeOpacity(); 
- }); 
+}); 
 
-function openPriceDropDown(){
+function openPriceDropDown(){ 
     const pricedBttn = document.querySelector("#priceDropDownBttn"); 
     pricedBttn.addEventListener("click", function(){
-        console.log("clicked"); 
         if(document.getElementById("price-checkboxes").style.display == "block"){
             document.getElementById("price-checkboxes").style.display = "none"; 
             document.querySelector(".my-arrow").textContent = 'arrow_drop_down'; 
@@ -30,18 +29,54 @@ function openPriceDropDown(){
             document.getElementById("price-checkboxes").style.display = "block";
             document.querySelector(".my-arrow").textContent = 'arrow_drop_up'; 
         }
-   
     });
 }
+function removeDuplicates(){
+    let priceButton = document.querySelector(".price-buttons").firstElementChild; 
+    let mySpan = priceButton.firstElementChild.innerHTML; 
 
+    while (priceButton) {
+        for(const key of activeFilters.keys()){
+            if(key === mySpan){
+                document.getElementById(priceButton.id).style.color = "#7fcecb"; 
+            }
+        }
+    }
+}
+
+function mainPrices(){
+    const myPrices = document.querySelector("#price-checkboxes"); 
+    myPrices.addEventListener("click", function(e){
+        let myLabel = e.target.nextElementSibling; 
+        if(document.getElementById(e.target.id).checked){
+            const activeFilter = document.querySelector(".active-filters"); 
+            const filter = document.createElement("span"); 
+            filter.textContent = " ◦ " + myLabel.textContent;
+            filter.style.fontSize = "10px"; 
+            filter.id = "active" + e.target.id;  
+            activeFilter.appendChild(filter); 
+            activeFilters.set(myLabel.textContent, myLabel.textContent); 
+        }
+        else{
+            const activeFilter = document.querySelector(".active-filters"); 
+            const filter = document.getElementById("active" + e.target.id); 
+            activeFilters.delete(myLabel.textContent); 
+            activeFilter.removeChild(filter); 
+        } 
+    }); 
+}
 function chooseMainFilter(){
     const mainFilter = document.querySelector("#section-two-buttons"); 
     mainFilter.addEventListener("click", function(e){
         if(document.getElementById(e.target.id).style.color != "rgb(127, 206, 203)"){
             document.getElementById(e.target.id).style.color = "rgb(127, 206, 203)"; 
+            activeFilters.set(e.target.id, e.target.id);
+            selectedFilters(e.target.id);  
         }//works only with rgb not hex 
         else{
             document.getElementById(e.target.id).style.color = "black"; 
+            removeFilter("active" +e.target.id); 
+            activeFilters.delete(e.target.id); 
         }
         
     }); 
@@ -50,6 +85,7 @@ function openSideBar(){
     document.getElementById("sidebar").style.display = "block"; 
     document.getElementById("sidebar").style.width = "225px"; 
     document.getElementById("mainContent").style.marginLeft = "225px"; 
+    removeDuplicates(); 
 }
 
 function addOpacity(){
@@ -110,7 +146,6 @@ function chooseFeature(){
 
 function selectCheckbox(feature){
     if(document.getElementById(feature).checked){
-        console.log('checked'); 
         selectedFilters(feature); 
     }
     else{
@@ -145,8 +180,7 @@ function selectButton(selectedCategory, diffTextContent="text"){
         unclicked = false; 
     }
     else{
-        document.getElementById(selectedCategory).style.color = "black"; 
-        console.log(unclicked); 
+        document.getElementById(selectedCategory).style.color = "black";  
         if(unclicked == false){
             if(diffTextContent=="text"){
                 removeFilter("active" +selectedCategory); 
@@ -175,8 +209,7 @@ function chooseCategories(){
 }
 
 
-
-function selectedFilters(textField){
+function selectedFilters(textField){ 
     const activeFilter = document.querySelector(".active-filters"); 
     const filter = document.createElement("span"); 
     if(textField.includes('-')){
@@ -190,9 +223,6 @@ function selectedFilters(textField){
     filter.id = "active" + textField; 
     activeFilter.appendChild(filter); 
     activeFilters.set(textField, textField); 
-    console.log(filter.textContent); 
-    console.log(textField); 
-    console.log(activeFilters); 
 }
 
 function upper(word){
@@ -207,7 +237,6 @@ function removeFilter(currFilter){
     if(filter){
         activeFilters.delete(filter); 
         activeFilter.removeChild(filter); 
-        console.log(`Remove ${activeFilters.size}`); 
     }
 }
 
@@ -226,7 +255,6 @@ function addDistance(distance){
     let distS = "mi";
     if(activeFilters.size > 0){
         for(const key of activeFilters.keys()){
-            console.log(typeof key); 
             if(key.includes(distS)){
                 activeFilters.delete(key); 
             }
@@ -274,6 +302,29 @@ function exitFeatures(){
         document.getElementById("see-more-f").style.display = "none"; 
     }); 
 }
+
+function clearSideBar(){
+    const clearButtn = document.querySelector(".clear"); 
+    clearButtn.addEventListener("click", function(){
+        const activeFilter = document.querySelector(".active-filters"); 
+        while(activeFilter.lastElementChild){
+            activeFilter.removeChild(activeFilter.lastElementChild); 
+        }
+        activeFilters.clear(); 
+    }); 
+}
+
+function cancel(){
+    const cancelBttn = document.querySelector(".cancel"); 
+    cancelBttn.addEventListener("click", function(){
+        const activeFilter = document.querySelector(".active-filters"); 
+        while(activeFilter.lastElementChild){
+            activeFilter.removeChild(activeFilter.lastElementChild); 
+        }
+        activeFilters.clear(); 
+        closeSideBar(); 
+    }); 
+}
 chooseRating(); 
 choosePriceRange(); 
 chooseCategories(); 
@@ -285,4 +336,8 @@ seeMoreFeatures();
 seeMoreCategories(); 
 exitCategories(); 
 exitFeatures(); 
+mainPrices(); 
+clearSideBar(); 
+cancel(); 
+
 
