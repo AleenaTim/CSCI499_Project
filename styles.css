@@ -105,7 +105,7 @@ ul{
   margin-bottom: 20px; 
 }
 
-.cancel{
+.cancel,.clear{
   border: 1px solid #7fcecb; 
   background-color: white; 
   color: black; 

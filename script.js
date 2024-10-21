@@ -17,13 +17,15 @@ const theGrey = document.querySelector("#opacitySet");
     closeSideBar(); 
     removeOpacity(); 
 }); 
-
+function closePriceDropDown(){
+    document.getElementById("price-checkboxes").style.display = "none"; 
+    document.querySelector(".my-arrow").textContent = 'arrow_drop_down'; 
+}
 function openPriceDropDown(){ 
     const pricedBttn = document.querySelector("#priceDropDownBttn"); 
     pricedBttn.addEventListener("click", function(){
         if(document.getElementById("price-checkboxes").style.display == "block"){
-            document.getElementById("price-checkboxes").style.display = "none"; 
-            document.querySelector(".my-arrow").textContent = 'arrow_drop_down'; 
+            closePriceDropDown(); 
         }
         else{
             document.getElementById("price-checkboxes").style.display = "block";
@@ -33,15 +35,34 @@ function openPriceDropDown(){
 }
 function removeDuplicates(){
     let priceButton = document.querySelector(".price-buttons").firstElementChild; 
-    let mySpan = priceButton.firstElementChild.innerHTML; 
-
-    while (priceButton) {
+    let mySpan = priceButton.firstElementChild.textContent;  
+    for(let i = 0; i < 4; i++){
         for(const key of activeFilters.keys()){
-            if(key === mySpan){
-                document.getElementById(priceButton.id).style.color = "#7fcecb"; 
+            if(key == mySpan){ 
+                selectedID.id = priceButton.id; 
+                validID(selectedID);
+            
+                if(selectedID.valid == true){
+                    document.getElementById(priceButton.id).style.color = "#7fcecb";
+                    unclicked = false; 
+                }
+                priceButton = priceButton.nextElementSibling; 
+                mySpan = priceButton.firstElementChild.textContent; 
             }
         }
     }
+}
+
+function findPriceFilter(currID){
+    const activeFilter = document.querySelector(".active-filters").firstElementChild;
+    let myFilter = activeFilter.id; 
+    var count = document.querySelector(".active-filters").childElementCount; 
+    for(let i = 0; i < count; i++){
+        if(myFilter.includes(currID)){
+            return true; 
+        }
+    }
+    return true; 
 }
 
 function mainPrices(){
@@ -53,7 +74,7 @@ function mainPrices(){
             const filter = document.createElement("span"); 
             filter.textContent = " ◦ " + myLabel.textContent;
             filter.style.fontSize = "10px"; 
-            filter.id = "active" + e.target.id;  
+            filter.id = "active" + myLabel.textContent;  
             activeFilter.appendChild(filter); 
             activeFilters.set(myLabel.textContent, myLabel.textContent); 
         }
@@ -85,6 +106,7 @@ function openSideBar(){
     document.getElementById("sidebar").style.display = "block"; 
     document.getElementById("sidebar").style.width = "225px"; 
     document.getElementById("mainContent").style.marginLeft = "225px"; 
+    closePriceDropDown(); 
     removeDuplicates(); 
 }
 
@@ -130,8 +152,22 @@ function choosePriceRange(){
     pButtons.addEventListener("click", function(e){
         selectedID.id = e.target.id; 
         validID(selectedID);
+        let myTextContent =""; 
         if(selectedID.valid == true){
-            selectButton(selectedID.id, e.target.textContent); 
+            if(e.target.textContent.includes("$$$$")){
+                myTextContent = "$$$$"; 
+            }
+            else if(e.target.textContent.includes("$$$")){
+                myTextContent = "$$$"; 
+            }
+            else if(e.target.textContent.includes("$$")){
+                myTextContent = "$$"; 
+            }
+            else if(e.target.textContent.includes("$")){
+                myTextContent = "$"; 
+            }
+
+            selectButton(selectedID.id, myTextContent); 
         }
     }); 
 }
@@ -187,11 +223,17 @@ function selectButton(selectedCategory, diffTextContent="text"){
             }
             else{
                 removeFilter("active" +diffTextContent); 
+                if(document.getElementById(selectedCategory + "-d").checked){ // Unchecks mainPrice DropDown 
+                    document.getElementById(selectedCategory + "-d").checked = false; 
+                }
+                
             }
            
         }
     } 
 }
+
+
 
 function chooseCategories(){
     const catButton = document.querySelector(".category"); 
@@ -303,28 +345,28 @@ function exitFeatures(){
     }); 
 }
 
-function clearSideBar(){
-    const clearButtn = document.querySelector(".clear"); 
-    clearButtn.addEventListener("click", function(){
-        const activeFilter = document.querySelector(".active-filters"); 
-        while(activeFilter.lastElementChild){
-            activeFilter.removeChild(activeFilter.lastElementChild); 
-        }
-        activeFilters.clear(); 
-    }); 
-}
+// function clearSideBar(){
+//     const clearButtn = document.querySelector(".clear"); 
+//     clearButtn.addEventListener("click", function(){
+//         const activeFilter = document.querySelector(".active-filters"); 
+//         while(activeFilter.lastElementChild){
+//             activeFilter.removeChild(activeFilter.lastElementChild); 
+//         }
+//         activeFilters.clear(); 
+//     }); 
+// }
 
-function cancel(){
-    const cancelBttn = document.querySelector(".cancel"); 
-    cancelBttn.addEventListener("click", function(){
-        const activeFilter = document.querySelector(".active-filters"); 
-        while(activeFilter.lastElementChild){
-            activeFilter.removeChild(activeFilter.lastElementChild); 
-        }
-        activeFilters.clear(); 
-        closeSideBar(); 
-    }); 
-}
+// function cancel(){
+//     const cancelBttn = document.querySelector(".cancel"); 
+//     cancelBttn.addEventListener("click", function(){
+//         const activeFilter = document.querySelector(".active-filters"); 
+//         while(activeFilter.lastElementChild){
+//             activeFilter.removeChild(activeFilter.lastElementChild); 
+//         }
+//         activeFilters.clear(); 
+//         closeSideBar(); 
+//     }); 
+// }
 chooseRating(); 
 choosePriceRange(); 
 chooseCategories(); 
@@ -337,7 +379,7 @@ seeMoreCategories();
 exitCategories(); 
 exitFeatures(); 
 mainPrices(); 
-clearSideBar(); 
-cancel(); 
+// clearSideBar(); 
+// cancel(); 
 
 
