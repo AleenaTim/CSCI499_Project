@@ -54,9 +54,9 @@ function removeDuplicates(){
 }
 
 function findPriceFilter(currID){
-    const activeFilter = document.querySelector(".active-filters").firstElementChild;
+    const activeFilter = document.querySelector(".applied-filters").firstElementChild;
     let myFilter = activeFilter.id; 
-    var count = document.querySelector(".active-filters").childElementCount; 
+    var count = document.querySelector(".applied-filters").childElementCount; 
     for(let i = 0; i < count; i++){
         if(myFilter.includes(currID)){
             return true; 
@@ -64,28 +64,41 @@ function findPriceFilter(currID){
     }
     return true; 
 }
-
+function getID(text){
+    let myID = ""; 
+    if(text == "$") {
+        myID = "affordable"; 
+    }
+    if(text == "$$"){
+        myID = "semi-affordable"; 
+    }
+    if(text == "$$$"){
+        myID = "semi-expensive"; 
+    }
+    if(text == "$$$$"){
+        myID = "expensive"; 
+    }
+    return myID; 
+}
 function mainPrices(){
     const myPrices = document.querySelector("#price-checkboxes"); 
     myPrices.addEventListener("click", function(e){
         let myLabel = e.target.nextElementSibling; 
         if(document.getElementById(e.target.id).checked){
-            const activeFilter = document.querySelector(".active-filters"); 
+            const activeFilter = document.querySelector(".applied-filters"); 
             const filter = document.createElement("span"); 
             filter.textContent = " ◦ " + myLabel.textContent;
             filter.style.fontSize = "10px"; 
             filter.id = "active" + myLabel.textContent;  
             activeFilter.appendChild(filter); 
-            activeFilters.set(myLabel.textContent, myLabel.textContent); 
+            activeFilters.set(myLabel.textContent, getID(myLabel.textContent)); 
         }
         else{
-            const activeFilter = document.querySelector(".active-filters"); 
-            const filter = document.getElementById("active" + e.target.id); 
-            activeFilters.delete(myLabel.textContent); 
-            activeFilter.removeChild(filter); 
+            activeFilters.delete(myLabel.textContent);  
         } 
     }); 
 }
+
 function chooseMainFilter(){
     const mainFilter = document.querySelector("#section-two-buttons"); 
     mainFilter.addEventListener("click", function(e){
@@ -93,7 +106,7 @@ function chooseMainFilter(){
             document.getElementById(e.target.id).style.color = "rgb(127, 206, 203)"; 
             activeFilters.set(e.target.id, e.target.id);
             selectedFilters(e.target.id);  
-        }//works only with rgb not hex 
+        }
         else{
             document.getElementById(e.target.id).style.color = "black"; 
             removeFilter("active" +e.target.id); 
@@ -124,11 +137,26 @@ function closeSideBar(){
     document.getElementById("mainContent").style.marginLeft = "0px"; 
 }
 
+
+function starCount(){
+    let stars = document.querySelector(".rating-stars").firstElementChild; 
+    let counter = 0; 
+    for(let i = 0; i < 5; i++){
+        if(document.getElementById(stars.id).style.color == "gold"){
+            counter++; 
+            stars = stars.nextElementSibling; 
+        }
+    }
+ 
+    
+    return counter; 
+}
 function chooseRating(){
-    const stars = document.querySelector(".rating-range"); 
+    const stars = document.querySelector(".rating-stars"); 
     stars.addEventListener("click", function(e){
+        activeFilters.delete("star"); 
         let el = e.target; 
-        if(document.getElementById(el.id).style.color != "gold"){
+        if(document.getElementById(el.id).style.color != "gold"){ 
             while(el){
                 document.getElementById(el.id).style.color = "gold"; 
                 el = el.previousElementSibling;    
@@ -139,12 +167,14 @@ function chooseRating(){
                 document.getElementById("star1").style.color = "black"; 
             }
             else{
-                while(el){
+                while(el.nextElementSibling){
                     el = el.nextElementSibling; 
                     document.getElementById(el.id).style.color = "black"; 
                 }
             }
         }
+        
+        activeFilters.set("star", starCount()); 
     }); 
 }
 function choosePriceRange(){
@@ -210,7 +240,7 @@ function selectButton(selectedCategory, diffTextContent="text"){
             selectedFilters(selectedCategory); 
         }
         else{
-            selectedFilters(diffTextContent); 
+            selectedFilters(diffTextContent, selectedCategory); 
         }
         
         unclicked = false; 
@@ -223,7 +253,7 @@ function selectButton(selectedCategory, diffTextContent="text"){
             }
             else{
                 removeFilter("active" +diffTextContent); 
-                if(document.getElementById(selectedCategory + "-d").checked){ // Unchecks mainPrice DropDown 
+                if(document.getElementById(selectedCategory + "-d").checked){
                     document.getElementById(selectedCategory + "-d").checked = false; 
                 }
                 
@@ -232,8 +262,6 @@ function selectButton(selectedCategory, diffTextContent="text"){
         }
     } 
 }
-
-
 
 function chooseCategories(){
     const catButton = document.querySelector(".category"); 
@@ -251,8 +279,8 @@ function chooseCategories(){
 }
 
 
-function selectedFilters(textField){ 
-    const activeFilter = document.querySelector(".active-filters"); 
+function selectedFilters(textField, myID=""){ 
+    const activeFilter = document.querySelector(".applied-filters"); 
     const filter = document.createElement("span"); 
     if(textField.includes('-')){
         const multiWord = textField.split('-'); 
@@ -264,7 +292,12 @@ function selectedFilters(textField){
     filter.style.fontSize = "10px"; 
     filter.id = "active" + textField; 
     activeFilter.appendChild(filter); 
-    activeFilters.set(textField, textField); 
+    if(myID.length == 0){ 
+        activeFilters.set(textField, textField);
+    }
+    else{
+        activeFilters.set(textField, myID); 
+    }
 }
 
 function upper(word){
@@ -274,10 +307,10 @@ function upper(word){
 
 
 function removeFilter(currFilter){
-    const activeFilter = document.querySelector(".active-filters"); 
+    const activeFilter = document.querySelector(".applied-filters"); 
     const filter = document.getElementById(currFilter); 
     if(filter){
-        activeFilters.delete(filter); 
+        activeFilters.delete(filter.id.substring(6)); 
         activeFilter.removeChild(filter); 
     }
 }
@@ -302,7 +335,7 @@ function addDistance(distance){
             }
         }
    } 
-   activeFilters.set(distance, distance); 
+   activeFilters.set(distance, "distance"); 
 }
 
 function seeMoreFeatures(){
@@ -345,28 +378,70 @@ function exitFeatures(){
     }); 
 }
 
-// function clearSideBar(){
-//     const clearButtn = document.querySelector(".clear"); 
-//     clearButtn.addEventListener("click", function(){
-//         const activeFilter = document.querySelector(".active-filters"); 
-//         while(activeFilter.lastElementChild){
-//             activeFilter.removeChild(activeFilter.lastElementChild); 
-//         }
-//         activeFilters.clear(); 
-//     }); 
-// }
+function clearSideBar(){
+    const clearButtn = document.querySelector(".clear"); 
+    clearButtn.addEventListener("click", function(){
+        clearFilters(); 
+    }); 
+}
 
-// function cancel(){
-//     const cancelBttn = document.querySelector(".cancel"); 
-//     cancelBttn.addEventListener("click", function(){
-//         const activeFilter = document.querySelector(".active-filters"); 
-//         while(activeFilter.lastElementChild){
-//             activeFilter.removeChild(activeFilter.lastElementChild); 
-//         }
-//         activeFilters.clear(); 
-//         closeSideBar(); 
-//     }); 
-// }
+function clearStar(){
+    let stars = document.querySelector(".rating-stars").firstElementChild; 
+    for(let i = 0; i < 5; i++){
+        if(document.getElementById(stars.id).style.color == "gold"){
+            document.getElementById(stars.id).style.color = "black"; 
+            stars = stars.nextElementSibling; 
+        }
+    }
+}
+
+function clearFilters(){
+    const activeFilter = document.querySelector(".applied-filters"); 
+    var distanceSlider = document.getElementById("myRange"); 
+    const distance = document.querySelector("#distanceFilter"); 
+
+    while(activeFilter.firstElementChild){
+        activeFilter.removeChild(activeFilter.firstElementChild); 
+    }
+
+    if(distance.textContent.length != 0){
+        distance.textContent = ""; 
+        distanceSlider.value = 5; 
+    }
+    if(activeFilters.has("star")){
+        clearStar(); 
+        activeFilters.delete("star"); 
+    }
+
+    activeFilters.forEach((key, value) =>{
+        const remove = document.querySelector(`#${key}`); 
+        if(key != "distance"){
+            if(remove.tagName == "INPUT"){ 
+                remove.checked = false; 
+            }
+            if(remove.tagName == "BUTTON"){ 
+                if(value.includes('$')){
+                    let priceCheckboxID = key+"-d"; 
+                    const priceCheckbox = document.getElementById(priceCheckboxID); 
+                    priceCheckbox.checked = false; 
+                }
+                remove.style.color = "black"; 
+            }
+        }
+   }); 
+
+    activeFilters.clear(); 
+}
+
+function cancel(){
+    const cancelBttn = document.querySelector(".cancel"); 
+    cancelBttn.addEventListener("click", function(){
+        clearFilters(); 
+        closeSideBar(); 
+        removeOpacity();
+    }); 
+}
+
 chooseRating(); 
 choosePriceRange(); 
 chooseCategories(); 
@@ -379,7 +454,7 @@ seeMoreCategories();
 exitCategories(); 
 exitFeatures(); 
 mainPrices(); 
-// clearSideBar(); 
-// cancel(); 
+clearSideBar(); 
+cancel(); 
 
 
