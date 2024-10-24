@@ -104,8 +104,8 @@ function chooseMainFilter(){
     mainFilter.addEventListener("click", function(e){
         if(document.getElementById(e.target.id).style.color != "rgb(127, 206, 203)"){
             document.getElementById(e.target.id).style.color = "rgb(127, 206, 203)"; 
-            activeFilters.set(e.target.id, e.target.id);
-            selectedFilters(e.target.id);  
+            activeFilters.set(e.target.textContent, e.target.id);
+            selectedFilters(e.target.textContent, e.target.id);  
         }
         else{
             document.getElementById(e.target.id).style.color = "black"; 
@@ -429,6 +429,7 @@ function clearFilters(){
             }
         }
    }); 
+
 
     activeFilters.clear(); 
 }
