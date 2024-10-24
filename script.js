@@ -14,6 +14,7 @@ mainButton.addEventListener("click", function(){
 
 const theGrey = document.querySelector("#opacitySet"); 
  theGrey.addEventListener("click", function(){
+    console.log("clicked"); 
     closeSideBar(); 
     removeOpacity(); 
 }); 
@@ -34,23 +35,17 @@ function openPriceDropDown(){
     });
 }
 function removeDuplicates(){
-    let priceButton = document.querySelector(".price-buttons").firstElementChild; 
-    let mySpan = priceButton.firstElementChild.textContent;  
-    for(let i = 0; i < 4; i++){
-        for(const key of activeFilters.keys()){
-            if(key == mySpan){ 
-                selectedID.id = priceButton.id; 
-                validID(selectedID);
-            
-                if(selectedID.valid == true){
-                    document.getElementById(priceButton.id).style.color = "#7fcecb";
-                    unclicked = false; 
-                }
-                priceButton = priceButton.nextElementSibling; 
-                mySpan = priceButton.firstElementChild.textContent; 
+    let priceButton = document.querySelector("#affordable"); 
+    activeFilters.forEach((key,value)=>{ 
+        if(value.includes('$')){
+            let priceSpan = priceButton.firstElementChild.textContent; 
+            if(value == priceSpan){
+                document.getElementById(priceButton.id).style.color = "#7fcecb";
+                unclicked = false; 
             }
+            priceButton = priceButton.nextElementSibling; 
         }
-    }
+    }); 
 }
 
 function findPriceFilter(currID){
@@ -119,7 +114,7 @@ function openSideBar(){
     document.getElementById("sidebar").style.display = "block"; 
     document.getElementById("sidebar").style.width = "225px"; 
     document.getElementById("mainContent").style.marginLeft = "225px"; 
-    closePriceDropDown(); 
+    closePriceDropDown(); ///   issue?
     removeDuplicates(); 
 }
 
@@ -196,6 +191,8 @@ function choosePriceRange(){
             else if(e.target.textContent.includes("$")){
                 myTextContent = "$"; 
             }
+
+
 
             selectButton(selectedID.id, myTextContent); 
         }
@@ -429,7 +426,6 @@ function clearFilters(){
             }
         }
    }); 
-
 
     activeFilters.clear(); 
 }
