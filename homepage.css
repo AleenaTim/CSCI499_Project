@@ -4,8 +4,9 @@ html {
     font-family: Raleway, Times New Roman, sans-serif;
 }
 
-body{
-    padding-top: 70px; /*Matches Navbar height*/
+body {
+    padding-top: 70px;
+    /*Matches Navbar height*/
 }
 
 a {
@@ -14,16 +15,16 @@ a {
     text-decoration: none;
 }
 
-a span{
-    color:blue;
+a span {
+    color: blue;
 }
 
-.navbar.scrolled{
+.navbar.scrolled {
     background: white;
     transition: background 550ms;
 }
 
-.nav-link.active{
+.nav-link.active {
     transition: color 225ms ease-in-out;
 }
 
@@ -32,32 +33,73 @@ a span{
     color: aquamarine;
 }
 
-#loc {
+.motto{
+    font-size: 30px;
+    font-weight: 900;
+    text-align: right;
+    margin-right: 30px;
+}
+
+.motto.last{
+    font-size: 100px;
+    margin-bottom: 75px;
+}
+
+#where {
     width: 300px;
-    height: 25px;
-    border-width: 1px;
+    height: 40px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-right-width: 0.5px;
     border-color: black;
     border-style: solid;
-    box-sizing: border-box;
-    border-radius: 100px;
+    border-top-left-radius: 17.5px;
+    border-bottom-left-radius: 17.5px;
+    margin: 0;
+}
+
+#what {
+    width: 300px;
+    height: 40px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-right-width: 0.5px;
+    border-left-width: 0.5px;
+    border-color: black;
+    border-style: solid;
+    margin: 0;
+}
+
+#sub {
+    /*search icon fixes*/
+    vertical-align: top;
+    align-items: center;
+    padding-right: 9px;
+    /*border style*/
+    width: 50px;
+    height: 40px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-right-width: 1px;
+    border-left-width: 0.5px;
+    border-style: solid;
+    border-color: black;
+    border-top-right-radius: 17.5px;
+    border-bottom-right-radius: 17.5px;
+    /*font color*/
+    color: blue;
+
+    transition: background-color 200ms ease-in-out;
+
 }
 
 h2 {
     color: mediumturquoise;
 }
 
-button {
-    /*border style*/
-    border-width: 1px;
-    border-style: solid;
-    border-color: silver;
-    border-radius: 15px;
-    /*font color*/
-    color: teal;
-
-    padding: 7.5px 7.5px;
-    transition: background-color 200ms ease-in-out;
-
+h2.motto.last{
+    color: indigo;
 }
 
 button:hover,
@@ -66,7 +108,21 @@ button:focus {
 }
 
 form {
-    letter-spacing: -0.5px;
+    letter-spacing: 10px;
+}
+
+/*Text on left side of screen*/
+#leftOfPage {
+    flex-grow: 2;
+    width: 50%;
+    max-width: 50%;
+}
+
+/*Image on right side of screen*/
+img {
+    flex-grow: 2;
+    width: 95%;
+    border-radius: 25px;
 }
 
 p {
