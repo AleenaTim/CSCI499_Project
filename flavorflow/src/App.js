@@ -1,14 +1,21 @@
 import './App.css';
 import React from 'react';
-import RestaurantSearch from './components/RestaurantSearch';  // Import the component
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import RestaurantSearch from './components/RestaurantSearch';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Restaurant Finder</h1>
-      <RestaurantSearch />
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          {/* Restaurant Search Page */}
+          <Route path="/search" element={<RestaurantSearch />} />
+
+          {/* Redirect to /search by default if no other route matches */}
+          <Route path="*" element={<RestaurantSearch />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
