@@ -1,0 +1,52 @@
+/* Carousel.css */
+
+.carousel {
+    position: relative;
+    height: 400px;
+    background-image: url('../assets/hero-background.jpg'); /* Replace with a valid image path */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+  }
+  
+  .carousel h2 {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .carousel p {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .carousel-button {
+    background-color: #ff4b2b;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .carousel-button:hover {
+    background-color: #e43b20;
+  }
+
+.carousel-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+}
+  
