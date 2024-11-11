@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import RestaurantSearch from './pages/RestaurantSearch'; // Optional if you have a detailed results page
+import FilterPage from './pages/FilterPage'; 
 import './App.css';
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
           
           {/* Restaurant Search Page - Optional for more detailed listings */}
           <Route path="/search" element={<RestaurantSearch />} />
+          <Route path="/filter" element={<FilterPage />} />
         </Routes>
       </div>
     </Router>
