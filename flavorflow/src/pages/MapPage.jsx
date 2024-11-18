@@ -149,7 +149,7 @@ const RestaurantMap = () => {
     // Load the map once the component is mounted
     window.initMap = initMap;
     const script = document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyC0cNFE2yyEeftu8jiV8Us_zNDC6xsc2QE&libraries=places&callback=initMap`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=ADD_API&libraries=places&callback=initMap`;
     script.async = true;
     script.defer = true;
     document.body.appendChild(script);
