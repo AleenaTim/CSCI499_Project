@@ -8,6 +8,9 @@ import ProfilePage from './pages/ProfilePage';
 import SearchResultsPage  from './pages/SearchResultsPage';
 import Layout from './components/Layout';
 import './App.css';
+import MapPage from './pages/MapPage';
+import FilterPage from './pages/FilterPage';
+
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
