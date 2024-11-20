@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import { fetchRestaurants } from '../utils/fetchRestaurants';
+import { useNavigate } from 'react-router-dom';
 import '../styles/SearchBar.css';
 
 function SearchBar({ setRestaurants, location }) {
   const [query, setQuery] = useState('');
+  const navigate = useNavigate();
 
-  const handleSearch = async (e) => {
+  const handleSearch = (e) => {
     e.preventDefault();
-    if (query.trim() !== '' && location) {
-      const results = await fetchRestaurants(location, 5000, query);
-      setRestaurants(results);
+    if (query.trim() !== '') {
+      // Navigate to the SearchResultsPage with the query as a parameter
+      navigate(`/search-results?keyword=${encodeURIComponent(query)}`);
     }
   };
 
@@ -19,7 +20,7 @@ function SearchBar({ setRestaurants, location }) {
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        placeholder="Things to do, restaurants..."
+        placeholder="Search for food..."
         className="search-input"
       />
       <button type="submit" className="search-button">Search</button>

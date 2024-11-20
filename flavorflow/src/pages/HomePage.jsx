@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Carousel from '../components/Carousel';
 import SearchBar from '../components/SearchBar';
-import GoogleMap from '../components/GoogleMap';
+import Map from '../components/Map';
 import RestaurantCard from '../components/RestaurantCard';
 import { fetchRestaurants } from '../utils/fetchRestaurants';
 import '../styles/HomePage.css';  
@@ -30,27 +30,26 @@ function HomePage() {
     }
   }, []);
 
-  // Fetch restaurants based on user's location
-  useEffect(() => {
-    if (location) {
-      const fetchData = async () => {
-        const results = await fetchRestaurants(location, 500, '');
-        setRestaurants(results);
-      };
-      fetchData();
-    }
-  }, [location]);
+  // // Fetch restaurants based on user's location
+  // useEffect(() => {
+  //   if (location) {
+  //     const fetchData = async () => {
+  //       const results = await fetchRestaurants(location, 500, '');
+  //       setRestaurants(results);
+  //     };
+  //     fetchData();
+  //   }
+  // }, [location]);
 
   return (
     <div>
-      <Navbar />
       <div className="hero-section">
         <Carousel />
         <SearchBar setRestaurants={setRestaurants} location={location} />
       </div>
       {location && (
         <div className="map-container">
-          <GoogleMap center={location} restaurants={restaurants} />
+          <Map center={location} restaurants={restaurants} />
         </div>
       )}
       {error && <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>}

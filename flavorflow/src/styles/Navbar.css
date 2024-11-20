@@ -1,62 +1,60 @@
-/* Navbar.css */
-
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #ffffff;
-    padding: 10px 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 10px 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
   
-  .navbar-logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: #ff4b2b;
-    cursor: pointer;
-  }
+.navbar-logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff4b2b;
+  cursor: pointer;
+}
   
-  .navbar-links {
-    display: flex;
-    gap: 20px;
-  }
+.navbar-links {
+  display: flex;
+  gap: 20px;
+}
   
-  .navbar-links li {
-    list-style: none;
-    cursor: pointer;
-    font-size: 16px;
-    color: #333333;
-    transition: color 0.3s ease;
-  }
+.navbar-links li {
+  list-style: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: #333333;
+  transition: color 0.3s ease;
+}
   
-  .navbar-links li:hover {
-    color: #ff4b2b;
-  }
+.navbar-links li:hover {
+  color: #ff4b2b;
+}
   
-  .navbar-actions {
-    display: flex;
-    gap: 10px;
-  }
+.navbar-actions {
+  display: flex;
+  gap: 10px;
+}
   
-  .navbar-button {
-    padding: 8px 16px;
-    font-size: 14px;
-    border: none;
-    cursor: pointer;
-    background-color: #ffffff;
-    color: #ff4b2b;
-    border: 1px solid #ff4b2b;
-    border-radius: 4px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
+.navbar-button {
+  padding: 8px 16px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  background-color: #ffffff;
+  color: #ff4b2b;
+  border: 1px solid #ff4b2b;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
   
-  .navbar-button-signup {
-    background-color: #ff4b2b;
-    color: white;
-  }
+.navbar-button-signup {
+  background-color: #ff4b2b;
+  color: white;
+}
   
-  .navbar-button:hover {
-    background-color: #ff4b2b;
-    color: white;
-  }
+.navbar-button:hover {
+  background-color: #ff4b2b;
+  color: white;
+}
   

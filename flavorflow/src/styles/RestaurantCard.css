@@ -1,56 +1,54 @@
-/* RestaurantCard.css */
-
 .restaurant-card {
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    max-width: 350px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 350px;
 }
   
-  .restaurant-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  }
+.restaurant-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+ 
+.restaurant-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+ 
+.restaurant-details {
+  padding: 15px;
+}
   
-  .restaurant-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-  }
+.restaurant-details h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
   
-  .restaurant-details {
-    padding: 15px;
-  }
+.restaurant-details p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 5px;
+}
   
-  .restaurant-details h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
-  }
+.restaurant-details .restaurant-rating {
+  color: #ffa500;
+  font-weight: bold;
+}
   
-  .restaurant-details p {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 5px;
-  }
-  
-  .restaurant-details .restaurant-rating {
-    color: #ffa500;
-    font-weight: bold;
-  }
-  
-  .restaurant-details .restaurant-open-now {
-    color: #28a745;
-    font-weight: bold;
-  }
+.restaurant-details .restaurant-open-now {
+  color: #28a745;
+  font-weight: bold;
+}
 
-  .restaurant-closed {
-    color: #dc3545;
-    font-weight: bold;
-  }
+.restaurant-closed {
+  color: #dc3545;
+  font-weight: bold;
+}
   
-  .restaurant-unknown-status {
-    color: #666;
-    font-style: italic;
-  }
+.restaurant-unknown-status {
+  color: #666;
+  font-style: italic;
+}

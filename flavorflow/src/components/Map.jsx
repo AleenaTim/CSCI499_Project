@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import '../styles/GoogleMap.css';
+import '../styles/Map.css';
 
-function GoogleMap({ center, restaurants }) {
+function Map({ center, restaurants }) {
   useEffect(() => {
     if (window.google && center) {
       const map = new window.google.maps.Map(document.getElementById('map'), {
@@ -25,4 +25,4 @@ function GoogleMap({ center, restaurants }) {
   return <div id="map" className="map"> PLACEHOLDER FOR MAP </div>;
 }
 
-export default GoogleMap;
+export default Map;

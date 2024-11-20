@@ -7,8 +7,8 @@ function Carousel() {
       {/* You can add a library like react-slick for a real carousel */}
       <div className="carousel-text">
         <h2>Life is Gourd</h2>
-        <p>Discover pumpkin patches and more!</p>
-        <button className="carousel-button">Pumpkin Patches</button>
+        <p>Discover places to eat and more!</p>
+        {/* <button className="carousel-button">Pumpkin Patches</button> */}
       </div>
     </div>
   );
