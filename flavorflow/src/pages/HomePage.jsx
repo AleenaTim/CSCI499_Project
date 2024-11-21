@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from '../components/Navbar';
 import Carousel from '../components/Carousel';
 import SearchBar from '../components/SearchBar';
-import Map from '../components/Map';
-import RestaurantCard from '../components/RestaurantCard';
-import { fetchRestaurants } from '../utils/fetchRestaurants';
+import Map from './MapPage';
+
 import '../styles/HomePage.css';  
 
 function HomePage() {
@@ -54,12 +52,6 @@ function HomePage() {
       )}
       {error && <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>}
 
-      {/* Display restaurant cards */}
-      <div className="restaurant-list">
-        {restaurants.map((restaurant, index) => (
-          <RestaurantCard key={index} restaurant={restaurant} />
-        ))}
-      </div>
     </div>
   );
 }

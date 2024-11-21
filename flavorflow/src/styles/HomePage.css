@@ -7,8 +7,9 @@
   
 .map-container {
   margin: 20px auto;
-  width: 90%;
+  width: 80%;
   max-width: 1000px;
+  height: 400px;
 }
   
 .restaurant-list {

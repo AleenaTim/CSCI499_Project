@@ -1,12 +1,12 @@
 import '../styles/Footer.css';
 
-export const Footer = () => {
+function Footer() {
     return (
-        <>
-            <Footer className="footer">
+        <div className='footer'>
+            <Footer className="foot">
             <p>© 2024 FlavorFlow</p>
             </Footer>        
-        </>
-        
+        </div>
     );
     }
+export default Footer;
