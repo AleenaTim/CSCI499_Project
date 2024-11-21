@@ -59,6 +59,7 @@ function App() {
               </Layout>
             }
           />
+           <Route path="/filter" element={<FilterPage />} />
         </Routes>
       </div>
     </Router>
