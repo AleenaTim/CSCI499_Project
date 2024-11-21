@@ -4,16 +4,13 @@ import HomePage from './pages/HomePage';
 import MeetTheTeam from './pages/MeetTheTeam';
 import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
-import ProfilePage from './pages/ProfilePage';
-import SearchResultsPage  from './pages/SearchResultsPage';
+import SearchResultsPage from './pages/SearchResultsPage'; // Import new page
 import Layout from './components/Layout';
+import Map from './pages/MapPage';
 import './App.css';
-import MapPage from './pages/MapPage';
-import FilterPage from './pages/FilterPage';
-
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
     <Router>
@@ -24,6 +21,14 @@ function App() {
             element={
               <Layout isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}>
                 <HomePage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+              </Layout>
+            }
+          />
+          <Route
+            path="/map"
+            element={
+              <Layout isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}>
+                <Map />
               </Layout>
             }
           />

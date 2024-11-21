@@ -25,7 +25,7 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
         FlavorFlow
       </div>
       <ul className="navbar-links">
-        <li onClick={() => navigate('/search')}>Restaurants</li>
+        <li onClick={() => navigate('/Map')}>Map</li>
         <li onClick={() => navigate('/meet-the-team')}>Meet the Team</li>
       </ul>
       <div className="navbar-actions">
