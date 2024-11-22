@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="homepage.css">
 </head>
 
-<body>
+<body class="d-flex flex-column"> <!--gives body a size-->
     <header>
         <!--Bootstrap Navbar-->
         <nav id="mainNav" class="navbar navbar-expand-lg bg-body-light fixed-top" style="height: 70px">
@@ -76,18 +76,18 @@
                 </td>
             </tr>
         </table>
-        <hr>
-        <h2>Group Members</h2>
-        <ul>
+        
+    </main>
+    <footer class="footer bg-dark mt-auto py-2"> <!--moves footer to bottom-->
+        <h2 class="text-secondary">Group Members</h2>
+        <ul class="text-secondary">
             <li>Ilya Liam Brand</li>
             <li>Miah C Kirton</li>
             <li>Aleena J Tim</li>
             <li>Mahel Napo</li>
             <li>Steven Lin</li>
         </ul>
-    </main>
-    <footer>
-        <p> &copy; CSCI 499 Group 1 </p>
+        <p class="text-secondary"> &copy; CSCI 499 Group 1 </p>
     </footer>
     <!--jQuery through Google CDN-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
