@@ -81,16 +81,18 @@ const RestaurantMap = ({filterValue}) => {
       });
     }
 
-    function applyFilters(place){
-      if(filterValue.length === 0){ //empty?
-        return true; 
+    function applyFilters(place) {
+      // First check if filterValue exists and has length
+      if (!filterValue || filterValue.length === 0) {
+        return true; // Show all restaurants if no filters
       }
-      for(let i =0; i<filterValue.length; i++){
-        if(place.rating > filterValue[0][0]){
-          return true; 
-        }
+    
+      // Check if filterValue[0] exists before accessing filterValue[0][0]
+      if (filterValue[0] && place.rating > filterValue[0][0]) {
+        return true;
       }
-        return false; 
+    
+      return false;
     }
 
     function createMarker(place) {
@@ -169,7 +171,7 @@ const RestaurantMap = ({filterValue}) => {
   }, [filterValue]);
 
   return (
-    <div id="map" style={{ height: "87vh", width: "95%" }}></div>
+    <div id="map" style={{ height: "70vh", width: "100%" }}></div>
   );
 };
 

@@ -28,16 +28,6 @@ function HomePage() {
     }
   }, []);
 
-  // // Fetch restaurants based on user's location
-  // useEffect(() => {
-  //   if (location) {
-  //     const fetchData = async () => {
-  //       const results = await fetchRestaurants(location, 500, '');
-  //       setRestaurants(results);
-  //     };
-  //     fetchData();
-  //   }
-  // }, [location]);
 
   return (
     <div>
