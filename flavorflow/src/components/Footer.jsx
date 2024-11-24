@@ -1,12 +1,12 @@
+import React from 'react';
 import '../styles/Footer.css';
 
 function Footer() {
-    return (
-        <div className='footer'>
-            <Footer className="foot">
-            <p>© 2024 FlavorFlow</p>
-            </Footer>        
-        </div>
-    );
-    }
+  return (
+    <footer className="footer">
+      <p>© 2024 FlavorFlow. All rights reserved.</p>
+    </footer>
+  );
+}
+
 export default Footer;
