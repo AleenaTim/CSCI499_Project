@@ -4,7 +4,8 @@ import HomePage from './pages/HomePage';
 import MeetTheTeam from './pages/MeetTheTeam';
 import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
-import SearchResultsPage from './pages/SearchResultsPage'; // Import new page
+import SearchResultsPage from './pages/SearchResultsPage'; 
+import FilterPage from './pages/FilterPage'; 
 import Layout from './components/Layout';
 import Map from './pages/MapPage';
 import './App.css';
@@ -64,7 +65,14 @@ function App() {
               </Layout>
             }
           />
-           <Route path="/filter" element={<FilterPage />} />
+          <Route
+            path="/filter"
+            element={
+              <Layout isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}>
+                <FilterPage />
+              </Layout>
+            }
+          />
         </Routes>
       </div>
     </Router>
