@@ -63,10 +63,22 @@ const RestaurantMap = ({filterValue}) => {
       infoWindow.open(map);
     }
 
+    function getDistance(){
+      if(filterValue.length != 0){
+        for(let i =0; i<filterValue.length; i++){ 
+          if(filterValue[i][1] == "distance"){
+             return filterValue[i][0];  
+          }
+        }
+      }
+      return 0; 
+    }
+
     function fetchNearbyRestaurants(location) {
+      let dist = getDistance()>0 ? getDistance() : 1500; 
       const request = {
         location: location,
-        radius: 1500,
+        radius: dist,
         type: "restaurant",
       };
 
@@ -82,13 +94,37 @@ const RestaurantMap = ({filterValue}) => {
     }
 
     function applyFilters(place){
+      let count = 0; 
+      let priceCount = 0; 
+      let filterLength = filterValue.length; 
       if(filterValue.length === 0){ //empty?
         return true; 
       }
-      for(let i =0; i<filterValue.length; i++){
-        if(place.rating > filterValue[0][0]){
-          return true; 
+      for(let i =0; i<filterValue.length; i++){ 
+        if(filterValue[i][1] == "rating"){
+          if(place.rating > filterValue[i][0]){
+            count++; 
+          }
         }
+        if(filterValue[i][1] == "price"){
+            priceCount++; 
+            if(place.price_level == "1" && filterValue[i][0] == "affordable" 
+                || place.price_level == "2" && filterValue[i][0] == "semi-affordable" 
+                || place.price_level == "3" && filterValue[i][0] == "semi-expensive" 
+                || place.price_level == "4" && filterValue[i][0] == "expensive"){
+              count++; 
+            }
+        }
+        if(filterValue[i][1] == "distance"){
+          count++;  
+        }
+
+      }
+      if(priceCount >= 2){
+        filterLength = filterLength-priceCount+1; 
+      }
+      if(count == filterLength){
+        return true; 
       }
         return false; 
     }
@@ -175,7 +211,7 @@ const RestaurantMap = ({filterValue}) => {
 
 export default RestaurantMap;
 
-
+//YO
 // import React, { useEffect, useState } from 'react';
 
 // const RestaurantMap = () => {
@@ -356,7 +392,7 @@ export default RestaurantMap;
 //     // Load the map once the component is mounted
 //     window.initMap = initMap;
 //     const script = document.createElement('script');
-//     script.src = `https://maps.googleapis.com/maps/api/js?key=ADD_YOUR_API&libraries=places&callback=initMap`;
+//     script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyC0cNFE2yyEeftu8jiV8Us_zNDC6xsc2QE&libraries=places&callback=initMap`;
 //     script.async = true;
 //     script.defer = true;
 //     document.body.appendChild(script);

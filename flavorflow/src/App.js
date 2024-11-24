@@ -10,6 +10,7 @@ import Layout from './components/Layout';
 import './App.css';
 import MapPage from './pages/MapPage';
 import FilterPage from './pages/FilterPage';
+import RestaurantPage from './pages/ResturantPage';
 
 
 function App() {
@@ -60,6 +61,8 @@ function App() {
             }
           />
            <Route path="/filter" element={<FilterPage />} />
+           <Route path="/rp" element={<RestaurantPage />} />
+           <Route path="/map" element={<MapPage />} />
         </Routes>
       </div>
     </Router>

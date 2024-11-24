@@ -5,7 +5,7 @@ import { IoFilterSharp } from "react-icons/io5";
 import { IoMdArrowDropdown } from "react-icons/io"; 
 import { IoMdArrowDropup } from "react-icons/io"; 
 import { GoStar } from "react-icons/go";
-import {mainFeatures, seeMoreFeatures, seeMoreCategories, prices, upper} from './filterData.js'; 
+import {mainFeatures, seeMoreFeatures, seeMoreCategories, prices, upper, maxMapVal, milesToMeters} from './filterData.js'; 
 import MapPage from './MapPage';
 function FilterPage() {
     const [show, setShow] = useState({
@@ -14,7 +14,6 @@ function FilterPage() {
         seeMoreF: false, 
         priceDropDown: false, 
     }); 
-
     const showDisplay = (e) => {
         setShow({
             ...show, [e.target.value] : !show[e.target.value], 
@@ -118,7 +117,7 @@ function FilterPage() {
         }
        
     }
-    const [inputDistance, setInputDistance] = useState(null); 
+    const [inputDistance, setInputDistance] = useState("0 mi"); 
     const [checkedBoxes, setCheckedBoxes] = useState(new Map()); 
     const selectCheckbox = (e) => {
         let checkboxValue = e.target.defaultValue; 
@@ -132,11 +131,21 @@ function FilterPage() {
         setCheckedBoxes(new Map(checkedBoxes));   
     }
     function appliedFilters(){
-        if(selectedStars.size !== 0){
-            const highestStar = selectedStars.entries().next().value[0].slice(-1)+".0"; 
-            let appliedfiltersmap1 =  [...selectedMainButtons, ...checkedBoxes, ...selectedCategoryButtons, ...selectedPriceButtons, [highestStar, "rating"]]; 
+        if(selectedStars.size !== 0 && inputDistance != "0 mi"){
+            const highestStar = maxMapVal(selectedStars); 
+            let appliedfiltersmap1 =  [...selectedMainButtons, ...checkedBoxes, ...selectedCategoryButtons, ...selectedPriceButtons, [highestStar, "rating"], [milesToMeters(inputDistance.substring(0,inputDistance.length-3)), "distance"]];  
             return appliedfiltersmap1; 
         }
+        else if(selectedStars.size !== 0){
+            const highestStar = maxMapVal(selectedStars); 
+            let appliedfiltersmap1 =  [...selectedMainButtons, ...checkedBoxes, ...selectedCategoryButtons, ...selectedPriceButtons, [highestStar, "rating"]];  
+            return appliedfiltersmap1; 
+        }
+        else if(inputDistance != "0 mi"){
+            let appliedfiltersmap1 =  [...selectedMainButtons, ...checkedBoxes, ...selectedCategoryButtons, ...selectedPriceButtons,[milesToMeters(inputDistance.substring(0,inputDistance.length-3)), "distance"]];  
+            return appliedfiltersmap1; 
+        }
+
         let appliedfiltersmap1 =  [...selectedMainButtons, ...checkedBoxes, ...selectedCategoryButtons, ...selectedPriceButtons]; 
         return appliedfiltersmap1; 
     }
