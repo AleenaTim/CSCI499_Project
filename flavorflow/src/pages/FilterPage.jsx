@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import '../styles/FilterPage.css';
 import {  useState } from 'react';
 import { IoFilterSharp } from "react-icons/io5";
@@ -36,12 +36,12 @@ function FilterPage() {
         let priceButtonID = e.target.id; 
         if(selectedPriceButtons.has(priceButtonID) || checkedBoxes.has(priceButtonID)){
             for(let priceButton of selectedPriceButtons.keys()){
-                if(priceButton == priceButtonID){
+                if(priceButton === priceButtonID){
                     selectedPriceButtons.delete(priceButton); 
                 }
             }
             for(let priceButton of checkedBoxes.keys()){
-                if(priceButton == priceButtonID){
+                if(priceButton === priceButtonID){
                     checkedBoxes.delete(priceButton); 
                 }
             }
@@ -61,7 +61,7 @@ function FilterPage() {
         let mainButtonID = e.target.id; 
         if(selectedMainButtons.has(mainButtonID)){
             for(let mainButton of selectedMainButtons.keys()){
-                if(mainButton == mainButtonID){
+                if(mainButton === mainButtonID){
                     selectedMainButtons.delete(mainButton); 
                 }
             }
@@ -79,7 +79,7 @@ function FilterPage() {
         let categoryButtonID = e.target.id; 
         if(selectedCategoryButtons.has(categoryButtonID)){
             for(let categoryButton of selectedCategoryButtons.keys()){
-                if(categoryButton == categoryButtonID){
+                if(categoryButton === categoryButtonID){
                     selectedCategoryButtons.delete(categoryButton); 
                 }
             }
@@ -97,7 +97,7 @@ function FilterPage() {
         let starID = e.target.id; 
         if(selectedStars.has(starID)){
             for(let starButton of selectedStars.keys()){
-                if(starButton == starID){
+                if(starButton === starID){
                    selectedStars.delete(starButton); 
                 }
                 if(starID.slice(-1) <= starButton.slice(-1)){
@@ -144,16 +144,16 @@ function FilterPage() {
     function showAppliedFilters(){
         let appliedfiltersmap1 =  [...selectedMainButtons, ...checkedBoxes, ...selectedCategoryButtons, ...selectedPriceButtons]; 
         appliedfiltersmap1.forEach((item)=>{
-            if(item[0] == "affordable"){
+            if(item[0] === "affordable"){
                 item[0] = '$'; 
             }
-            if(item[0] == "semi-affordable"){
+            if(item[0] === "semi-affordable"){
                 item[0] = '$$'; 
             }
-            if(item[0] == "semi-expensive"){
+            if(item[0] === "semi-expensive"){
                 item[0] = '$$$'; 
             }
-            if(item[0] == "expensive"){
+            if(item[0] === "expensive"){
                 item[0] = '$$$$'; 
             }
             if(item[0].includes('-')){
@@ -228,7 +228,7 @@ function FilterPage() {
                     </div>
                     <div className="suggested">
                     <p>Features</p>
-                            <ul className = "features">
+                            <ul className = "features pageList">
                               {mainFeatures.map((item, index)=>(
                                 <li key={index}>
                                     <input type="checkbox" id={item[1]} name="diet" defaultValue={item[1]} checked={checkedBoxes.has(item[1]) ? true : false} onChange={selectCheckbox}/>
@@ -239,7 +239,7 @@ function FilterPage() {
                     <button value = "seeMoreF" onClick={showDisplay} className="see-more" id="see-more-features">See More</button>
                     <div id="seeMoreF" className={show.seeMoreF ? 'see-more-f-vis' : 'see-more-f-novis'}>
                         <button value ="seeMoreF" className='close-button' onClick={showDisplay}>X</button> 
-                        <ul>
+                        <ul className="pageList">
                             {seeMoreFeatures.map((item, index)=>(
                                     <li key={index}>
                                         <input type="checkbox" id={item[1]} name="diet" defaultValue={item[1]} checked={checkedBoxes.has(item[1]) ? true : false} onChange={selectCheckbox}/>
@@ -261,7 +261,7 @@ function FilterPage() {
                     
                     <div id="seeMoreC" className={show.seeMoreC ? 'see-more-c-vis' : 'see-more-c-novis'}> 
                         <button className='close-button' value="seeMoreC" onClick={showDisplay}>X</button> 
-                        <ul>
+                        <ul className="pageList">
                             {seeMoreCategories.map((item, index)=>(
                                         <li key={index}>
                                             <input type="checkbox" id={item[1]} name="diet" defaultValue={item[1]} checked={checkedBoxes.has(item[1]) ? true : false} onChange={selectCheckbox}/>

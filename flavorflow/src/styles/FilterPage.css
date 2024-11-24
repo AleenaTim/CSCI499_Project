@@ -35,11 +35,17 @@ display:flex;
 justify-content: center;
 align-items: center;
 }
-ul{
-list-style: none;
-display: flex;
-flex-direction: column;
-align-items: flex-start;
+.pageList ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+#price-checkboxes ul{
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 .sidebar{
 z-index:1; 
@@ -176,8 +182,10 @@ gap: 4px;
 padding-top: 10px; 
 }
 .down-vis{
-display: flex; 
-justify-content: flex-start;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 .up-novis{
 display: none; 
