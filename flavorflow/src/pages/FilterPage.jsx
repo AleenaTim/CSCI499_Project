@@ -1,22 +1,26 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import '../styles/FilterPage.css';
 import {  useState } from 'react';
-import { RiCloseLargeFill } from "react-icons/ri";
 import { IoFilterSharp } from "react-icons/io5";
-import { IoMdArrowDropdown } from "react-icons/io"; //<IoMdArrowDropdown />
-import { IoMdArrowDropup } from "react-icons/io"; //<IoMdArrowDropup />
+import { IoMdArrowDropdown } from "react-icons/io"; 
+import { IoMdArrowDropup } from "react-icons/io"; 
 import { GoStar } from "react-icons/go";
+import {mainFeatures, seeMoreFeatures, seeMoreCategories, prices, upper} from './filterData.js'; 
+import MapPage from './MapPage';
 function FilterPage() {
+    const [show, setShow] = useState({
+        sideButton: false, 
+        seeMoreC: false, 
+        seeMoreF: false, 
+        priceDropDown: false, 
+    }); 
 
- 
-    function upper(word){
-        return  word[0].toUpperCase()+word.substring(1); 
+    const showDisplay = (e) => {
+        setShow({
+            ...show, [e.target.value] : !show[e.target.value], 
+        }); 
     }
 
-    const [sidebar, setSidebarVis] = useState(false); 
-    const displaySidebar = () => setSidebarVis(!sidebar); 
-    const [priceDropDown, setPriceDropDown] = useState(false); 
-    const selectPriceDropDown = () => setPriceDropDown(!priceDropDown); 
     const [clearFilter, setClear] = useState(false); 
     const clearAll = () => {
         selectedPriceButtons.clear(); 
@@ -26,10 +30,6 @@ function FilterPage() {
         checkedBoxes.clear(); 
         setClear(!clearFilter); 
     }; 
-    const [seeMoreF, setSeeMoreFVis ] = useState(false); 
-    const displaySeeMoreF = () => setSeeMoreFVis(!seeMoreF); 
-    const [seeMoreC, setSeeMoreCVis ] = useState(false); 
-    const displaySeeMoreC = () => setSeeMoreCVis(!seeMoreC); 
 
     const [selectedPriceButtons, setPriceButtons] = useState(new Map()); 
     const selectPriceButton = (e) => {
@@ -92,7 +92,6 @@ function FilterPage() {
             })
         }
     }
-   
     const[selectedStars, setStars] = useState(new Map()); 
     const selectStars = (e) => {
         let starID = e.target.id; 
@@ -119,7 +118,6 @@ function FilterPage() {
         }
        
     }
-
     const [inputDistance, setInputDistance] = useState(null); 
     const [checkedBoxes, setCheckedBoxes] = useState(new Map()); 
     const selectCheckbox = (e) => {
@@ -131,13 +129,16 @@ function FilterPage() {
 
             checkedBoxes.delete(checkboxValue); 
         }
-        setCheckedBoxes(new Map(checkedBoxes)); 
-        
+        setCheckedBoxes(new Map(checkedBoxes));   
     }
     function appliedFilters(){
-        let finalAppliedFilters = new Map(selectedMainButtons, checkedBoxes, selectedStars, selectedCategoryButtons, selectedPriceButtons, selectedStars); 
-        finalAppliedFilters.set(inputDistance, "distance"); 
-        return finalAppliedFilters; 
+        if(selectedStars.size !== 0){
+            const highestStar = selectedStars.entries().next().value[0].slice(-1)+".0"; 
+            let appliedfiltersmap1 =  [...selectedMainButtons, ...checkedBoxes, ...selectedCategoryButtons, ...selectedPriceButtons, [highestStar, "rating"]]; 
+            return appliedfiltersmap1; 
+        }
+        let appliedfiltersmap1 =  [...selectedMainButtons, ...checkedBoxes, ...selectedCategoryButtons, ...selectedPriceButtons]; 
+        return appliedfiltersmap1; 
     }
 
     function showAppliedFilters(){
@@ -162,17 +163,16 @@ function FilterPage() {
             else{
               item[0] = item[0][0].toUpperCase() + item[0].slice(1); 
             }
-  
         })
         return appliedfiltersmap1; 
     }
-    
-     let appliedfiltersmap = showAppliedFilters(); 
+    let appliedfiltersmap = showAppliedFilters(); 
+    let unchangedMap =  appliedFilters(); 
+   
 
-    
     function cancelFilter(){
         clearAll(); 
-        setSidebarVis(false); 
+        setShow(false); 
     }
    
     return (
@@ -180,10 +180,11 @@ function FilterPage() {
         <style>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         </style>
+    <div id="pageContent">
         <div>
-            <div id="sidebar" className={sidebar ? 'sidebar-vis' : 'sidebar-novis'}>
+            <div className={`${'sidebar'} ${show.sideButton ? 'sidebar-vis' : 'sidebar-novis'}`} >
                 <div className="filter-box">
-                <div className='close-button' onClick={displaySidebar}><RiCloseLargeFill /></div>  
+                <button className='close-button' value="sideButton" onClick={showDisplay}>X</button>  
                 <div className="filters">
                     <div className="active-filters">
                     <p>Applied Filters</p>
@@ -200,14 +201,13 @@ function FilterPage() {
                     </div>
                     <div className="price">
                     <p>Price</p>
-                    <div className="price-buttons" > {/* TODO: add  this as an array */}
+                    <div className="price-buttons" > 
                         <button id="affordable" className= {(selectedPriceButtons.has("affordable") || checkedBoxes.has("affordable"))? 'buttonsOn' : 'buttonsOff' } onClick={selectPriceButton}>$</button>
                         <button id="semi-affordable" className= {(selectedPriceButtons.has("semi-affordable") || checkedBoxes.has("semi-affordable") )? 'buttonsOn' : 'buttonsOff' } onClick={selectPriceButton}>$$</button>
                         <button id="semi-expensive" className= {(selectedPriceButtons.has("semi-expensive") || checkedBoxes.has("semi-expensive"))? 'buttonsOn' : 'buttonsOff' } onClick={selectPriceButton}>$$$</button>
                         <button id="expensive" className= {(selectedPriceButtons.has("expensive") || checkedBoxes.has("expensive") )? 'buttonsOn' : 'buttonsOff' } onClick={selectPriceButton}>$$$$</button>
                     </div>   
                     </div>
-                
                     <div className="rating-range">
                     <p>Rating</p> 
                     <div className="rating-stars">
@@ -229,63 +229,23 @@ function FilterPage() {
                     <div className="suggested">
                     <p>Features</p>
                             <ul className = "features">
-                                <li>
-                                    <input type="checkbox" id="vegetarian" name="diet" defaultValue="vegetarian" checked={checkedBoxes.has("vegetarian") ? true : false} onChange={selectCheckbox}/>
-                                    <label htmlFor="vegetarian">Vegetarian</label> <br />
+                              {mainFeatures.map((item, index)=>(
+                                <li key={index}>
+                                    <input type="checkbox" id={item[1]} name="diet" defaultValue={item[1]} checked={checkedBoxes.has(item[1]) ? true : false} onChange={selectCheckbox}/>
+                                    <label htmlFor={item[1]}>{item[0]}</label> <br />
                                 </li>
-                                <li>
-                                    <input type="checkbox" id="gluten-free" name="diet" defaultValue="gluten-free" checked={checkedBoxes.has("gluten-free") ? true : false} onChange={selectCheckbox}/>
-                                    <label htmlFor="gluten-free">Gluten Free</label> <br />
-                                </li>
-                                <li>
-                                    <input type="checkbox" id="kosher" name="diet" defaultValue="kosher" checked={checkedBoxes.has("kosher") ? true : false} onChange={selectCheckbox}/>
-                                    <label htmlFor="kosher">Kosher</label> <br />
-                                </li>
+                            ))}
                             </ul>
-                    <p className="see-more" id="see-more-features" onClick={displaySeeMoreF}>See More</p>
-                    <div id="see-more-f" className={seeMoreF ? 'see-more-f-vis' : 'see-more-f-novis'}>
-                        <div className='close-button' onClick={displaySeeMoreF}><RiCloseLargeFill /></div> 
+                    <button value = "seeMoreF" onClick={showDisplay} className="see-more" id="see-more-features">See More</button>
+                    <div id="seeMoreF" className={show.seeMoreF ? 'see-more-f-vis' : 'see-more-f-novis'}>
+                        <button value ="seeMoreF" className='close-button' onClick={showDisplay}>X</button> 
                         <ul>
-                        <li>
-                            <input type="checkbox" id="halal" name="diet" defaultValue="halal"  checked={checkedBoxes.has("halal") ? true : false}  onChange={selectCheckbox}/>
-                            <label htmlFor="halal">Halal</label> <br />
-                        </li>
-                        <li>
-                            <input type="checkbox" id="allergy-friendly" name="diet" defaultValue="allergy-friendly"  checked={checkedBoxes.has("allergy-friendly") ? true : false}  onChange={selectCheckbox}/>
-                            <label htmlFor="allergy-friendly">Allergy Friendly</label> <br />
-                        </li>
-                        <li>
-                            <input type="checkbox" id="vegan" name="diet" defaultValue="vegan" checked={checkedBoxes.has("vegan") ? true : false}  onChange={selectCheckbox}/>
-                            <label htmlFor="vegan">Vegan</label> <br />
-                        </li>
-                        <li>
-                            <input type="checkbox" id="organic" name="food-type" defaultValue="organic"  checked={checkedBoxes.has("organic") ? true : false}  onChange={selectCheckbox}/>
-                            <label htmlFor="organic">Organic</label> <br />
-                        </li>
-                        <li>
-                            <input type="checkbox" id="low-sodium" name="diet" defaultValue="low-sodium"  checked={checkedBoxes.has("low-sodium") ? true : false}  onChange={selectCheckbox}/>
-                            <label htmlFor="low-sodium">Low Sodium</label> <br />
-                        </li>
-                        <li>
-                            <input type="checkbox" id="heart-healthy-menu" name="diet" defaultValue="heart-healthy-menu"  checked={checkedBoxes.has("heart-healthy-menu") ? true : false}  onChange={selectCheckbox}/>
-                            <label htmlFor="heart-healthy-menu">Heart Healthy Menu</label> <br />
-                        </li>
-                        <li>
-                            <input type="checkbox" id="kids-menu" name="diet" defaultValue="kids-menu"  checked={checkedBoxes.has("kids-menu") ? true : false}  onChange={selectCheckbox}/>
-                            <label htmlFor="kids-menu">Kids Menu</label> <br />
-                        </li>
-                        <li>
-                            <input type="checkbox" id="live-music" name="diet" defaultValue="live-music" checked={checkedBoxes.has("live-music") ? true : false}  onChange={selectCheckbox}/>
-                            <label htmlFor="live-music">Live Music</label> <br />
-                        </li>
-                        <li>
-                            <input type="checkbox" id="eat-in" name="diet" defaultValue="eat-in"  checked={checkedBoxes.has("eat-in") ? true : false}  onChange={selectCheckbox}/>
-                            <label htmlFor="eat-in">Eat In</label> <br />
-                        </li>
-                        <li>
-                            <input type="checkbox" id="take-out" name="diet" defaultValue="take-out" checked={checkedBoxes.has("take-out") ? true : false}  onChange={selectCheckbox}/>
-                            <label htmlFor="take-out">Take Out</label> <br />
-                        </li>
+                            {seeMoreFeatures.map((item, index)=>(
+                                    <li key={index}>
+                                        <input type="checkbox" id={item[1]} name="diet" defaultValue={item[1]} checked={checkedBoxes.has(item[1]) ? true : false} onChange={selectCheckbox}/>
+                                        <label htmlFor={item[1]}>{item[0]}</label> <br />
+                                    </li>
+                                ))}
                         </ul> 
                     </div>
                     </div>
@@ -297,51 +257,17 @@ function FilterPage() {
                         <button id="seafood" className= {selectedCategoryButtons.has("seafood") ? 'buttonsOn' : 'buttonsOff' } onClick={selectCategoryButton}>Seafood</button>
                         <button id="jamaican" className= {selectedCategoryButtons.has("jamaican") ? 'buttonsOn' : 'buttonsOff' } onClick={selectCategoryButton}>Jamaican</button>
                     </div>
-                        <p className="see-more" id="see-more-categories" onClick={displaySeeMoreC}>See More</p> 
+                        <button value="seeMoreC" className="see-more"  onClick={showDisplay}>See More</button> 
                     
-                    <div id="see-more-c" className={seeMoreC ? 'see-more-c-vis' : 'see-more-c-novis'}> 
-                        <div className='close-button' onClick={displaySeeMoreC}><RiCloseLargeFill /></div> 
+                    <div id="seeMoreC" className={show.seeMoreC ? 'see-more-c-vis' : 'see-more-c-novis'}> 
+                        <button className='close-button' value="seeMoreC" onClick={showDisplay}>X</button> 
                         <ul>
-                        <li>
-                            <input type="checkbox" id="food-court" name="diet" defaultValue="food-court" checked={checkedBoxes.has("food-court") ? true : false} onChange={selectCheckbox}/>
-                            <label htmlFor="food-court">Food Court</label><br />
-                        </li>
-                        <li>
-                            <input type="checkbox" id="soul-food" name="diet" defaultValue="soul-food" checked={checkedBoxes.has("soul-food") ? true : false}  onChange={selectCheckbox}/>
-                            <label htmlFor="soul-food">Soul Food</label><br />
-                        </li>
-                        <li>
-                            <input type="checkbox" id="hawaiian" name="diet" defaultValue="hawaiian" checked={checkedBoxes.has("hawaiian") ? true : false}  onChange={selectCheckbox}/>
-                            <label htmlFor="hawaiian">Hawaiian</label><br />
-                        </li>
-                        <li>
-                            <input type="checkbox" id="venezuelan" name="diet" defaultValue="venezuelan" checked={checkedBoxes.has("venezuelan") ? true : false}  onChange={selectCheckbox}/>
-                            <label htmlFor="venezuelan">Venezuelan</label><br />
-                        </li>
-                        <li>
-                            <input type="checkbox" id="thai" name="diet" defaultValue="thai" checked={checkedBoxes.has("thai") ? true : false}  onChange={selectCheckbox}/>
-                            <label htmlFor="thai">Thai</label><br />
-                        </li>
-                        <li>
-                            <input type="checkbox" id="Chinese" name="diet" defaultValue="Chinese" checked={checkedBoxes.has("Chinese") ? true : false}  onChange={selectCheckbox}/>
-                            <label htmlFor="Chinese">Chinese</label><br />
-                        </li>
-                        <li>
-                            <input type="checkbox" id="Mediterranean" name="diet" defaultValue="Mediterranean" checked={checkedBoxes.has("Mediterranean") ? true : false}  onChange={selectCheckbox}/>
-                            <label htmlFor="Mediterranean">Mediterranean</label><br />
-                        </li>
-                        <li>
-                            <input type="checkbox" id="Filipino" name="diet" defaultValue="Filipino" checked={checkedBoxes.has("Filipino") ? true : false}  onChange={selectCheckbox}/>
-                            <label htmlFor="Filipino">Filipino</label><br />
-                        </li>
-                        <li>
-                            <input type="checkbox" id="Greek" name="diet" defaultValue="Greek" checked={checkedBoxes.has("Greek") ? true : false}  onChange={selectCheckbox}/>
-                            <label htmlFor="Greek">Greek</label><br />
-                        </li>
-                        <li>
-                            <input type="checkbox" id="Mexican" name="diet" defaultValue="Mexican" checked={checkedBoxes.has("Mexican") ? true : false} onChange={selectCheckbox}/>
-                            <label htmlFor="Mexican">Mexican</label><br />
-                        </li>
+                            {seeMoreCategories.map((item, index)=>(
+                                        <li key={index}>
+                                            <input type="checkbox" id={item[1]} name="diet" defaultValue={item[1]} checked={checkedBoxes.has(item[1]) ? true : false} onChange={selectCheckbox}/>
+                                            <label htmlFor={item[1]}>{item[0]}</label> <br />
+                                        </li>
+                                    ))} 
                         </ul>
                     </div>
                     </div>
@@ -352,39 +278,28 @@ function FilterPage() {
                 <button className="clear" onClick={clearAll}>Clear</button>
                 </div>
             </div>
-            <div className={sidebar ? 'opacitySet' : 'noOpacity'}>
+            <div className={show.sidebar ? 'opacitySet' : 'noOpacity'}>
             </div>
             <div id="mainContent">
                 <div id="mainButtons">
                 <div id="section-one-buttons">
-                    <button className="buttons" id="side-button" onClick={displaySidebar}>
+                    <button id="priceDropDownBttns" value = "sideButton" className="sideButton buttons" onClick={showDisplay}>
                         <IoFilterSharp />
                         Filter
                     </button>
                     <div id="price-drop-down">
-                    <button id="priceDropDownBttn" className="buttons" onClick={selectPriceDropDown} >
+                    <button id="priceDropDownBttn" value = "priceDropDown" className="buttons" onClick={showDisplay} >
                         Price
-                        <IoMdArrowDropdown className={priceDropDown ? 'up-novis' : 'down-vis'}/>
-                        <IoMdArrowDropup className={priceDropDown ? 'down-vis' : 'up-novis'}/>
-
+                        <IoMdArrowDropdown className={show.priceDropDown ? 'up-novis' : 'down-vis'}/>
+                        <IoMdArrowDropup className={show.priceDropDown ? 'down-vis' : 'up-novis'}/>
                     </button>
-                    <ul id="price-checkboxes" className={priceDropDown ? 'down-vis' : 'up-novis'}>
-                        <li>
-                        <input type="checkbox" id="affordable-d" name="affordable" defaultValue="affordable" checked={checkedBoxes.has("affordable") ? true : false} onChange={selectCheckbox}/>
-                        <label htmlFor="affordable-d">$</label> <br /> 
-                        </li>
-                        <li>
-                        <input type="checkbox" id="semi-affordable-d" name="semi-affordable" defaultValue="semi-affordable" checked={checkedBoxes.has("semi-affordable") ? true : false} onChange={selectCheckbox}/>
-                        <label htmlFor="semi-affordable-d">$$</label> <br /> 
-                        </li>
-                        <li>
-                        <input type="checkbox" id="semi-expensive-d" name="semi-expensive" defaultValue="semi-expensive" checked={checkedBoxes.has("semi-expensive") ? true : false} onChange={selectCheckbox}/>
-                        <label htmlFor="semi-expensive-d">$$$</label> <br />  
-                        </li>
-                        <li>
-                        <input type="checkbox" id="expensive-d" name="expensive" defaultValue="expensive" checked={checkedBoxes.has("expensive") ? true : false} onChange={selectCheckbox}/>
-                        <label htmlFor="expensive-d">$$$$</label> <br />  
-                        </li>
+                    <ul id="price-checkboxes" className={show.priceDropDown ? 'down-vis' : 'up-novis'}>
+                    {prices.map((item, index)=>(
+                                            <li key={index}>
+                                                <input type="checkbox" id={item[1]} name={item[1].slice(0,-2)} defaultValue={item[1].slice(0,-2)} checked={checkedBoxes.has(item[1].slice(0,-2)) ? true : false} onChange={selectCheckbox}/>
+                                                <label htmlFor={item[1]}>{item[0]}</label> <br />
+                                            </li>
+                                        ))} 
                     </ul>
                     </div>
                 </div>
@@ -397,9 +312,10 @@ function FilterPage() {
                 </div>
             </div>
         </div>
+        <MapPage filterValue={unchangedMap}/>
+    </div>
       </>
     );
   }
 
-
-export default FilterPage; 
+export default FilterPage;
