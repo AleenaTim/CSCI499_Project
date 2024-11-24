@@ -41,4 +41,17 @@ function upper(word){
     return  word[0].toUpperCase()+word.substring(1); 
 }
 
-export{mainFeatures, seeMoreFeatures, seeMoreCategories, prices, upper}; 
+function maxMapVal(container){
+    let maxValue = 0; 
+    for(let item of container.keys()){
+        if(item.slice(-1) > maxValue){
+            maxValue = item.slice(-1); 
+        }
+    }
+    return maxValue; 
+}
+
+function milesToMeters(mile){
+    return Number(mile) * 1609.34; 
+}
+export{mainFeatures, seeMoreFeatures, seeMoreCategories, prices, upper, maxMapVal, milesToMeters}; 

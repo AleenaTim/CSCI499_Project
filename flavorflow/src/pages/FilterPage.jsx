@@ -5,8 +5,9 @@ import { IoFilterSharp } from "react-icons/io5";
 import { IoMdArrowDropdown } from "react-icons/io"; 
 import { IoMdArrowDropup } from "react-icons/io"; 
 import { GoStar } from "react-icons/go";
-import {mainFeatures, seeMoreFeatures, seeMoreCategories, prices, upper} from './filterData.js'; 
+import {mainFeatures, seeMoreFeatures, seeMoreCategories, prices, upper, maxMapVal, milesToMeters} from './filterData.js'; 
 import MapPage from './MapPage';
+import { FaCheckSquare } from 'react-icons/fa';
 function FilterPage() {
     const [show, setShow] = useState({
         sideButton: false, 
@@ -14,13 +15,11 @@ function FilterPage() {
         seeMoreF: false, 
         priceDropDown: false, 
     }); 
-
     const showDisplay = (e) => {
         setShow({
             ...show, [e.target.value] : !show[e.target.value], 
         }); 
     }
-
     const [clearFilter, setClear] = useState(false); 
     const clearAll = () => {
         selectedPriceButtons.clear(); 
@@ -116,9 +115,8 @@ function FilterPage() {
 
             }); 
         }
-       
     }
-    const [inputDistance, setInputDistance] = useState(null); 
+    const [inputDistance, setInputDistance] = useState("0 mi"); 
     const [checkedBoxes, setCheckedBoxes] = useState(new Map()); 
     const selectCheckbox = (e) => {
         let checkboxValue = e.target.defaultValue; 
@@ -132,11 +130,21 @@ function FilterPage() {
         setCheckedBoxes(new Map(checkedBoxes));   
     }
     function appliedFilters(){
-        if(selectedStars.size !== 0){
-            const highestStar = selectedStars.entries().next().value[0].slice(-1)+".0"; 
-            let appliedfiltersmap1 =  [...selectedMainButtons, ...checkedBoxes, ...selectedCategoryButtons, ...selectedPriceButtons, [highestStar, "rating"]]; 
+        if(selectedStars.size !== 0 && inputDistance != "0 mi"){
+            const highestStar = maxMapVal(selectedStars); 
+            let appliedfiltersmap1 =  [...selectedMainButtons, ...checkedBoxes, ...selectedCategoryButtons, ...selectedPriceButtons, [highestStar, "rating"], [milesToMeters(inputDistance.substring(0,inputDistance.length-3)), "distance"]];  
             return appliedfiltersmap1; 
         }
+        else if(selectedStars.size !== 0){
+            const highestStar = maxMapVal(selectedStars); 
+            let appliedfiltersmap1 =  [...selectedMainButtons, ...checkedBoxes, ...selectedCategoryButtons, ...selectedPriceButtons, [highestStar, "rating"]];  
+            return appliedfiltersmap1; 
+        }
+        else if(inputDistance != "0 mi"){
+            let appliedfiltersmap1 =  [...selectedMainButtons, ...checkedBoxes, ...selectedCategoryButtons, ...selectedPriceButtons,[milesToMeters(inputDistance.substring(0,inputDistance.length-3)), "distance"]];  
+            return appliedfiltersmap1; 
+        }
+
         let appliedfiltersmap1 =  [...selectedMainButtons, ...checkedBoxes, ...selectedCategoryButtons, ...selectedPriceButtons]; 
         return appliedfiltersmap1; 
     }
@@ -296,7 +304,7 @@ function FilterPage() {
                     <ul id="price-checkboxes" className={show.priceDropDown ? 'down-vis' : 'up-novis'}>
                     {prices.map((item, index)=>(
                                             <li key={index}>
-                                                <input type="checkbox" id={item[1]} name={item[1].slice(0,-2)} defaultValue={item[1].slice(0,-2)} checked={checkedBoxes.has(item[1].slice(0,-2)) ? true : false} onChange={selectCheckbox}/>
+                                                <input type="checkbox" id={item[1]} name="price" defaultValue={item[1].slice(0,-2)} checked={checkedBoxes.has(item[1].slice(0,-2)) ? true : false} onChange={selectCheckbox}/>
                                                 <label htmlFor={item[1]}>{item[0]}</label> <br />
                                             </li>
                                         ))} 

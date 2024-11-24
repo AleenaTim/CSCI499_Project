@@ -9,6 +9,8 @@ import FilterPage from './pages/FilterPage';
 import Layout from './components/Layout';
 import Map from './pages/MapPage';
 import './App.css';
+import FilterPage from './pages/FilterPage';
+import RestaurantPage from './pages/ResturantPage';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -70,6 +72,14 @@ function App() {
             element={
               <Layout isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}>
                 <FilterPage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/rp"
+            element={
+              <Layout isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}>
+                <RestaurantPage />
               </Layout>
             }
           />
