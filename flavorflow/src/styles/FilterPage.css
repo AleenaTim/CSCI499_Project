@@ -42,7 +42,7 @@ flex-direction: column;
 align-items: flex-start;
 }
 .sidebar{
-z-index:1; 
+z-index:2; 
 position: fixed;
 height: 100vh; 
 overflow-y: auto; 
@@ -163,10 +163,18 @@ height : 25px;
 }
 
 #price-checkboxes{
-border: 1px solid black; 
+border: 1px solid black;
+z-index: 1;  
 border-radius: 5px;
 padding : 20px; 
 background-color: rgba(245, 245, 245, 0.284);
+top: 20px; 
+position: fixed;
+height: 10vh; 
+background-color: white;  
+width: 80px;  
+box-shadow: 5px 1px 10px black; 
+padding: 10px; 
 }
 
 #mainButtons{
@@ -176,8 +184,8 @@ gap: 4px;
 padding-top: 10px; 
 }
 .down-vis{
-display: flex; 
-justify-content: flex-start;
+display: block; 
+/* justify-content: flex-start; */
 }
 .up-novis{
 display: none; 

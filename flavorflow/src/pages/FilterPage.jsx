@@ -7,6 +7,7 @@ import { IoMdArrowDropup } from "react-icons/io";
 import { GoStar } from "react-icons/go";
 import {mainFeatures, seeMoreFeatures, seeMoreCategories, prices, upper, maxMapVal, milesToMeters} from './filterData.js'; 
 import MapPage from './MapPage';
+import { FaCheckSquare } from 'react-icons/fa';
 function FilterPage() {
     const [show, setShow] = useState({
         sideButton: false, 
@@ -19,7 +20,6 @@ function FilterPage() {
             ...show, [e.target.value] : !show[e.target.value], 
         }); 
     }
-
     const [clearFilter, setClear] = useState(false); 
     const clearAll = () => {
         selectedPriceButtons.clear(); 
@@ -115,7 +115,6 @@ function FilterPage() {
 
             }); 
         }
-       
     }
     const [inputDistance, setInputDistance] = useState("0 mi"); 
     const [checkedBoxes, setCheckedBoxes] = useState(new Map()); 
@@ -305,7 +304,7 @@ function FilterPage() {
                     <ul id="price-checkboxes" className={show.priceDropDown ? 'down-vis' : 'up-novis'}>
                     {prices.map((item, index)=>(
                                             <li key={index}>
-                                                <input type="checkbox" id={item[1]} name={item[1].slice(0,-2)} defaultValue={item[1].slice(0,-2)} checked={checkedBoxes.has(item[1].slice(0,-2)) ? true : false} onChange={selectCheckbox}/>
+                                                <input type="checkbox" id={item[1]} name="price" defaultValue={item[1].slice(0,-2)} checked={checkedBoxes.has(item[1].slice(0,-2)) ? true : false} onChange={selectCheckbox}/>
                                                 <label htmlFor={item[1]}>{item[0]}</label> <br />
                                             </li>
                                         ))} 
