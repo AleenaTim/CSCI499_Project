@@ -80,14 +80,21 @@ const RestaurantMap = ({filterValue}) => {
       };
 
       service = new window.google.maps.places.PlacesService(map);
-      service.nearbySearch(request, (results, status) => {
+      service.nearbySearch(request, (results, status, pagination) => {
         if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-          const filteredResults = results.filter((place) => applyFilters(place)); 
+          const filteredResults = results.filter((place) => applyFilters(place));
           filteredResults.forEach((place) => {
+            // Create markers for each place
             createMarker(place);
           });
+      
+          // If there are more results, fetch them
+          if (pagination && pagination.hasNextPage) {
+            setTimeout(() => pagination.nextPage(), 200); // Add a delay to prevent exceeding rate limits
+          }
         }
       });
+      
     }
 
     function applyFilters(place){
