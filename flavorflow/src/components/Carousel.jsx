@@ -4,7 +4,7 @@ import '../styles/Carousel.css';
 function Carousel() {
   return (
     <div className="carousel">
-      {/* You can add a library like react-slick for a real carousel */}
+      {/* Might add react slick library for carousel later */}
       <div className="carousel-text">
         <h2>Life is Gourd</h2>
         <p>Discover places to eat and more!</p>

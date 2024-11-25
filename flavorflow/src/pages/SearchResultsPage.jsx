@@ -4,6 +4,8 @@ import SearchBar from '../components/SearchBar';
 import RestaurantCard from '../components/RestaurantCard';
 import { fetchRestaurants } from '../utils/fetchRestaurants';
 import '../styles/SearchResultsPage.css';
+import loaderGif from '../assets/loader_food.gif';
+
 
 function SearchResultsPage() {
   const [restaurants, setRestaurants] = useState([]);
@@ -30,7 +32,7 @@ function SearchResultsPage() {
   useEffect(() => {
     if (location && keyword) {
       const fetchData = async () => {
-        const results = await fetchRestaurants(location, 5000, keyword);
+        const results = await fetchRestaurants(location, 1000, keyword);
         setRestaurants(results);
       };
       fetchData();
@@ -42,13 +44,13 @@ function SearchResultsPage() {
       <div className="search-bar-container">
         <SearchBar setRestaurants={setRestaurants} location={location} />
       </div>
-      <div className="restaurant-list">
+      <div className={restaurants.length > 0 ? "restaurant-list" : "loader-container"}>
         {restaurants.length > 0 ? (
           restaurants.map((restaurant, index) => (
             <RestaurantCard key={index} restaurant={restaurant} />
           ))
         ) : (
-          <p>No results found. Please try searching again.</p>
+            <img src={loaderGif} alt="loading" id='loading' />       
         )}
       </div>
     </div>

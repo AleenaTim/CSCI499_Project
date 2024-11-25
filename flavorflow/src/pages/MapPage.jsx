@@ -1,13 +1,7 @@
-/*function MapPage(){
-   return (
-    <div>Map</div>
-   );  
-}
-
-*/
-
 import React, { useEffect } from 'react';
 import '../styles/MapPage.css'; 
+
+
 const RestaurantMap = ({filterValue}) => {
   useEffect(() => {
     let map, userMarker, infoWindow, service, directionsService, directionsRenderer, userLocation;
@@ -64,11 +58,14 @@ const RestaurantMap = ({filterValue}) => {
     }
 
     function getDistance(){
-      if(filterValue.length != 0){
-        for(let i =0; i<filterValue.length; i++){ 
-          if(filterValue[i][1] == "distance"){
-             return filterValue[i][0];  
-          }
+      // Add null check for filterValue
+      if(!filterValue || filterValue.length === 0){
+        return 0;
+      }
+      
+      for(let i = 0; i < filterValue.length; i++){ 
+        if(filterValue[i][1] === "distance"){
+          return filterValue[i][0];  
         }
       }
       return 0; 
@@ -94,28 +91,31 @@ const RestaurantMap = ({filterValue}) => {
     }
 
     function applyFilters(place){
+      // Add null check for filterValue
+      if(!filterValue || filterValue.length === 0){ 
+        return true; 
+      }
+      
       let count = 0; 
       let priceCount = 0; 
       let filterLength = filterValue.length; 
-      if(filterValue.length === 0){ //empty?
-        return true; 
-      }
-      for(let i =0; i<filterValue.length; i++){ 
-        if(filterValue[i][1] == "rating"){
+      
+      for(let i = 0; i < filterValue.length; i++){ 
+        if(filterValue[i][1] === "rating"){
           if(place.rating > filterValue[i][0]){
             count++; 
           }
         }
-        if(filterValue[i][1] == "price"){
+        if(filterValue[i][1] === "price"){
             priceCount++; 
-            if(place.price_level == "1" && filterValue[i][0] == "affordable" 
-                || place.price_level == "2" && filterValue[i][0] == "semi-affordable" 
-                || place.price_level == "3" && filterValue[i][0] == "semi-expensive" 
-                || place.price_level == "4" && filterValue[i][0] == "expensive"){
+            if((place.price_level === "1" && filterValue[i][0] === "affordable" )
+                || (place.price_level === "2" && filterValue[i][0] === "semi-affordable") 
+                || (place.price_level === "3" && filterValue[i][0] === "semi-expensive")
+                || (place.price_level === "4" && filterValue[i][0] ==="expensive")){
               count++; 
             }
         }
-        if(filterValue[i][1] == "distance"){
+        if(filterValue[i][1] === "distance"){
           count++;  
         }
 
@@ -123,7 +123,7 @@ const RestaurantMap = ({filterValue}) => {
       if(priceCount >= 2){
         filterLength = filterLength-priceCount+1; 
       }
-      if(count == filterLength){
+      if(count === filterLength){
         return true; 
       }
     
@@ -147,7 +147,7 @@ const RestaurantMap = ({filterValue}) => {
             // Build the content for the info window with an image
             let content = `
               <div class="info-window">
-                ${photoUrl ? `<img src="${photoUrl}" alt="${name}">` : ""}
+                ${photoUrl ? `<img className="restaurant-image" src="${photoUrl}" alt="${name}">` : ""}
                 <div class="title">${name}</div>
                 <div class="rating"><span class="star">★</span>${rating || 'N/A'}</div>
                 <div class="address">Address: ${vicinity}</div>

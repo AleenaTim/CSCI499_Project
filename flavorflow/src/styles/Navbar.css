@@ -23,6 +23,7 @@
 .navbar-links li {
   list-style: none;
   cursor: pointer;
+  font-weight: bold;
   font-size: 20px;
   color: #333333;
   transition: color 0.3s ease;

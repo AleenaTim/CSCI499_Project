@@ -9,8 +9,7 @@ import FilterPage from './pages/FilterPage';
 import Layout from './components/Layout';
 import Map from './pages/MapPage';
 import './App.css';
-import FilterPage from './pages/FilterPage';
-import RestaurantPage from './pages/ResturantPage';
+import RestaurantPage from './pages/RestaurantPage';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

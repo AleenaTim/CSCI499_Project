@@ -38,15 +38,6 @@ function RestaurantPage() {
                   lng: -73.987783,
                 };
     
-                // userMarker = new window.google.maps.Marker({
-                //   position: userLocation,
-                //   map,
-                //   icon: {
-                //     url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png",
-                //     scaledSize: new window.google.maps.Size(40, 40),
-                //   },
-                //   title: "You are here",
-                // });
     
                 map.setCenter(userLocation);
                 fetchNearbyRestaurants(userLocation);

@@ -7,7 +7,7 @@ import { IoMdArrowDropup } from "react-icons/io";
 import { GoStar } from "react-icons/go";
 import {mainFeatures, seeMoreFeatures, seeMoreCategories, prices, upper, maxMapVal, milesToMeters} from './filterData.js'; 
 import MapPage from './MapPage';
-import { FaCheckSquare } from 'react-icons/fa';
+
 function FilterPage() {
     const [show, setShow] = useState({
         sideButton: false, 
@@ -130,7 +130,7 @@ function FilterPage() {
         setCheckedBoxes(new Map(checkedBoxes));   
     }
     function appliedFilters(){
-        if(selectedStars.size !== 0 && inputDistance != "0 mi"){
+        if(selectedStars.size !== 0 && inputDistance !== "0 mi"){
             const highestStar = maxMapVal(selectedStars); 
             let appliedfiltersmap1 =  [...selectedMainButtons, ...checkedBoxes, ...selectedCategoryButtons, ...selectedPriceButtons, [highestStar, "rating"], [milesToMeters(inputDistance.substring(0,inputDistance.length-3)), "distance"]];  
             return appliedfiltersmap1; 
@@ -140,7 +140,7 @@ function FilterPage() {
             let appliedfiltersmap1 =  [...selectedMainButtons, ...checkedBoxes, ...selectedCategoryButtons, ...selectedPriceButtons, [highestStar, "rating"]];  
             return appliedfiltersmap1; 
         }
-        else if(inputDistance != "0 mi"){
+        else if(inputDistance !== "0 mi"){
             let appliedfiltersmap1 =  [...selectedMainButtons, ...checkedBoxes, ...selectedCategoryButtons, ...selectedPriceButtons,[milesToMeters(inputDistance.substring(0,inputDistance.length-3)), "distance"]];  
             return appliedfiltersmap1; 
         }
