@@ -320,7 +320,10 @@ function FilterPage() {
                 </div>
             </div>
         </div>
-        <MapPage filterValue={unchangedMap}/>
+        <div className="filter-map-container">
+            <MapPage filterValue={unchangedMap}/>
+        </div>
+        
     </div>
       </>
     );

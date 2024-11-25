@@ -6,11 +6,11 @@
 }
 
 .map-container {
-  margin: 40px auto;
+  margin: 45px auto;
   width: 100%;
   /* max-width: 1000px; */
-  height: 500px;
-  margin-bottom: 5%; /* Add space for footer */
+  max-height: 800px;
+  margin-bottom: 3%; /* Add space for footer */
 }
   
 .restaurant-list {
