@@ -2,6 +2,7 @@ import React from 'react';
 import '../styles/RestaurantCard.css';
 
 function RestaurantCard({ restaurant }) {
+  // console.log('RestaurantCard Props:', restaurant);
   const getImageUrl = (photoReference) => {
     const API_KEY = 'AIzaSyCFN565EdWOPCGPr4nbdla6PAJZUY4F_h8';
     return `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoReference}&key=${API_KEY}`;

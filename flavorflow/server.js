@@ -6,7 +6,7 @@ const port = 5000; // Run server on port 5000
 const app = express();
 
 // Dynamically allow credentials for all origins
-const allowedOrigins = ['http://localhost:3000', 'http://localhost:5000/api/restaurants'];
+const allowedOrigins = ['http://localhost:3000', 'http://localhost:5000'];
 
 const corsOptions = {
   origin: (origin, callback) => {
@@ -67,7 +67,31 @@ app.get('/api/restaurants', async (req, res) => {
   }
 });
 
-  
+app.get('/api/restaurants/next', async (req, res) => {
+  const { nextPageToken } = req.query;
+
+  if (!nextPageToken) {
+      return res.status(400).json({ error: 'Missing required parameter: nextPageToken' });
+  }
+  const API_KEY = 'AIzaSyCFN565EdWOPCGPr4nbdla6PAJZUY4F_h8';
+  const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json`;
+
+  try {
+      // Fetch next page of results
+      const response = await axios.get(url, {
+          params: {
+              pagetoken: nextPageToken,
+              key: API_KEY,
+          },
+      });
+
+      res.json(response.data);
+  } catch (error) {
+      console.error('Error fetching next page data from Google Places API:', error);
+      res.status(500).json({ error: 'Failed to fetch data from Google Places API' });
+  }
+});
+
 
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);

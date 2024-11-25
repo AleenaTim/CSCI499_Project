@@ -12,11 +12,26 @@ export const fetchRestaurants = async (location, radius, keyword) => {
         type: 'restaurant',
       },
     });
-    // Log the results to verify the response structure
     console.log('Response data results:', response.data.results);
-    return response.data.results || [];
+    return response.data || {}; // Make sure to return both results and nextPageToken if available
   } catch (error) {
     console.error('Error fetching restaurants:', error);
-    return [];
+    return {};
+  }
+};
+
+export const fetchNextPageResults = async (nextPageToken) => {
+  console.log('Fetching next page from URL:', `http://localhost:5000/api/restaurants/next`, 'with params:', { nextPageToken });
+  try {
+    const response = await axios.get(`http://localhost:5000/api/restaurants/next`, {
+      params: {
+        nextPageToken, // Ensure nextPageToken is properly populated
+      },
+    });
+    console.log('Next page response:', response.data.results);
+    return response.data || {};
+  } catch (error) {
+    console.error('Error fetching next page results:', error);
+    return {};
   }
 };
