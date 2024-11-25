@@ -5,7 +5,7 @@ import { IoFilterSharp } from "react-icons/io5";
 import { IoMdArrowDropdown } from "react-icons/io"; 
 import { IoMdArrowDropup } from "react-icons/io"; 
 import { GoStar } from "react-icons/go";
-import {mainFeatures, seeMoreFeatures, seeMoreCategories, prices, upper, maxMapVal, milesToMeters} from './filterData.js'; 
+import {mainFeatures, seeMoreFeatures, seeMoreCategories, prices, upper, maxMapVal, milesToMeters} from '../utils/filterData.js'; 
 import MapPage from './MapPage';
 
 function FilterPage() {
