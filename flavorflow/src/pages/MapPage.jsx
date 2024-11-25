@@ -115,10 +115,12 @@ const RestaurantMap = ({filterValue}) => {
         }
         if(filterValue[i][1] === "price"){
             priceCount++; 
-            if((place.price_level === "1" && filterValue[i][0] === "affordable" )
-                || (place.price_level === "2" && filterValue[i][0] === "semi-affordable") 
-                || (place.price_level === "3" && filterValue[i][0] === "semi-expensive")
-                || (place.price_level === "4" && filterValue[i][0] ==="expensive")){
+            if(
+              (place.price_level=== 1 && filterValue[i][0] === "affordable") //place.price_level returns a number 0-5
+              || (place.price_level=== 2 && filterValue[i][0] === "semi-affordable")
+              || (place.price_level=== 3 && filterValue[i][0] === "semi-expensive")
+              || (place.price_level === 4 && filterValue[i][0] === "expensive")
+            ){
               count++; 
             }
         }
