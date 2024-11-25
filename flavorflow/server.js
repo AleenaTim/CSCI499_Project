@@ -2,11 +2,11 @@ const express = require('express');
 const axios = require('axios');
 const cors = require('cors'); // Import cors package
 
-const port = 5000; // Run server on port 5000
+const port = 5001; // Run server on port 5000
 const app = express();
 
 // Dynamically allow credentials for all origins
-const allowedOrigins = ['http://localhost:3000', 'http://localhost:5000/api/restaurants'];
+const allowedOrigins = ['http://localhost:3000', 'http://localhost:5001/api/restaurants'];
 
 const corsOptions = {
   origin: (origin, callback) => {

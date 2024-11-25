@@ -95,9 +95,10 @@ height: 32px;
 margin-left: 10px; 
 }
 
-.exit-filter{
-position: fixed; 
-bottom: 10px; 
+.exit-filter{ /*TODO: make clear & cancel change as window size changes*/
+position: relative; 
+padding-top: 10px; 
+padding-bottom: 12px; 
 background-color: white; 
 }
 
