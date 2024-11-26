@@ -35,22 +35,23 @@ function SearchResultsPage() {
             const results = await fetchRestaurants(location, 1000, keyword);
             setRestaurants(results.results || []);
             setNextPageToken(results.next_page_token || null);
-            if (!nextPageToken) {
+            if (!results.next_page_token) {
               console.log('No next page token found');
-          }
+            }
         };
         fetchData();
     }
   }, [location, keyword]);
 
   const handleViewMore = async () => {
-    if (nextPageToken) {
-        const response = await fetchNextPageResults(nextPageToken);
-        console.log('Next page token:', nextPageToken);
-        if (response.results) {
-            setRestaurants((prevRestaurants) => [...prevRestaurants, ...response.results]);
-            setNextPageToken(response.next_page_token || null);
-        }
+    if (!nextPageToken) return;
+  
+    try {
+      const nextPageResults = await fetchNextPageResults(nextPageToken);
+      setRestaurants((prevRestaurants) => [...prevRestaurants, ...nextPageResults.results]);
+      setNextPageToken(nextPageResults.nextPageToken);
+    } catch (error) {
+      console.error('Error fetching next page results:', error);
     }
   };
 
@@ -65,7 +66,7 @@ function SearchResultsPage() {
             {restaurants.map((restaurant, index) => (
               <RestaurantCard key={index} restaurant={restaurant} />
             ))}
-            {nextPageToken && (
+            {restaurants.length > 0 && nextPageToken && (
               <button onClick={handleViewMore} className="view-more-button">View More</button>
             )}
           </>

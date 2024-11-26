@@ -82,7 +82,7 @@ function RestaurantPage() {
 
     
         function createMarker(place) {
-          const marker = new window.google.maps.Marker({
+          const marker = new window.google.maps.Marker.AdvancedMarkerElement({
             map,
             position: place.geometry.location,
           });

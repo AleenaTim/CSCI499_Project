@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import '../styles/Navbar.css';
+import logo from '../assets/flavorflow.png';
 
 function Navbar({ isLoggedIn, setIsLoggedIn }) {
   const navigate = useNavigate();
@@ -22,7 +23,8 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
   return (
     <nav className="navbar">
       <div className="navbar-logo" onClick={() => navigate('/')}>
-        FlavorFlow
+        {/* FlavorFlow */}
+        <img id="homePageLogo" src={logo} alt="logo" />
       </div>
       <ul className="navbar-links">
         <li onClick={() => navigate('/filter')}>Map</li>

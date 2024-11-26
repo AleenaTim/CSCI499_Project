@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-items: center;
   background-color: #ffffff;
-  padding: 10px 20px;
+  padding: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
   
@@ -60,4 +60,8 @@
   background-color: #ff4b2b;
   color: white;
 }
-  
+
+#homePageLogo {
+  height: auto;
+  width: 90px;
+}
