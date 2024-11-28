@@ -1,0 +1,77 @@
+.myContainer{
+    padding-top: 10px; 
+    padding-left: 30px; 
+    display: flex; 
+    flex-direction: row; 
+}
+img{
+    width: 50px; 
+}
+.tacoImg{
+    width: 800px; 
+}
+.leftSideBar{
+    flex: 2 0 0%;
+    display: flex; 
+    flex-direction: column;
+    align-items: cener;
+   
+}
+.rightSideBar{
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    flex: 1 0 0%; 
+
+}
+.bottom-left{
+    position: absolute;
+    top: 452px; 
+    left: 106px;
+}
+.imgTxt{
+    display: flex; 
+    flex-direction: column;
+    color: white; 
+  
+}
+.location{
+    display: flex; 
+    padding: 0px; 
+}
+h1{
+    margin: 0px; 
+}
+sp{
+    text-align: left;
+}
+.rightSideBarContent{
+    height: 600px; 
+    width: 300px; 
+    font-size: small;
+    border: 2px solid black; 
+    border-radius: 5px;
+}
+div{
+    padding: 0px; 
+}
+ul{
+    padding: 0px; 
+}
+.LinkDiv{
+    text-align: left; 
+}
+.ra{
+    margin: 0px; 
+    text-align: left; 
+}
+#map{
+    margin-top: 0px; 
+}
+ .LinkDiv{
+    padding-top: 30px; 
+    padding-bottom: 30px; 
+}
+.OPH{
+    padding-bottom: 20px;
+}
