@@ -3,13 +3,13 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import MeetTheTeam from './pages/MeetTheTeam';
 import LoginPage from './pages/LoginPage';
-import SignUpPage from './pages/SignUpPage';
+//import SignUpPage from './pages/SignUpPage';
 import SearchResultsPage from './pages/SearchResultsPage'; 
 import FilterPage from './pages/FilterPage'; 
 import Layout from './components/Layout';
 import Map from './pages/MapPage';
 import './App.css';
-import RestaurantPage from './pages/RestaurantPage';
+import RestaurantPage from './pages/ResturantPage';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -50,14 +50,9 @@ function App() {
               </Layout>
             }
           />
-          <Route
-            path="/signup"
-            element={
-              <Layout isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}>
-                <SignUpPage setIsLoggedIn={setIsLoggedIn} />
-              </Layout>
-            }
-          />
+         
+        
+          
           <Route
             path="/search-results"
             element={
@@ -66,6 +61,7 @@ function App() {
               </Layout>
             }
           />
+        
           <Route
             path="/filter"
             element={
@@ -89,3 +85,12 @@ function App() {
 }
 
 export default App;
+
+/*<Route
+            path="/signup"
+            element={
+              <Layout isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}>
+                <SignUpPage setIsLoggedIn={setIsLoggedIn} />
+              </Layout>
+            }
+          /> */
