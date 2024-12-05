@@ -192,7 +192,7 @@ function FilterPage() {
         <div>
             <div className={`${'sidebar'} ${show.sideButton ? 'sidebar-vis' : 'sidebar-novis'}`} >
                 <div className="filter-box">
-                <button className='close-button' value="sideButton" onClick={showDisplay}>X</button>  
+                    <button className='close-button' value="sideButton" onClick={showDisplay}>X</button>  
                 <div className="filters">
                     <div className="active-filters">
                     <p>Applied Filters</p>
@@ -240,7 +240,7 @@ function FilterPage() {
                               {mainFeatures.map((item, index)=>(
                                 <li key={index}>
                                     <input type="checkbox" id={item[1]} name="diet" defaultValue={item[1]} checked={checkedBoxes.has(item[1]) ? true : false} onChange={selectCheckbox}/>
-                                    <label htmlFor={item[1]}>{item[0]}</label> <br />
+                                    <label htmlFor={item[1]}>{item[0]}</label> 
                                 </li>
                             ))}
                             </ul>
@@ -251,7 +251,7 @@ function FilterPage() {
                             {seeMoreFeatures.map((item, index)=>(
                                     <li key={index}>
                                         <input type="checkbox" id={item[1]} name="diet" defaultValue={item[1]} checked={checkedBoxes.has(item[1]) ? true : false} onChange={selectCheckbox}/>
-                                        <label htmlFor={item[1]}>{item[0]}</label> <br />
+                                        <label htmlFor={item[1]}>{item[0]}</label> 
                                     </li>
                                 ))}
                         </ul> 
@@ -273,7 +273,7 @@ function FilterPage() {
                             {seeMoreCategories.map((item, index)=>(
                                         <li key={index}>
                                             <input type="checkbox" id={item[1]} name="diet" defaultValue={item[1]} checked={checkedBoxes.has(item[1]) ? true : false} onChange={selectCheckbox}/>
-                                            <label htmlFor={item[1]}>{item[0]}</label> <br />
+                                            <label htmlFor={item[1]}>{item[0]}</label> 
                                         </li>
                                     ))} 
                         </ul>
@@ -305,7 +305,7 @@ function FilterPage() {
                     {prices.map((item, index)=>(
                                             <li key={index}>
                                                 <input type="checkbox" id={item[1]} name="price" defaultValue={item[1].slice(0,-2)} checked={checkedBoxes.has(item[1].slice(0,-2)) ? true : false} onChange={selectCheckbox}/>
-                                                <label htmlFor={item[1]}>{item[0]}</label> <br />
+                                                <label htmlFor={item[1]}>{item[0]}</label> 
                                             </li>
                                         ))} 
                     </ul>

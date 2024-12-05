@@ -50,12 +50,12 @@ align-items: center;
 .sidebar{
 z-index:2; 
 position: fixed;
-height: 100vh; 
+height: 75vh; 
 overflow-y: auto; 
-background-color: white;  
+background-color: #3D405B; 
 width: 200px; 
 left: 0; 
-box-shadow: 5px 1px 10px black; 
+box-shadow: 5px 1px 10px #3D405B;
 padding: 10px; 
 }
 .sidebar-vis{
@@ -67,53 +67,63 @@ display: none;
 
 
 .buttonsOff{
-border: 1px solid #7fcecb; 
-background-color: white; 
-color: black; 
+border: 1px solid #E07A5F; 
+background-color: #F4F1DE; 
+color: #3D405B;
 border-radius: 10px;
 width : 100px; 
 height : 25px; 
 }
 .buttons{
-border: 1px solid #7fcecb; 
-background-color: white; 
-color: black; 
+border: 1px solid #E07A5F; 
+background-color: #F4F1DE; 
+color: #3D405B;
 border-radius: 10px;
 width : 100px; 
 height : 25px; 
 }
 .buttonsOn{
-border: 1px solid #7fcecb; 
-background-color: white; 
-color: #7fcecb; 
+border: 1px solid #E07A5F;  
+background-color: #F4F1DE; 
+color: #E07A5F; 
 border-radius: 10px;
 width : 100px; 
 height : 25px; 
 }
 
 .apply-filter{
-background: #7fcecb; 
-color: white; 
+background: #E07A5F; 
+color: #F4F1DE; 
 border: transparent; 
 border-radius: 2px;
 height: 32px;
 margin-left: 10px; 
 }
+ul{
+  list-style: none;
+}
 
-.exit-filter{
-position: fixed; 
-bottom: 10px; 
-background-color: white; 
+.exit-filter{ /*TODO: make clear & cancel change as window size changes*/
+position: relative; 
+padding-top: 20px; 
+padding-bottom: 12px; 
+background-color: #3D405B; /*14C*/
 }
 
 .filters{
-accent-color: #7fcecb;
-color:  rgb(16, 16, 16); 
+accent-color: #E07A5F; 
+/* color:  rgb(16, 16, 16);  */
+color: #F4F1DE; 
+font-size: 18px; /*14C*/
 }
 
 .see-more{
 margin-top: 0px; 
-color: #7fcecb; 
+color: #E07A5F; 
+border: 1px solid #E07A5F;  
+color: #F4F1DE; 
+background-color: #3D405B;
+border-radius: 2px;
 }
 .see-more-f-vis{
 display: block; 
@@ -134,8 +144,8 @@ width: 400px;
 position: fixed;
 inset: 0px; 
 margin: auto; 
-box-shadow: 10px 10px 10px black;
-background-color: white;  
+box-shadow: 10px 10px 10px #3D405B;
+background-color: #F4F1DE; 
 }
 span{
 margin: 3px; 
@@ -150,25 +160,27 @@ width: 400px;
 position: fixed;
 inset: 0px; 
 margin: auto; 
-box-shadow: 10px 10px 10px black;
-background-color: white; 
+box-shadow: 10px 10px 10px #3D405B;
+background-color:#F4F1DE; 
 }
 #see-more-categories{
 padding-bottom: 20px;
 margin-bottom: 20px; 
 }
-
+.categoryBttns{
+  margin-bottom: 20px; 
+}
 .cancel,.clear{
-border: 1px solid #7fcecb; 
-background-color: white; 
-color: black; 
+border: 1px solid #E07A5F; 
+background-color: #F4F1DE ; 
+color: #3D405B;
 border-radius: 10px;
 width : 100px; 
 height : 25px; 
 }
 
 #price-checkboxes{
-border: 1px solid black;
+border: 1px solid #3D405B;
 z-index: 1;  
 border-radius: 5px;
 padding : 20px; 
@@ -176,9 +188,9 @@ background-color: rgba(245, 245, 245, 0.284);
 top: 20px; 
 position: fixed;
 height: 10vh; 
-background-color: white;  
+background-color: #F4F1DE; 
 width: 80px;  
-box-shadow: 5px 1px 10px black; 
+box-shadow: 5px 1px 10px #3D405B;
 padding: 10px; 
 }
 
@@ -205,8 +217,8 @@ gap: 4px;
 }
 
 .price,.rating-range,.distance,.suggested{
-padding-bottom: 15px; 
-border-bottom: 1px solid rgb(235, 235, 235);
+padding-bottom: 5px; 
+/* border-bottom: 1px solid rgb(235, 235, 235); */
 }
 
 .opacitySet{
@@ -223,12 +235,30 @@ display : none;
 color : gold; 
 }
 .noStarColor{
-color: black; 
+color: #F4F1DE;  /*14C*/
 }
 
 .close-button {
-display: flex;
-justify-content: flex-end;
+display: block;
+position: relative; 
+left: 175px; 
+/* justify-content: flex-start; */
+border: 1px solid #E07A5F; 
+color: #F4F1DE; 
+background-color: #3D405B;
+border-radius: 2px;
+
+}
+
+ul.features.pageList{
+  display: flex; 
+  flex-direction: column;
+  align-items: flex-start;
+  accent-color: #1f85a0; /*inverted color*/
+}
+
+input[type="checkbox"] { 
+  filter: invert(100%) brightness(1.25);
 }
 
 .filter-map-container{

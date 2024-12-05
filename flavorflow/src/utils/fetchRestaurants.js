@@ -3,7 +3,7 @@ import axios from 'axios';
 export const fetchRestaurants = async (location, radius, keyword) => {
   const { lat, lng } = location;
   try {
-    const response = await axios.get(`http://localhost:5000/api/restaurants`, {
+    const response = await axios.get(`http://localhost:5001/api/restaurants`, {
       params: {
         lat,
         lng,
