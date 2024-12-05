@@ -8,8 +8,11 @@ import SearchResultsPage from './pages/SearchResultsPage';
 import FilterPage from './pages/FilterPage'; 
 import Layout from './components/Layout';
 import Map from './pages/MapPage';
-import './App.css';
 import RestaurantPage from './pages/RestaurantPage';
+import RestaurantDetailsPage from './pages/RestaurantDetailsPage';
+import Profile from './pages/ProfilePage';
+import './App.css';
+
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -59,6 +62,14 @@ function App() {
             }
           />
           <Route
+            path="/profile"
+            element={
+              <Layout isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}>
+                <Profile />
+              </Layout>
+            }
+          />
+          <Route
             path="/search-results"
             element={
               <Layout isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}>
@@ -71,6 +82,14 @@ function App() {
             element={
               <Layout isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}>
                 <FilterPage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/restaurant/:placeId"
+            element={
+              <Layout isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}>
+                <RestaurantDetailsPage />
               </Layout>
             }
           />

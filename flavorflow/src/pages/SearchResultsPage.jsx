@@ -32,7 +32,7 @@ function SearchResultsPage() {
   useEffect(() => {
     if (location && keyword) {
         const fetchData = async () => {
-            const results = await fetchRestaurants(location, 1000, keyword);
+            const results = await fetchRestaurants(location, 1500, keyword);
             setRestaurants(results.results || []);
             setNextPageToken(results.next_page_token || null);
             if (!results.next_page_token) {

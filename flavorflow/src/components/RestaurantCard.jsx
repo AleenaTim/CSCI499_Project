@@ -8,8 +8,13 @@ function RestaurantCard({ restaurant }) {
     return `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoReference}&key=${API_KEY}`;
   };
 
+  const handleCardClick = () => {
+    window.location.href = `/restaurant/${restaurant.place_id}`;
+  };
+
   return (
-    <div className="restaurant-card">
+    
+    <div className="restaurant-card" onClick={handleCardClick}>
       {restaurant.photos && restaurant.photos.length > 0 && (
         <img
           src={getImageUrl(restaurant.photos[0].photo_reference)}

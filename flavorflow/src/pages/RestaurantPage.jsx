@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import Image from "./tacoShopImg.jpeg"; 
 import { FaLocationDot } from "react-icons/fa6";
 import { FaExternalLinkAlt } from "react-icons/fa";
-import NavBar from "../components/Navbar.jsx"; 
 import '../styles/RestaurantPage.css';
 
 function RestaurantPage() {
@@ -17,7 +16,7 @@ function RestaurantPage() {
                         menu: "https://www.lostacos1.com/menus/"
     }]; 
     useEffect(() => {
-        let map, userMarker, infoWindow, service, directionsService, directionsRenderer, userLocation;
+        let map, infoWindow, service, directionsService, directionsRenderer, userLocation;
     
         function initMap() {
           map = new window.google.maps.Map(document.getElementById("map"), {
@@ -82,7 +81,7 @@ function RestaurantPage() {
 
     
         function createMarker(place) {
-          const marker = new window.google.maps.Marker.AdvancedMarkerElement({
+          const marker = new window.google.maps.Marker({
             map,
             position: place.geometry.location,
           });
@@ -157,7 +156,6 @@ function RestaurantPage() {
       }, []);
     return (
         <>
-         <NavBar></NavBar>
         <div className="myContainer">
             
             <div className="leftSideBar">

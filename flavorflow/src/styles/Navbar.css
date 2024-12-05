@@ -1,9 +1,13 @@
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #ffffff;
-  padding: 10px;
+  padding: 5px 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
   
@@ -13,10 +17,18 @@
   color: #ff4b2b;
   cursor: pointer;
 }
+
+.navbar-logo:hover {
+  color: #ff6b3a; 
+  transform: scale(1.15);
+}
+
   
 .navbar-links {
   display: flex;
   gap: 20px;
+  margin-right: auto;
+  margin-left: 2%;
 }
 
   
@@ -27,41 +39,100 @@
   font-size: 20px;
   color: #333333;
   transition: color 0.3s ease;
+  position: relative;
 }
   
-.navbar-links li:hover {
+.navbar-links li:hover,
+.navbar-links li.active {
   color: #ff4b2b;
+  /* font-size: 25px;
+  transform: translateY(+2px);  */
 }
   
 .navbar-actions {
   display: flex;
   gap: 10px;
 }
+
+.profileButton {
+
+}
   
 .navbar-button {
-  padding: 8px 16px;
+  padding: 10px 20px;
   font-size: 16px;
   font-weight: bold;
   border: none;
   cursor: pointer;
-  background-color: #ffffff;
+  background-color: white;
   color: #ff4b2b;
   border: 2px solid #ff4b2b;
-  border-radius: 4px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 4px; 
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
-  
-.navbar-button-signup {
-  background-color: #ff4b2b;
-  color: white;
-}
-  
 .navbar-button:hover {
   background-color: #ff4b2b;
   color: white;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-3px); 
 }
 
+
 #homePageLogo {
-  height: auto;
-  width: 90px;
+  /* height: auto; */
+  width: 115px;
 }
+ 
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .navbar-links {
+    margin: 10px 0;
+  }
+  .navbar-actions {
+    margin-top: 10px;
+  }
+}
+
+.navbar.scrolled {
+  background-color: #ffe0dc; /* Light pink variation */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.icon-container {
+  position: relative;
+  display: inline-block;
+}
+
+.icon-line {
+  display: block;
+}
+
+.icon-fill {
+  display: none;
+}
+
+.navbar-links li:hover .icon-line,
+.navbar-links li.active .icon-line{
+  display: none;
+}
+
+.navbar-links li:hover .icon-fill,
+.navbar-links li.active .icon-fill {
+  display: block;
+}
+
+.navbar-button:hover .icon-line {
+  display: none;
+}
+
+.navbar-button:hover .icon-fill {
+  display: block;
+}
+
+/* #team {
+  font-size: 18px;
+  font-weight: 500;
+} */

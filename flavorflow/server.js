@@ -92,6 +92,36 @@ app.get('/api/restaurants/next', async (req, res) => {
   }
 });
 
+app.get('/api/restaurant/details', async (req, res) => {
+  const { place_id } = req.query;
+
+  console.log('Fetching restaurant details for place_id in server:', place_id);
+
+  if (!place_id) {
+    return res.status(400).json({ error: 'Missing required parameter: place_id' });
+  }
+  const API_KEY = 'AIzaSyCFN565EdWOPCGPr4nbdla6PAJZUY4F_h8';
+  const url = `https://maps.googleapis.com/maps/api/place/details/json`;
+
+  try {
+    // Fetch restaurant details
+    const response = await axios.get(url, {
+      params: {
+        place_id: place_id,
+        key: API_KEY,
+      },
+    });
+
+    if (response.data.status === 'OK') {
+      res.json(response.data);
+    } else {
+      res.status(400).json({ error: response.data.status });
+    }
+  } catch (error) {
+    console.error('Error fetching restaurant details from Google Places API:', error);
+    res.status(500).json({ error: 'Failed to fetch restaurant details from Google Places API' });
+  }
+});
 
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);

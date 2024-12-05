@@ -21,17 +21,33 @@ export const fetchRestaurants = async (location, radius, keyword) => {
 };
 
 export const fetchNextPageResults = async (nextPageToken) => {
-  console.log('Fetching next page from URL:', `http://localhost:5000/api/restaurants/next`, 'with params:', { nextPageToken });
+  // console.log('Fetching next page from URL:', `http://localhost:5000/api/restaurants/next`, 'with params:', { nextPageToken });
   try {
     const response = await axios.get(`http://localhost:5000/api/restaurants/next`, {
       params: {
         nextPageToken, // Ensure nextPageToken is properly populated
       },
     });
-    console.log('Next page response:', response.data.results);
+    //console.log('Next page response:', response.data.results);
     return response.data || {};
   } catch (error) {
     console.error('Error fetching next page results:', error);
+    return {};
+  }
+};
+
+export const fetchRestaurantDetails = async (place_id) => {
+  console.log('Fetching restaurant details for place_id in fetch:', place_id);
+  try {
+    const response = await axios.get(`http://localhost:5000/api/restaurant/details`, {
+      params: {
+        place_id,
+      },
+    });
+    console.log('Restaurant details response:', response.data.result);
+    return response.data || {};
+  } catch (error) {
+    console.error('Error fetching restaurant details:', error);
     return {};
   }
 };
