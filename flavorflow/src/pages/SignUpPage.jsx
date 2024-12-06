@@ -161,9 +161,9 @@ const SignUpPage = () => {
             </div>
 
             <div className="text-center p-t-90">
-              {/* <Link to="/login" className="txt1">
+              <div className="txt1" onClick={() => navigate('/login')}>
                 Already have an account? Login here!
-              </Link> */}
+              </div>
             </div>
           </form>
         </div>
