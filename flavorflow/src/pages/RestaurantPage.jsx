@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import Image from "./tacoShopImg.jpeg"; 
 import { FaLocationDot } from "react-icons/fa6";
 import { FaExternalLinkAlt } from "react-icons/fa";
-import NavBar from "../components/Navbar.jsx"; 
 import '../styles/RestaurantPage.css';
 
 function RestaurantPage() {
@@ -157,7 +156,6 @@ function RestaurantPage() {
       }, []);
     return (
         <>
-         <NavBar></NavBar>
         <div className="myContainer">
             
             <div className="leftSideBar">
@@ -182,7 +180,7 @@ function RestaurantPage() {
             <div className="rightSideBar">
                 <div className="rightSideBarContent">
                     <div className="MLocation">
-                      <div id="map" style={{ height: "300px", width: "300px" }}></div>
+                      {/* <div id="map" style={{ height: "300px", width: "300px" }}></div> */}
                       <p className="ra">{restaurant[0].formatted_address}</p>
                       <hr></hr>
                     </div>

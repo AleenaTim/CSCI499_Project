@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import '../styles/MapPage.css'; 
 
-
 const RestaurantMap = ({filterValue}) => {
   useEffect(() => {
     let map, userMarker, infoWindow, service, directionsService, directionsRenderer, userLocation;
@@ -127,7 +126,17 @@ const RestaurantMap = ({filterValue}) => {
         if(filterValue[i][1] === "distance"){
           count++;  
         }
-
+        if(place.opening_hours){
+          if(filterValue[i][0] == 'open-now' && (place.opening_hours.open_now == true)){
+            count++; 
+          }
+        }
+        if(place.types.includes("meal_delivery") && filterValue[i][0] == "offers-delivery"){
+          count++; 
+        }
+        if(place.types.includes("meal_takeaway") && filterValue[i][0] == "offers-takeout"){
+          count++; 
+        }
       }
       if(priceCount >= 2){
         filterLength = filterLength-priceCount+1; 
@@ -148,11 +157,11 @@ const RestaurantMap = ({filterValue}) => {
       window.google.maps.event.addListener(marker, "click", () => {
         service.getDetails({ placeId: place.place_id }, (result, status) => {
           if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-            const { name, vicinity, price_level, types, rating, photos } = result;
+            const { name, vicinity, price_level, types, rating, photos} = result;
 
             // Use the first photo if available
             const photoUrl = photos && photos.length > 0 ? photos[0].getUrl({ maxWidth: 250, maxHeight: 150 }) : null;
-
+            
             // Build the content for the info window with an image
             let content = `
               <div class="info-window">
@@ -167,6 +176,7 @@ const RestaurantMap = ({filterValue}) => {
             `;
             infoWindow.setContent(content);
             infoWindow.open(map, marker);
+            
           }
         });
       });
@@ -215,7 +225,7 @@ const RestaurantMap = ({filterValue}) => {
   }, [filterValue]);
 
   return (
-    <div id="map" style={{ height: "70vh", width: "100%" }}></div>
+      <div id="map" style={{ height: "70vh", width: "100%" }}></div>
   );
 };
 
