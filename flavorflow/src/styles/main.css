@@ -194,6 +194,7 @@ iframe {
 /*//////////////////////////////////////////////////////////////////
   [ Utility ]*/
 .txt1 {
+  text-decoration: none;
   font-family: Poppins-Regular;
   font-size: 13px;
   color: #e5e5e5;
