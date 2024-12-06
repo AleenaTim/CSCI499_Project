@@ -11,7 +11,7 @@ import Map from './pages/MapPage';
 import RestaurantPage from './pages/RestaurantPage';
 import RestaurantDetailsPage from './pages/RestaurantDetailsPage';
 import Profile from './pages/ProfilePage';
-import './App.css';
+// import './App.css';
 
 
 function App() {
