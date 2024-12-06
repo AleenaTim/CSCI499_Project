@@ -138,7 +138,7 @@ box-shadow: 10px 10px 10px black;
 background-color: white;  
 }
 span{
-margin: 3px; 
+/* margin: 3px;  */
 }
 .applied-filters span{
 font-size: 10px;

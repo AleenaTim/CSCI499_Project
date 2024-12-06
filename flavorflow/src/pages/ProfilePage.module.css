@@ -74,9 +74,10 @@
 input[type="text"] {
     padding: 8px;
     width: 90%;
-    font-size: 14px;
+    font-size: 19px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    color: rgb(89, 89, 89);
 }
 
 .profileContent {
