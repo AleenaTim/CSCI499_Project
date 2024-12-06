@@ -14,69 +14,75 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
     navigate('/'); // Redirect to home after logging out
   };
 
-  const handleLoginSignup = () => {
-    navigate('/login'); // Redirect to login or signup page
+  const handleLogin = () => {
+    navigate('/login'); // Redirect to login page
   };
 
-  // Determine if the user is on the login or signup page
-  const onLoginOrSignupPage = location.pathname === '/login' || location.pathname === '/signup';
+  const handleSignup = () => {
+    navigate('/signup'); // Redirect to signup page
+  };
 
-  // Determine the current page
+  const onLoginOrSignupPage = location.pathname === '/login' || location.pathname === '/signup';
   const currentPage = location.pathname;
 
   return (
     <nav className="navbar">
       <div className="navbar-logo" onClick={() => navigate('/')}>
-        {/* FlavorFlow */}
         <img id="homePageLogo" src={logo} alt="logo" />
       </div>
       <ul className="navbar-links">
         <li onClick={() => navigate('/filter')} className={currentPage === '/filter' ? 'active' : ''}>
-        <div className="icon-container">
-          <RiMapPin2Line className="icon-line" />
-          <RiMapPin2Fill className="icon-fill" />
-        </div>
+          <div className="icon-container">
+            <RiMapPin2Line className="icon-line" />
+            <RiMapPin2Fill className="icon-fill" />
+          </div>
           Map
         </li>
         <li id="team" onClick={() => navigate('/meet-the-team')} className={currentPage === '/meet-the-team' ? 'active' : ''}>
-        <div className="icon-container">
-          <RiTeamLine className="icon-line" />
-          <RiTeamFill className="icon-fill" />
-        </div>
+          <div className="icon-container">
+            <RiTeamLine className="icon-line" />
+            <RiTeamFill className="icon-fill" />
+          </div>
           Meet the team
-        </li>
-        {/* <li onClick={() => navigate('/map')}>Test page for map</li> */}
+        </li><div className={`navbar-actions ${currentPage === '/profile' ? 'profileButton' : ''}`}>
+          {isLoggedIn ? (
+            <>
+              <button className="navbar-button" onClick={handleLogout}>
+                <div className="icon-container">
+                  <RiLogoutCircleLine className="icon-line" />
+                  <RiLogoutCircleFill className="icon-fill" />
+                </div>
+                Log Out
+              </button>
+              <button className="navbar-button" onClick={() => navigate('/profile')}>
+                <div className="icon-container">
+                  <IoPersonOutline className="icon-line" />
+                  <IoPersonSharp className="icon-fill" />
+                </div>
+                My Profile
+              </button>
+            </>
+          ) : (
+            <>
+              <button className="navbar-button navbar-button-signup" onClick={handleSignup}>
+                <div className="icon-container">
+                  <RiLoginCircleLine className="icon-line" />
+                  <RiLoginCircleFill className="icon-fill" />
+                </div>
+                Signup
+              </button>
+              <button className="navbar-button navbar-button-login" onClick={handleLogin}>
+                <div className="icon-container">
+                  <RiLoginCircleLine className="icon-line" />
+                  <RiLoginCircleFill className="icon-fill" />
+                </div>
+                Login
+              </button>
+            </>
+          )}
+        </div>
       </ul>
-      <div className={`navbar-actions ${currentPage ==='/profile' ? 'profileButton' : ''} `}>
-        {isLoggedIn ? (
-          <>
-            <button className="navbar-button" onClick={handleLogout}>
-            <div className="icon-container">
-              <RiLogoutCircleLine className="icon-line"/>
-              <RiLogoutCircleFill className="icon-fill"/>
-            </div>
-              Log Out
-            </button>
-            <button className="navbar-button" onClick={() => navigate('/profile')}>
-            <div className="icon-container">
-              <IoPersonOutline className="icon-line"/>
-              <IoPersonSharp className="icon-fill"/>
-            </div>
-              My Profile
-            </button>
-          </>
-        ) : (
-          !onLoginOrSignupPage && (
-            <button className="navbar-button navbar-button-login" onClick={handleLoginSignup}>
-              <div className="icon-container">
-                <RiLoginCircleLine className="icon-line"/>
-                <RiLoginCircleFill className="icon-fill"/>
-              </div>
-              Login / Signup
-            </button>
-          )
-        )}
-      </div>
+
     </nav>
   );
 }

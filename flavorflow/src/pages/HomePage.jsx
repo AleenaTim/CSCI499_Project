@@ -3,7 +3,6 @@ import Carousel from '../components/Carousel';
 import SearchBar from '../components/SearchBar';
 import Map from './MapPage';
 import loaderGif from '../assets/loader_food.gif';
-
 import '../styles/HomePage.css';  
 
 function HomePage() {
