@@ -110,10 +110,24 @@ function RestaurantDetailsPage() {
 
   const renderReviews = () => {
     if (!reviews || reviews.length === 0) return <p>No reviews available.</p>;
-
+  
+    const placeholderImage = '..assets/placeholder-image.jpg'; 
+  
     return reviews.map((review, index) => (
+      //console.log("Image URL:", review.profile_photo_url),
+
       <div key={index} className="review">
-        <img src={review.profile_photo_url} alt={review.author_name} className="review-author-photo" />
+        <img
+          src={review.profile_photo_url} alt={review.author_name} className="review-author-photo"
+          onError={(e) => {
+            e.target.onerror = null; // Prevent infinite loop
+            e.target.src = placeholderImage; // Use a placeholder for broken images
+          }}
+          onLoad={(e) => {
+            e.target.style.display = "block"; // Ensure the image is displayed once loaded
+          }}
+          style={{ display: "none" }} // Hide the image until fully loaded
+        />
         <div>
           <h4>{review.author_name}</h4>
           <p>{review.relative_time_description}</p>
@@ -123,12 +137,13 @@ function RestaurantDetailsPage() {
       </div>
     ));
   };
+  
 
   const renderMap = () => {
     if (!geometry) return null;
 
     return (
-      <div className="map-container">
+      <div className="details-map-container">
         <GoogleMapReact
           bootstrapURLKeys={{ key: 'AIzaSyCFN565EdWOPCGPr4nbdla6PAJZUY4F_h8' }}
           defaultCenter={geometry.location}
@@ -161,7 +176,7 @@ function RestaurantDetailsPage() {
               </ul>
             </div>
           )}
-          <p>{formatted_phone_number}</p>
+          <p>Phone Number: {formatted_phone_number}</p>
           <button className="save-button" >Save Restaurant</button>
           {editorial_summary && <p id="summary">{editorial_summary.overview}</p>}
         </div>

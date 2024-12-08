@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/RestaurantCard.css';
+import placeholderImage from '../assets/placeholder-restaurant.png';
 
 function RestaurantCard({ restaurant }) {
   const navigate = useNavigate();
@@ -21,12 +22,14 @@ function RestaurantCard({ restaurant }) {
   return (
     
     <div className="restaurant-card" onClick={handleCardClick}>
-      {restaurant.photos && restaurant.photos.length > 0 && (
+      {restaurant.photos && restaurant.photos.length > 0 ? (
         <img
           src={getImageUrl(restaurant.photos[0].photo_reference)}
           alt={`${restaurant.name}`}
           className="restaurant-image"
         />
+      ) : (
+        <img src={placeholderImage} alt={`${restaurant.name}`} className="restaurant-image" />
       )}
       <div className="restaurant-details">
         <h3>{restaurant.name}</h3>
