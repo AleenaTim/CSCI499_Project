@@ -1,7 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/RestaurantCard.css';
 
 function RestaurantCard({ restaurant }) {
+  const navigate = useNavigate();
   // console.log('RestaurantCard Props:', restaurant);
   const getImageUrl = (photoReference) => {
     const API_KEY = 'AIzaSyCFN565EdWOPCGPr4nbdla6PAJZUY4F_h8';
@@ -9,7 +11,11 @@ function RestaurantCard({ restaurant }) {
   };
 
   const handleCardClick = () => {
-    window.location.href = `/restaurant/${restaurant.place_id}`;
+    if (restaurant.place_id) {
+      navigate(`/restaurant/${restaurant.place_id}`);
+    } else {
+      console.error('Missing place_id for restaurant:', restaurant);
+    }
   };
 
   return (

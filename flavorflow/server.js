@@ -2,7 +2,7 @@ const express = require('express');
 const axios = require('axios');
 const cors = require('cors'); // Import cors package
 
-const port = 5001; // Run server on port 5000
+const port = 5000; // Run server on port 5000
 const app = express();
 
 // Dynamically allow credentials for all origins
@@ -95,7 +95,7 @@ app.get('/api/restaurants/next', async (req, res) => {
 app.get('/api/restaurant/details', async (req, res) => {
   const { place_id } = req.query;
 
-  console.log('Fetching restaurant details for place_id in server:', place_id);
+  //console.log('Fetching restaurant details for place_id in server:', place_id);
 
   if (!place_id) {
     return res.status(400).json({ error: 'Missing required parameter: place_id' });

@@ -86,7 +86,7 @@ function App() {
             }
           />
           <Route
-            path="/restaurant/:placeId"
+            path="/restaurant/:place_id"
             element={
               <Layout isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}>
                 <RestaurantDetailsPage />
