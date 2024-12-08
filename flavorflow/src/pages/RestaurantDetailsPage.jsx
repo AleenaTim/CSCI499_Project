@@ -114,7 +114,7 @@ function RestaurantDetailsPage() {
     const placeholderImage = '..assets/placeholder-image.jpg'; 
   
     return reviews.map((review, index) => (
-      //console.log("Image URL:", review.profile_photo_url),
+      console.log("Image URL:", review.profile_photo_url),
 
       <div key={index} className="review">
         <img
