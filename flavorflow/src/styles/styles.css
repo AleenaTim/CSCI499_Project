@@ -1,0 +1,170 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+
+
+.banner {
+    position: absolute;
+    width: 100%;
+    height: 220px; /* Adjust as needed */
+    background: #e5e5e5;
+    z-index: 1; /* Ensures the banner is behind the profile picture */
+
+    
+}
+
+.profile-header {
+    position: relative;
+    height: 280px; /* Adjusted to include banner and profile picture */
+}
+
+.profile-info {
+    position: relative;
+    align-items: center;
+    top: 120px; /* Moves the profile info down to avoid overlap */
+    z-index: 2; /* Ensures the profile info appears above the banner */
+    padding-left: 20px;
+}
+
+
+.avatar {
+    background: #ccc;
+    width: 130px;
+    height: 130px;
+    border: 2px solid #fff; /* White border to overlap the banner */
+}
+
+.name {
+    padding-top:10px;
+    color: #333;
+}
+
+
+.name h1 {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.verified {
+    font-size: 18px;
+    color: #3498db;
+    margin-left: 5px;
+}
+
+.username {
+    color: #888;
+    font-size: 16px;
+}
+
+input[type="text"] {
+    margin-top: 10px;
+    padding: 8px;
+    width: 90%;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.profile-content {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 142%; /* Increase width as needed */
+    margin: 0 auto; /* Center the container */
+    margin-top: 20px;
+}
+
+
+.favorites {
+    flex: 3; /* Takes up more space */
+    padding-top:65px;
+}
+
+.sidebar {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Adds space between badges and contributions */
+    margin-left: auto; /* Pushes sidebar to the far right */
+}
+
+
+.badges, .contributions {
+    background: #ededed;
+    padding: 10px;
+    border-radius: 8px;
+    height: 250px;
+    width: 250px;
+}
+
+.contribution-graph {
+    height: 100px; /* Placeholder height for contribution graph */
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+h2 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.favorites ul, .badges ul {
+    list-style: none;
+    line-height: 1.8;
+}
+
+.contributions {
+    text-align: center;
+}
+
+.reviews {
+    margin-top: 40px;
+}
+
+.review-card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 10px;
+    margin-right: 40px;
+}
+
+.review-info {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.avatar-small {
+    background: #ccc;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.review-text {
+    margin-top: 10px;
+    color: #555;
+}
+
+.likes {
+    font-size: 12px;
+    color: #888;
+    margin-top: 10px;
+}
+.favorites ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 55px; /* Optional: add spacing between items */
+}

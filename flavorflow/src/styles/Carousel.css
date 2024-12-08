@@ -17,9 +17,11 @@
   font-size: 48px;
   font-weight: bold;
   margin-bottom: 10px;
+  color: white;
 }
  
 .carousel p {
+  color: white;
   font-size: 20px;
   margin-bottom: 20px;
 }
@@ -47,4 +49,3 @@
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 4px;
 }
-  
