@@ -3,7 +3,7 @@ import Carousel from '../components/Carousel';
 import SearchBar from '../components/SearchBar';
 import Map from './MapPage';
 import loaderGif from '../assets/loader_food.gif';
-import '../styles/HomePage.css';  
+import '../styles/HomePage.css';
 
 function HomePage() {
   const [location, setLocation] = useState(null);
@@ -33,25 +33,32 @@ function HomePage() {
   }, []);
 
   return (
+    
     <div>
-      <div className="hero-section">
-        <Carousel />
-        <SearchBar setRestaurants={setRestaurants} location={location} />
-      </div>
-      {loading ? (
-        <div className="loader-container">
-          <img src={loaderGif} alt="loading" id='loading' />
+      <div className="homepageContent">
+        <div className="hero-section">
+          {/*  <Carousel /> */}
+          <h1 className="homepageTitle">Life is Gourd</h1>
+          <span>Discover the best restaurants and food options near you—quickly, easily, and tailored to your taste! Explore menus, read reviews, and find your next favorite meal in just a few clicks.
+          </span>
+          <SearchBar setRestaurants={setRestaurants} location={location} />
         </div>
-      ) : (
-        location && (
-          <div className="map-container">
-            <Map center={location} restaurants={restaurants} />
+        {loading ? (
+          <div className="loader-container">
+            <img src={loaderGif} alt="loading" id='loading' />
           </div>
-        )
-      )}
-      {error && <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>}
-
+        ) : (
+          location && (
+            <div className="map-container">
+              <Map center={location} restaurants={restaurants} />
+            </div>
+          )
+        )}
+        {error && <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>}
+      </div>
+    
     </div>
+    
   );
 }
 

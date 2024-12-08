@@ -128,7 +128,7 @@ function RestaurantDetailsPage() {
     if (!geometry) return null;
 
     return (
-      <div className="map-container">
+      <div className="details-map-container">
         <GoogleMapReact
           bootstrapURLKeys={{ key: 'AIzaSyCFN565EdWOPCGPr4nbdla6PAJZUY4F_h8' }}
           defaultCenter={geometry.location}

@@ -1,16 +1,45 @@
-.hero-section {
-  position: relative;
-  text-align: center;
-  padding: 40px 20px;
-  background-color: #f5f5f5;
+.layout-content{
+  padding: 0;
+  margin: 0;
 }
 
-.map-container {
-  margin: 45px auto;
-  width: 100%;
+.homepageTitle{
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  font-weight: bold;
+}
+
+.hero-section {
+  position: relative;
+  /* text-align: center; */
+  padding: 0px 40px;
+  /* background-color: #f5f5f5; */
+  width: 40%;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  }
+
+.hero-section span{
+  color: #313131;
+  line-height: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+
+.homepageContent .map-container {
+  margin-top: 0;
+  /* margin: 40px auto; */
+  width: 60%; 
   /* max-width: 1000px; */
-  max-height: 800px;
-  margin-bottom: 3%; /* Add space for footer */
+   height: 100%;
+  /*margin-bottom: 5%; Add space for footer */
+}
+
+.homepageContent .map-container #map{
+  height: 100vh;
+
 }
   
 .restaurant-list {
@@ -18,10 +47,16 @@
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
   align-items: center;
-  padding: 40px 20px; /* More padding to give breathing room between elements */
+  padding: 40px 20px; /* More padding to give breathing room between elements
   margin: 0 auto;
   width: 90%;
   /* max-width: 5000px; */
+}
+
+.homepageContent{
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
 }
 
 .homepage-container {
@@ -33,3 +68,5 @@
 .homepage-content {
   flex: 1;
 }
+
+
