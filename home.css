@@ -1,0 +1,393 @@
+body {
+    background: white;
+    font-family: "Sour Gummy";
+    padding-top: 64px;
+}
+
+#bodyNoNavNoFooter{
+    background: #f4f1de;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: solid;
+    border-color: black;
+    border-width: thin;
+
+}
+
+#logoImage {
+    height: 50px;
+    width: 75px;
+    position: absolute;
+    left: 48.25%;
+}
+
+#mainNav {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2);
+    padding: 1rem;
+    border-bottom: solid;
+    border-color: black;
+    border-width: thin;
+    height: 65px;
+    background-color:white;
+    z-index: 99999;
+}
+
+#mainNav .nav-link {
+    color: black;
+}
+
+#mainNav .nav-link:hover {
+    border-style: solid;
+    border-width: medium;
+    border-radius: 15px;
+    background-color: white;
+}
+
+.navbar-nav {
+    font-size: 1.25rem;
+}
+
+.nlHome{
+    margin-left: -30px;
+}
+
+.nlRegister{
+    margin-right: -12.5px;
+}
+
+.search {
+    background-color: #fff;
+    padding: 4px;
+    border-radius: 5px
+}
+
+.search-1 {
+    position: relative;
+    width: 100%
+}
+
+.search-1 input {
+    height: 45px;
+    border: none;
+    width: 100%;
+    padding-left: 34px;
+    padding-right: 10px;
+    border-right: 2px solid #eee
+}
+
+.search-1 input:focus {
+    border-color: none;
+    box-shadow: none;
+    outline: none
+}
+
+.search-1 i {
+    position: absolute;
+    top: 12px;
+    left: 5px;
+    font-size: 24px;
+    color: #eee;
+}
+
+::placeholder {
+    color: #d3d3d3;
+    opacity: 1
+}
+
+.search-2 {
+    position: relative;
+    width: 100%
+}
+
+.search-2 input {
+    height: 45px;
+    border: none;
+    width: 100%;
+    padding-left: 18px;
+    padding-right: 100px
+}
+
+.search-2 input:focus {
+    border-color: none;
+    box-shadow: none;
+    outline: none
+}
+
+.search-2 i {
+    position: absolute;
+    top: 12px;
+    left: -10px;
+    font-size: 24px;
+    color: #eee
+}
+
+.search-2 button {
+    position: absolute;
+    right: 1px;
+    top: 0px;
+    border: none;
+    height: 45px;
+    background-color: #3d405b;
+    color: #fff;
+    width: 90px;
+    border-radius: 4px
+}
+
+@media (max-width:800px) {
+    .search-1 input {
+        border-right: none;
+        border-bottom: 1px solid #eee
+    }
+
+    .search-2 i {
+        left: 4px
+    }
+
+    .search-2 input {
+        padding-left: 34px
+    }
+
+    .search-2 button {
+        height: 37px;
+        top: 5px
+    }
+}
+
+#textBox span {
+    color: #3d405b;
+}
+
+#textBox h2 {
+    font-weight: 100;
+    font-size: 1.75rem;
+}
+
+.secondBox p {
+    line-height: 2;
+}
+
+.filling {
+    margin-top: 100px;
+}
+
+.navbar.scrolled {
+    background: #3d405b;
+    transition: background 550ms;
+}
+
+#textBox .salmon {
+    color: #e07a5f;
+}
+
+#textBox .darkBlue {
+    color: #3d405b;
+}
+
+#textBox .pGreen {
+    color: #81b29a;
+}
+
+#textBox .beige {
+    color: #f2cc8f;
+}
+
+#textBox .white {
+    color: white;
+}
+
+footer {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.contactFormBackground {
+    padding-bottom: 600px;
+    background-color: #81b29a;
+    border-radius: 20px;
+
+    width: 700px;
+
+}
+
+.contactFormImageOne img{
+    height: 600px;
+    position: absolute;
+    top: 100px;
+    left: 600px;
+    right: 0px;
+    bottom: 0px;
+    z-index: 10000;
+}
+
+.contact-container {
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    position: relative;
+
+    margin-bottom: 50px;
+}
+
+.contact-left {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 20px;
+
+    background: linear-gradient(270deg, #95C3FF, #f4f1de);
+    width: 650px;
+    height: 550px;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2);
+
+    position: absolute;
+    top: 100px;
+    left: 150px;
+    right: 0px;
+    bottom: 0px;
+    z-index: 9999;
+
+}
+
+.contact-left-two {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 20px;
+
+    background: linear-gradient(270deg, #95C3FF, #f4f1de);
+    width: 650px;
+    height: 550px;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2);
+
+    z-index: 9999;
+
+}
+
+.contact-left-title hr {
+    border: none;
+    width: 120px;
+    height: 5px;
+    background-color: #3d405b;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.contact-inputs {
+    width: 400px;
+    height: 50px;
+    border: none;
+    outline: none;
+    padding-left: 25px;
+    font-weight: 500;
+    border-radius: 50px;
+}
+
+.contact-left textarea {
+    height: 140px;
+    padding-top: 15px;
+    border-radius: 20px;
+}
+
+.contact-left-two textarea {
+    height: 140px;
+    padding-top: 15px;
+    border-radius: 20px;
+}
+
+.contact-inputs:focus {
+    border: 2px solid;
+    color: #3d405b;
+}
+
+.contact-inputs::placeholder {
+    color: #d3d3d3;
+}
+
+.contact-left button {
+    display: flex;
+    align-items: center;
+    padding: 15px 30px;
+    font-size: 16px;
+    gap: 10px;
+    border: none;
+    border-radius: 50px;
+    background-color: #95C3FF;
+    cursor: pointer;
+    
+}
+
+.contact-left-two button {
+    display: flex;
+    align-items: center;
+    padding: 15px 30px;
+    font-size: 16px;
+    gap: 10px;
+    border: none;
+    border-radius: 50px;
+    background-color: #95C3FF;
+    cursor: pointer;
+    
+}
+
+.contact-left button img {
+    height: 25px;
+
+}
+
+.contact-left-two button img {
+    height: 25px;
+
+}
+
+.endFooter{
+    height: 100px;
+
+}
+
+#logoImageFooter {
+    width: 210px;
+    height: 140px;
+}
+
+.footerButtonForm {
+    display: inline-block;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.footerButton {
+    border: none;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: white;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2);
+}
+
+.fbLogo {
+    height: 50%;
+}
+
+.igLogo {
+    height: 50%;
+
+}
+
+.xLogo {
+    height: 50%;
+
+}
+
+@media(max-width: 1200px) {
+    #textBox h2 {
+        font-weight: 100;
+        font-size: 1.5rem;
+    }
+}
