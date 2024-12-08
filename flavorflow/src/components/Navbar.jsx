@@ -44,7 +44,8 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
             <RiTeamFill className="icon-fill" />
           </div>
           Meet the team
-        </li><div className={`navbar-actions ${currentPage === '/profile' ? 'profileButton' : ''}`}>
+        </li>
+        <div className={`navbar-actions ${currentPage === '/profile' ? 'profileButton' : ''}`}>
           {isLoggedIn ? (
             <>
               <button className="navbar-button" onClick={handleLogout}>
@@ -63,22 +64,16 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
               </button>
             </>
           ) : (
-            <>
-              <button className="navbar-button navbar-button-signup" onClick={handleSignup}>
-                <div className="icon-container">
-                  <RiLoginCircleLine className="icon-line" />
-                  <RiLoginCircleFill className="icon-fill" />
-                </div>
-                Signup
-              </button>
-              <button className="navbar-button navbar-button-login" onClick={handleLogin}>
-                <div className="icon-container">
-                  <RiLoginCircleLine className="icon-line" />
-                  <RiLoginCircleFill className="icon-fill" />
-                </div>
-                Login
-              </button>
-            </>
+
+              !onLoginOrSignupPage && (
+                <button className="navbar-button navbar-button-login" onClick={handleLogin}>
+                  <div className="icon-container">
+                    <RiLoginCircleLine className="icon-line"/>
+                    <RiLoginCircleFill className="icon-fill"/>
+                  </div>
+                  Login / Signup
+                </button>
+              )
           )}
         </div>
       </ul>
