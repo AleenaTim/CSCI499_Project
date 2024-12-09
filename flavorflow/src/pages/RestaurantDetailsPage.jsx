@@ -6,6 +6,7 @@ import GoogleMapReact from 'google-map-react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import loaderGif from '../assets/loader_food.gif';
+import Marker from '../components/Marker.jsx'; 
 
 function RestaurantDetailsPage() {
   const { place_id } = useParams(); // Extract place_id from URL
@@ -141,15 +142,15 @@ function RestaurantDetailsPage() {
 
   const renderMap = () => {
     if (!geometry) return null;
-
     return (
       <div className="details-map-container">
         <GoogleMapReact
           bootstrapURLKeys={{ key: 'AIzaSyCFN565EdWOPCGPr4nbdla6PAJZUY4F_h8' }}
           defaultCenter={geometry.location}
+          options={{ gestureHandling: 'none'}}
           defaultZoom={15}
         >
-          <div lat={geometry.location.lat} lng={geometry.location.lng} className="map-marker" />
+          <Marker lat={geometry.location.lat} lng={geometry.location.lng} />
         </GoogleMapReact>
       </div>
     );
