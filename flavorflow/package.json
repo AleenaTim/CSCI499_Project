@@ -34,6 +34,7 @@
     "resolve-url-loader": "^5.0.0",
     "select2": "^4.1.0-rc.0",
     "svgo": "^3.3.2",
+    "swiper": "^11.1.15",
     "web-vitals": "^4.2.4"
   },
   "scripts": {

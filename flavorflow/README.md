@@ -17,11 +17,6 @@
     ```
     npm run dev
     ```
-
-4. Start mongodb server:
-    ```
-    npm start
-    ```
     
 4. Open your browser and navigate to `http://localhost:3000` to view the application.
 
