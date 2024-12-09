@@ -103,7 +103,7 @@ ul{
   list-style: none;
 }
 
-.exit-filter{ /*TODO: make clear & cancel change as window size changes*/
+.exit-filter{
 position: relative; 
 padding-top: 20px; 
 padding-bottom: 12px; 

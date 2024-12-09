@@ -312,10 +312,10 @@ function FilterPage() {
                     </div>
                 </div>
                 <div id="section-two-buttons">
-                    <button className= {selectedMainButtons.has("open-main") ? 'buttonsOn' : 'buttonsOff' } onClick={selectMainButton} id="open-main">Open Now</button> 
-                    <button className= {selectedMainButtons.has("reservation-main") ? 'buttonsOn' : 'buttonsOff' } onClick={selectMainButton}  id="reservation-main">Reservation</button>
-                    <button className= {selectedMainButtons.has("delivery-main") ? 'buttonsOn' : 'buttonsOff' } onClick={selectMainButton} id="delivery-main">Offers Delivery</button>
-                    <button className= {selectedMainButtons.has("takeout-main") ? 'buttonsOn' : 'buttonsOff' } onClick={selectMainButton} id="takeout-main">Offers Takeout</button>
+                    <button className= {selectedMainButtons.has("open-now") ? 'buttonsOn' : 'buttonsOff' } onClick={selectMainButton} id="open-now">Open Now</button> 
+                    <button className= {selectedMainButtons.has("reservation") ? 'buttonsOn' : 'buttonsOff' } onClick={selectMainButton}  id="reservation">Reservation</button>
+                    <button className= {selectedMainButtons.has("offers-delivery") ? 'buttonsOn' : 'buttonsOff' } onClick={selectMainButton} id="offers-delivery">Offers Delivery</button>
+                    <button className= {selectedMainButtons.has("offers-takeout") ? 'buttonsOn' : 'buttonsOff' } onClick={selectMainButton} id="offers-takeout">Offers Takeout</button>
                 </div>
                 </div>
             </div>
