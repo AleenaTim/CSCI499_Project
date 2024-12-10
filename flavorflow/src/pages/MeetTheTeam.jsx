@@ -8,7 +8,7 @@ import mahel from '../assets/mahel.jpg';
 import miah from '../assets/miah.jpg';
 import ilya from '../assets/ilya.png';
 import steven from '../assets/steven.png';
-// import aleena from '../assets/aleena.jpg';
+import aleena from '../assets/aleena.jpg';
 
 
 const MeetTheTeam = () => {
@@ -96,7 +96,7 @@ const MeetTheTeam = () => {
               <div className="team">
                 <div className="img-wrapper">
                   <img
-                    src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/aw41.png"
+                    src={aleena}
                     alt="Team Member"
                   />
                 </div>
