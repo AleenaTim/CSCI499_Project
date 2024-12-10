@@ -11,6 +11,8 @@ import 'hamburgers/dist/hamburgers.min.css';
 import 'animsition/dist/css/animsition.min.css';
 import 'select2/dist/css/select2.min.css';
 import 'daterangepicker/daterangepicker.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignUpPage = () => {
   
@@ -21,21 +23,28 @@ const SignUpPage = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    axios.post('http://localhost:5000/register', { username, firstName, lastName, email, password })
-      .then(result => {
-        console.log(result);
-        if (result.data === "Already registered") {
-          alert("E-mail already registered! Please Login to proceed.");
-          navigate('/login');
-        } else {
-          alert("Registered successfully! Please Login to proceed.");
-          navigate('/login');
-        }
-      })
-      .catch(err => console.log(err));
+    try {
+      const result = await axios.post('http://localhost:5000/register', {
+        username,
+        firstName,
+        lastName,
+        email,
+        password,
+      });
+      if (result.data === 'Already registered') {
+        toast.error('E-mail already registered! Please login to proceed.');
+        navigate('/login');
+      } else {
+        toast.success('Registered successfully! Please login to proceed.');
+        navigate('/login');
+      }
+    } catch (error) {
+      toast.error('An error occurred during registration. Please try again.');
+      console.error(error);
+    }
   };
 
   return (
@@ -133,6 +142,18 @@ const SignUpPage = () => {
           </form>
         </div>
       </div>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </div>
   );
 }

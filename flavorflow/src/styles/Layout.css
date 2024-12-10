@@ -8,6 +8,7 @@
   flex: 1 0 auto;
   display: flex;
   flex-direction: column;
+  margin: 2.5%;
 }
 
 /* Make sure footer stays at the bottom and doesn't overlap */

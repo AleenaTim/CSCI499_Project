@@ -14,7 +14,7 @@
   color: white; /* Text color for better contrast */
   padding: 10px 20px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-
+  height: 100px;
 }
 
   
@@ -44,13 +44,25 @@
   
 .navbar-actions {
   display: flex;
-  gap: 50px;
+  gap: 25px;
   height:30px;
 }
 
-.profileButton {
-
+.navbar-actions button#active{
+  background-color: #ff4b2b;
+  color: white;
 }
+
+
+#appName {
+  font-size: 1rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
 .navbar-logo {
   transition: 0.3s ease;
   font-size: 24px;
@@ -65,7 +77,7 @@
   transform: scale(1.15);
 }
 .navbar-button {
-  /* padding: 10px 20px; */
+  margin-top: -8px;
   font-size: 20px;
   font-weight: bold;
   border: none;
@@ -75,6 +87,7 @@
   border: 2px solid #ff4b2b;
   border-radius: 4px; 
   transition: box-shadow 0.3s ease, transform 0.3s ease;
+  height:45px;
 }
 .navbar-button:hover {
   background-color: #ff4b2b;
@@ -83,17 +96,21 @@
   transform: translateY(-3px); 
 }
 
-.navbar-button-login {
-  border-radius: 4px; 
-  border: 2px solid #ff4b2b;
-  background-color: white;
-  margin-left: auto;
+.login-button {
+  width: 200px;
 }
 
+.profile-button {
+  width: 150px;
+}
+
+#logout-button{
+  width: 130px;
+}
 
 #homePageLogo {
-  /* height: auto; */
-  width: 100px;
+  height: 50px;
+  width: auto;
 }
  
 @media (max-width: 768px) {
@@ -124,10 +141,14 @@
 
 .icon-line {
   display: block;
+  font-size: 25px;
+  margin-right: 10px;
 }
 
 .icon-fill {
   display: none;
+  font-size: 25px;
+  margin-right: 10px;
 }
 
 .navbar-links li:hover .icon-line,
@@ -140,11 +161,23 @@
   display: block;
 }
 
-.navbar-button:hover .icon-line {
+.navbar-button .icon-line {
+  font-size: 22px;
+  margin-right: 10px;
+}    
+
+.navbar-button .icon-fill {
+  font-size: 22px;
+  margin-right: 10px;
+}    
+
+.navbar-button:hover .icon-line,
+.navbar-actions button#active .icon-line {
   display: none;
 }
 
-.navbar-button:hover .icon-fill {
+.navbar-button:hover .icon-fill,
+.navbar-actions button#active .icon-fill {
   display: block;
 }
 

@@ -3,28 +3,56 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/util.css';
 import '../styles/main.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import { Link } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 
-const LoginPage = () => {
+const LoginPage = ({ setIsLoggedIn }) => {
 
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const CustomToastContent = ({ message }) => (
+    <div>
+      <p>{message}</p>
+      <small style={{ fontSize: '0.8rem', color: '#888' }}>Swipe to clear</small>
+    </div>
+  );
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    axios.post('http://localhost:5000/login', { email, password }).then((result) => {
+    try {
+      const result = await axios.post('http://localhost:5000/login', { email, password });
       if (result.data.token) {
         localStorage.setItem('token', result.data.token);
-        alert('Login successful!');
-        navigate('/profile');
+        setIsLoggedIn(true);
+        navigate('/');
+        toast.success('Login successful! swipe to clear', {
+          autoClose: 3000,
+          onOpen: () => console.log('Toast Opened'),
+          onClose: () => {
+            console.log('Toast Closed');
+            toast.dismiss(); // Dismiss all toasts
+          },
+        });
       } else {
-        alert(result.data); // Display error message
+        toast.error(result.data, {
+          autoClose: 3000,
+          onOpen: () => console.log('Toast Opened'),
+          onClose: () => console.log('Toast Closed'),
+        });
       }
-    });
-  }
+    } catch (error) {
+      toast.error('An error occurred during login. Please try again.', {
+        autoClose: 3000,
+        onOpen: () => console.log('Toast Opened'),
+        onClose: () => console.log('Toast Closed'),
+      });
+      console.error(error);
+    }
+  };
 
   return (
     <div className="limiter">
@@ -100,6 +128,18 @@ const LoginPage = () => {
           </form>
         </div>
       </div>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </div>
   );
 }

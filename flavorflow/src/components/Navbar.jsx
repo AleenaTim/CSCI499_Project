@@ -4,6 +4,8 @@ import '../styles/Navbar.css';
 import logo from '../assets/flavorflow.png';
 import { RiTeamLine, RiTeamFill, RiMapPin2Line, RiMapPin2Fill, RiLoginCircleLine, RiLoginCircleFill, RiLogoutCircleLine, RiLogoutCircleFill } from "react-icons/ri";
 import { IoPersonOutline, IoPersonSharp } from "react-icons/io5";
+import { ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Navbar({ isLoggedIn, setIsLoggedIn }) {
   const navigate = useNavigate();
@@ -12,6 +14,11 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
   const handleLogout = () => {
     setIsLoggedIn(false);
     navigate('/'); // Redirect to home after logging out
+    toast.success('Logged out successfully!', {
+      autoClose: 3000,
+      onOpen: () => console.log('Toast Opened'),
+      onClose: () => console.log('Toast Closed'),
+    });
   };
 
   const handleLogin = () => {
@@ -29,6 +36,7 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
     <nav className="navbar">
       <div className="navbar-logo" onClick={() => navigate('/')}>
         <img id="homePageLogo" src={logo} alt="logo" />
+        <p id="appName">Flavorflow</p>
       </div>
       <ul className="navbar-links">
         <li onClick={() => navigate('/filter')} className={currentPage === '/filter' ? 'active' : ''}>
@@ -45,17 +53,17 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
           </div>
           Meet the team
         </li>
-        <div className={`navbar-actions ${currentPage === '/profile' ? 'profileButton' : ''}`}>
+        <div className="navbar-actions">
           {isLoggedIn ? (
             <>
-              <button className="navbar-button" onClick={handleLogout}>
+              <button className="navbar-button" id="logout-button" onClick={handleLogout}>
                 <div className="icon-container">
                   <RiLogoutCircleLine className="icon-line" />
                   <RiLogoutCircleFill className="icon-fill" />
                 </div>
                 Log Out
               </button>
-              <button className="navbar-button" onClick={() => navigate('/profile')}>
+              <button className="navbar-button profile-button" onClick={() => navigate('/profile')} id={currentPage === '/profile' ? 'active' : ''}>
                 <div className="icon-container">
                   <IoPersonOutline className="icon-line" />
                   <IoPersonSharp className="icon-fill" />
@@ -66,7 +74,7 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
           ) : (
 
               !onLoginOrSignupPage && (
-                <button className="navbar-button navbar-button-login" onClick={handleLogin}>
+                <button className="navbar-button login-button" onClick={handleLogin}>
                   <div className="icon-container">
                     <RiLoginCircleLine className="icon-line"/>
                     <RiLoginCircleFill className="icon-fill"/>
@@ -75,10 +83,11 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
                 </button>
               )
           )}
+          
         </div>
       </ul>
-
     </nav>
+    
   );
 }
 
