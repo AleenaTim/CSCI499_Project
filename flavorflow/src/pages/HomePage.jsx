@@ -4,6 +4,8 @@ import SearchBar from '../components/SearchBar';
 import Map from './MapPage';
 import loaderGif from '../assets/loader_food.gif';
 import '../styles/HomePage.css';  
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function HomePage() {
   const [location, setLocation] = useState(null);
@@ -34,6 +36,7 @@ function HomePage() {
 
   return (
     <div>
+      
       <div className="hero-section">
         <Carousel />
         <SearchBar setRestaurants={setRestaurants} location={location} />
