@@ -188,14 +188,49 @@ function FilterPage() {
         <style>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         </style>
+    <div id="theMainButtons">
+    <div id="mainContent">
+                <div id="mainButtons" className={`${show.sideButton ? 'addMarginLeft': 'noMargin'}`}>
+                <div id="section-one-buttons">
+                    <button id="priceDropDownBttns" value = "sideButton" className="sideButton buttons" onClick={showDisplay}>
+                        <IoFilterSharp />
+                        Filter
+                    </button>
+                    <div id="price-drop-down">
+                    <button id="priceDropDownBttn" value = "priceDropDown" className="buttons" onClick={showDisplay} >
+                        Price
+                        <IoMdArrowDropdown className={show.priceDropDown ? 'up-novis' : 'down-vis'}/>
+                        <IoMdArrowDropup className={show.priceDropDown ? 'down-vis' : 'up-novis'}/>
+                    </button>
+                    <ul id="price-checkboxes" className={show.priceDropDown ? 'down-vis' : 'up-novis'}>
+                    {prices.map((item, index)=>(
+                                            <li key={index}>
+                                                <input type="checkbox" id={item[1]} name="price" defaultValue={item[1].slice(0,-2)} checked={checkedBoxes.has(item[1].slice(0,-2)) ? true : false} onChange={selectCheckbox}/>
+                                                <label htmlFor={item[1]}>{item[0]}</label> 
+                                            </li>
+                                        ))} 
+                    </ul>
+                    </div>
+                </div>
+                {/* <div id="section-two-buttons">
+                    <button className= {selectedMainButtons.has("open-now") ? 'buttonsOn' : 'buttonsOff' } onClick={selectMainButton} id="open-now">Open Now</button> 
+                    <button className= {selectedMainButtons.has("reservation") ? 'buttonsOn' : 'buttonsOff' } onClick={selectMainButton}  id="reservation">Reservation</button>
+                    <button className= {selectedMainButtons.has("offers-delivery") ? 'buttonsOn' : 'buttonsOff' } onClick={selectMainButton} id="offers-delivery">Offers Delivery</button>
+                    <button className= {selectedMainButtons.has("offers-takeout") ? 'buttonsOn' : 'buttonsOff' } onClick={selectMainButton} id="offers-takeout">Offers Takeout</button>
+                </div> */}
+                </div>
+            </div>
+    </div>
     <div id="pageContent">
-        <div>
             <div className={`${'sidebar'} ${show.sideButton ? 'sidebar-vis' : 'sidebar-novis'}`} >
+                <div className='filterContainer'>
                 <div className="filter-box">
-                    <button className='close-button' value="sideButton" onClick={showDisplay}>X</button>  
+                    <div className='closeContainer'>
+                        <button className='close-button' value="sideButton" onClick={showDisplay}>X</button>  
+                    </div>
                 <div className="filters">
                     <div className="active-filters">
-                    <p>Applied Filters</p>
+                    <p className='filterHeading'>Applied Filters</p>
                     <span id="distanceFilter">
                         {inputDistance}
                     </span>
@@ -208,16 +243,20 @@ function FilterPage() {
                     </div>
                     </div>
                     <div className="price">
-                    <p>Price</p>
+                    <p className='filterHeading'>Price</p>
                     <div className="price-buttons" > 
-                        <button id="affordable" className= {(selectedPriceButtons.has("affordable") || checkedBoxes.has("affordable"))? 'buttonsOn' : 'buttonsOff' } onClick={selectPriceButton}>$</button>
-                        <button id="semi-affordable" className= {(selectedPriceButtons.has("semi-affordable") || checkedBoxes.has("semi-affordable") )? 'buttonsOn' : 'buttonsOff' } onClick={selectPriceButton}>$$</button>
-                        <button id="semi-expensive" className= {(selectedPriceButtons.has("semi-expensive") || checkedBoxes.has("semi-expensive"))? 'buttonsOn' : 'buttonsOff' } onClick={selectPriceButton}>$$$</button>
-                        <button id="expensive" className= {(selectedPriceButtons.has("expensive") || checkedBoxes.has("expensive") )? 'buttonsOn' : 'buttonsOff' } onClick={selectPriceButton}>$$$$</button>
+                        <div>
+                            <button id="affordable" className= {(selectedPriceButtons.has("affordable") || checkedBoxes.has("affordable"))? 'buttonsOn' : 'buttonsOff' } onClick={selectPriceButton}>$</button>
+                            <button id="semi-affordable" className= {(selectedPriceButtons.has("semi-affordable") || checkedBoxes.has("semi-affordable") )? 'buttonsOn' : 'buttonsOff' } onClick={selectPriceButton}>$$</button>
+                        </div>
+                       <div>
+                            <button id="semi-expensive" className= {(selectedPriceButtons.has("semi-expensive") || checkedBoxes.has("semi-expensive"))? 'buttonsOn' : 'buttonsOff' } onClick={selectPriceButton}>$$$</button>
+                            <button id="expensive" className= {(selectedPriceButtons.has("expensive") || checkedBoxes.has("expensive") )? 'buttonsOn' : 'buttonsOff' } onClick={selectPriceButton}>$$$$</button>
+                       </div>
                     </div>   
                     </div>
                     <div className="rating-range">
-                    <p>Rating</p> 
+                    <p className='filterHeading'>Rating</p> 
                     <div className="rating-stars">
                         <GoStar id="star1" className={selectedStars.has("star1") ? 'starColor' : 'noStarColor'} onClick={selectStars}/>
                         <GoStar id="star2" className={selectedStars.has("star2") ? 'starColor' : 'noStarColor'} onClick={selectStars}/>
@@ -227,57 +266,63 @@ function FilterPage() {
                     </div>
                     </div>
                     <div className="distance">
-                    <p>Distance</p>
+                    <p className='filterHeading'>Distance</p>
                     <input type="range" min={0} max={60} defaultValue={5} step={5} className="slider" id="myRange"
                             onChange={(event) => {
                                 setInputDistance(event.target.value + " " + "mi")
                             }}
                      />
                     </div>
-                    <div className="suggested">
-                    <p>Features</p>
-                            <ul className = "features pageList">
-                              {mainFeatures.map((item, index)=>(
-                                <li key={index}>
-                                    <input type="checkbox" id={item[1]} name="diet" defaultValue={item[1]} checked={checkedBoxes.has(item[1]) ? true : false} onChange={selectCheckbox}/>
-                                    <label htmlFor={item[1]}>{item[0]}</label> 
-                                </li>
-                            ))}
-                            </ul>
-                    <button value = "seeMoreF" onClick={showDisplay} className="see-more" id="see-more-features">See More</button>
-                    <div id="seeMoreF" className={show.seeMoreF ? 'see-more-f-vis' : 'see-more-f-novis'}>
-                        <button value ="seeMoreF" className='close-button' onClick={showDisplay}>X</button> 
-                        <ul className="pageList">
-                            {seeMoreFeatures.map((item, index)=>(
+                    {/* <div className="suggested">
+                        <p>Features</p>
+                                <ul className = "features pageList">
+                                {mainFeatures.map((item, index)=>(
                                     <li key={index}>
                                         <input type="checkbox" id={item[1]} name="diet" defaultValue={item[1]} checked={checkedBoxes.has(item[1]) ? true : false} onChange={selectCheckbox}/>
                                         <label htmlFor={item[1]}>{item[0]}</label> 
                                     </li>
                                 ))}
-                        </ul> 
-                    </div>
-                    </div>
-                    <div className="category">
-                    <p>Category</p> {/* wrap in div ? minimize code*/}
-                    <div className="categoryBttns">
-                        <button id="italian" className= {selectedCategoryButtons.has("italian") ? 'buttonsOn' : 'buttonsOff' } onClick={selectCategoryButton}>Italian</button>
-                        <button id="american" className= {selectedCategoryButtons.has("american") ? 'buttonsOn' : 'buttonsOff' } onClick={selectCategoryButton}>American</button>
-                        <button id="seafood" className= {selectedCategoryButtons.has("seafood") ? 'buttonsOn' : 'buttonsOff' } onClick={selectCategoryButton}>Seafood</button>
-                        <button id="jamaican" className= {selectedCategoryButtons.has("jamaican") ? 'buttonsOn' : 'buttonsOff' } onClick={selectCategoryButton}>Jamaican</button>
-                    </div>
-                        <button value="seeMoreC" className="see-more"  onClick={showDisplay}>See More</button> 
-                    
-                    <div id="seeMoreC" className={show.seeMoreC ? 'see-more-c-vis' : 'see-more-c-novis'}> 
-                        <button className='close-button' value="seeMoreC" onClick={showDisplay}>X</button> 
-                        <ul className="pageList">
-                            {seeMoreCategories.map((item, index)=>(
+                                </ul>
+                        <button value = "seeMoreF" onClick={showDisplay} className="see-more" id="see-more-features">See More</button>
+                        <div id="seeMoreF" className={show.seeMoreF ? 'see-more-f-vis' : 'see-more-f-novis'}>
+                            <button value ="seeMoreF" className='close-button' onClick={showDisplay}>X</button> 
+                            <ul className="pageList">
+                                {seeMoreFeatures.map((item, index)=>(
                                         <li key={index}>
                                             <input type="checkbox" id={item[1]} name="diet" defaultValue={item[1]} checked={checkedBoxes.has(item[1]) ? true : false} onChange={selectCheckbox}/>
                                             <label htmlFor={item[1]}>{item[0]}</label> 
                                         </li>
-                                    ))} 
-                        </ul>
-                    </div>
+                                    ))}
+                            </ul> 
+                        </div>
+                    </div> */}
+                    <div className="category">
+                        <p className='filterHeading'>Category</p> {/* wrap in div ? minimize code*/}
+                        {/* <div className="categoryBttns">
+                            <button id="italian" className= {selectedCategoryButtons.has("italian") ? 'buttonsOn' : 'buttonsOff' } onClick={selectCategoryButton}>Italian</button>
+                            <button id="american" className= {selectedCategoryButtons.has("american") ? 'buttonsOn' : 'buttonsOff' } onClick={selectCategoryButton}>American</button>
+                            <button id="seafood" className= {selectedCategoryButtons.has("seafood") ? 'buttonsOn' : 'buttonsOff' } onClick={selectCategoryButton}>Seafood</button>
+                            <button id="jamaican" className= {selectedCategoryButtons.has("jamaican") ? 'buttonsOn' : 'buttonsOff' } onClick={selectCategoryButton}>Jamaican</button>
+                        </div> */}
+                        <div id="section-two-buttons">
+                            <button className= {selectedMainButtons.has("open-now") ? 'buttonsOn' : 'buttonsOff' } onClick={selectMainButton} id="open-now">Open Now</button> 
+                            <button className= {selectedMainButtons.has("reservation") ? 'buttonsOn' : 'buttonsOff' } onClick={selectMainButton}  id="reservation">Reservation</button>
+                            <button className= {selectedMainButtons.has("offers-delivery") ? 'buttonsOn' : 'buttonsOff' } onClick={selectMainButton} id="offers-delivery">Delivery</button>
+                            <button className= {selectedMainButtons.has("offers-takeout") ? 'buttonsOn' : 'buttonsOff' } onClick={selectMainButton} id="offers-takeout">Takeout</button>
+                        </div>
+                        {/* <button value="seeMoreC" className="see-more"  onClick={showDisplay}>See More</button> 
+                    
+                        <div id="seeMoreC" className={show.seeMoreC ? 'see-more-c-vis' : 'see-more-c-novis'}> 
+                            <button className='close-button' value="seeMoreC" onClick={showDisplay}>X</button> 
+                            <ul className="pageList">
+                                {seeMoreCategories.map((item, index)=>(
+                                            <li key={index}>
+                                                <input type="checkbox" id={item[1]} name="diet" defaultValue={item[1]} checked={checkedBoxes.has(item[1]) ? true : false} onChange={selectCheckbox}/>
+                                                <label htmlFor={item[1]}>{item[0]}</label> 
+                                            </li>
+                                        ))} 
+                            </ul>
+                        </div> */}
                     </div>
                 </div>
                 </div>
@@ -285,10 +330,11 @@ function FilterPage() {
                 <button className="cancel" onClick={cancelFilter}>Cancel</button>
                 <button className="clear" onClick={clearAll}>Clear</button>
                 </div>
+                </div>
             </div>
             <div className={show.sidebar ? 'opacitySet' : 'noOpacity'}>
             </div>
-            <div id="mainContent">
+            {/* <div id="mainContent">
                 <div id="mainButtons">
                 <div id="section-one-buttons">
                     <button id="priceDropDownBttns" value = "sideButton" className="sideButton buttons" onClick={showDisplay}>
@@ -318,11 +364,10 @@ function FilterPage() {
                     <button className= {selectedMainButtons.has("offers-takeout") ? 'buttonsOn' : 'buttonsOff' } onClick={selectMainButton} id="offers-takeout">Offers Takeout</button>
                 </div>
                 </div>
-            </div>
-        </div>
-        <div className="filter-map-container">
+            </div> */}
+    
             <MapPage filterValue={unchangedMap}/>
-        </div>
+        
         
     </div>
       </>
