@@ -52,6 +52,23 @@ function RestaurantDetailsPage({setIsLoggedIn, isLoggedIn}) {
     fetchDetails();
   }, [place_id]);
 
+  useEffect(() => {
+    const checkIfSaved = async () => {
+      if (isLoggedIn && place_id) {
+        try {
+          const token = localStorage.getItem('token');
+          const response = await axios.get('http://localhost:5000/user/saved-restaurants', {
+            headers: { Authorization: `Bearer ${token}` }
+          });
+          setIsSaved(response.data.some(restaurant => restaurant.place_id === place_id));
+        } catch (error) {
+          console.error('Error checking saved status:', error);
+        }
+      }
+    };
+    checkIfSaved();
+  }, [isLoggedIn, place_id]);
+
   if (loading) {
     return <div className= "loader-container">
       <img src={loaderGif} alt="Loading..." id='loading'/>
@@ -167,14 +184,21 @@ function RestaurantDetailsPage({setIsLoggedIn, isLoggedIn}) {
 
   const handleSaveRestaurant = async () => {
     if (!isLoggedIn) {
-      //console.log('User is not logged in. Redirecting to login page...'); // Debug log
-      navigate('/login', { replace: true }); // Add replace: true for cleaner navigation
+      navigate('/login', { replace: true });
       return;
     }
 
     try {
       const token = localStorage.getItem('token');
-      await axios.post('http://localhost:5000/user/saved-restaurants', { 
+      if (isSaved) {
+        // Delete the restaurant if it's already saved
+        await axios.delete(`http://localhost:5000/user/saved-restaurants/${place_id}`, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        setIsSaved(false);
+      } else {
+        // Save the restaurant if it's not saved
+        await axios.post('http://localhost:5000/user/saved-restaurants', {
           restaurant: {
             place_id: restaurantDetails.place_id,
             name: restaurantDetails.name,
@@ -184,14 +208,13 @@ function RestaurantDetailsPage({setIsLoggedIn, isLoggedIn}) {
             photos: restaurantDetails.photos,
             opening_hours: restaurantDetails.opening_hours
           }
-        },
-        {
+        }, {
           headers: { Authorization: `Bearer ${token}` }
-        }
-      );
-      setIsSaved(true);
+        });
+        setIsSaved(true);
+      }
     } catch (error) {
-      console.error('Failed to save restaurant:', error);
+      console.error('Failed to save/unsave restaurant:', error);
     }
   };
 

@@ -43,6 +43,19 @@ const ProfilePage = () => {
     </div>;
   }
 
+  const handleUnsaveRestaurant = async (place_id) => {
+    try {
+      const token = localStorage.getItem('token');
+      await axios.delete(`http://localhost:5000/user/saved-restaurants/${place_id}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      // Update the state to remove the unsaved restaurant
+      setSavedRestaurants(savedRestaurants.filter(restaurant => restaurant.place_id !== place_id));
+    } catch (error) {
+      console.error('Failed to unsave restaurant:', error);
+    }
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.profileHeader}>
@@ -66,7 +79,15 @@ const ProfilePage = () => {
           {savedRestaurants.length > 0 ? (
             <div className={styles.restaurantGrid}>
               {savedRestaurants.map((restaurant) => (
-                <RestaurantCard key={restaurant.place_id} restaurant={restaurant} />
+                <div key={restaurant.place_id} className={styles.restaurantCardWrapper}>
+                  <RestaurantCard restaurant={restaurant} />
+                  <button 
+                    onClick={() => handleUnsaveRestaurant(restaurant.place_id)}
+                    className={styles.unsaveButton}
+                  >
+                    Unsave Restaurant
+                  </button>
+                </div>
               ))}
             </div>
           ) : (
