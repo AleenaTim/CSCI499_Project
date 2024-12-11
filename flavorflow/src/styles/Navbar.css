@@ -3,54 +3,62 @@
 }
 
 .navbar {
-  position: sticky; /* Makes the navbar stick to the top */
+  position: sticky;
+  /* Makes the navbar stick to the top */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  top: 0; /* Specifies how far from the top the navbar should stick */
-  z-index: 1000; /* Ensures it stays above other elements */
-  background-color: #3D405B; /* Optional: Reinforce background color in case of transparency */
-  background: linear-gradient(90deg, #ff7e5f, #feb47b); /* Vibrant gradient */
-  color: white; /* Text color for better contrast */
-  padding: 10px 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  top: 0;
+  /* Specifies how far from the top the navbar should stick */
+  z-index: 1000;
+  /* Ensures it stays above other elements */
+  background-color: #3D405B;
+  /* Optional: Reinforce background color in case of transparency */
+  /* background: linear-gradient(90deg, #ff7e5f, #feb47b); Vibrant gradient */
+  background: #f4f1de;
+  color: black;
+  /* Text color for better contrast */
+  padding: 10px 50px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow for depth */
 
 }
 
-  
+
 .navbar-links {
   display: flex;
   gap: 20px;
-  padding-top: 12px;
+  padding-top: 17px;
+  /*Bootstrap styles dominating so we put this here because the Bootstrap ol,ul,dl is giving 16px margin bottom*/
 }
 
-  
+
 .navbar-links li {
   list-style: none;
   cursor: pointer;
-  font-weight: bold;
-  font-size: 20px;
-  color: #ffffff;
+  font-weight: 100;
+  font-size: 18px;
+  color: black;
   transition: color 0.3s ease;
   position: relative;
+  margin-top: 2px;  /* to get it aligned with login/signup text*/
 }
-  
+
 .navbar-links li:hover,
 .navbar-links li.active {
-  color: #ff4b2b;
+  color: #e07a5f;
   /* font-size: 25px;
   transform: translateY(+2px);  */
 }
-  
+
 .navbar-actions {
   display: flex;
   gap: 50px;
-  height:30px;
+  height: 30px;
 }
 
-.profileButton {
+.profileButton {}
 
-}
 .navbar-logo {
   transition: 0.3s ease;
   font-size: 24px;
@@ -60,60 +68,66 @@
 }
 
 .navbar-logo:hover {
-  color: #ff6b3a; 
+  color: #ff6b3a;
   transition: 0.3s ease;
   transform: scale(1.15);
 }
+
 .navbar-button {
+  display: block;
+  align-self: center;
   /* padding: 10px 20px; */
-  font-size: 20px;
-  font-weight: bold;
-  border: none;
+  font-size: 18px;
+  font-weight: 100;
   cursor: pointer;
-  background-color: white;
-  color: #ff4b2b;
-  border: 2px solid #ff4b2b;
-  border-radius: 4px; 
+  color: #e07a5f;
+  border: 2px solid #e07a5f;
+  border-radius: 4px;
   transition: box-shadow 0.3s ease, transform 0.3s ease;
+  padding: 12.5px;
+
 }
+
 .navbar-button:hover {
-  background-color: #ff4b2b;
+  background-color: #e07a5f;
   color: white;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  transform: translateY(-3px); 
+  /* box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); */
 }
 
 .navbar-button-login {
-  border-radius: 4px; 
-  border: 2px solid #ff4b2b;
+  border-radius: 4px;
+  border: 2px solid #e07a5f;
   background-color: white;
   margin-left: auto;
 }
-
 
 #homePageLogo {
   /* height: auto; */
   width: 100px;
 }
- 
+
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
     align-items: flex-start;
   }
+
   .navbar-links {
     margin: 10px 0;
   }
+
   .navbar-actions {
     display: flex;
-  gap: 10px;
-  margin-left: auto; /* Pushes `navbar-actions` to the far right */
-  align-items: center;
+    gap: 10px;
+    margin-left: auto;
+    /* Pushes `navbar-actions` to the far right */
+    align-items: center;
   }
 }
 
 .navbar.scrolled {
-  background-color: #ffe0dc; /* Light pink variation */
+  background-color: #ffe0dc;
+  /* Light pink variation */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
@@ -131,7 +145,7 @@
 }
 
 .navbar-links li:hover .icon-line,
-.navbar-links li.active .icon-line{
+.navbar-links li.active .icon-line {
   display: none;
 }
 

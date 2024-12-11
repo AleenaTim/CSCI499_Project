@@ -24,7 +24,7 @@ const SignUpPage = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    axios.post('http://localhost:5000/register', { username, firstName, lastName, email, password })
+    axios.post('http://localhost:5001/register', { username, firstName, lastName, email, password })
       .then(result => {
         console.log(result);
         if (result.data === "Already registered") {

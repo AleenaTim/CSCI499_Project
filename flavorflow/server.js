@@ -7,11 +7,11 @@ const FormDataModel = require('./models/FormData.js');
 const { PORT, mongoDBURL } = require('./config.js');
 const jwt = require('jsonwebtoken');
 
-const port = 5000; // Run server on port 5000
+const port = 5001; // Run server on port 5001
 const app = express();
 app.use(express.json());
 // Dynamically allow credentials for all origins
-const allowedOrigins = ['http://localhost:3000', 'http://localhost:5000'];
+const allowedOrigins = ['http://localhost:3000', 'http://localhost:5001'];
 
 const corsOptions = {
   origin: (origin, callback) => {
@@ -44,7 +44,7 @@ app.use(cors(corsOptions));
 //     console.log(error);
 //   });
 
-mongoose.connect('mongodb+srv://aleenatim:mongodb123!@csci499.cderg.mongodb.net/', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb+srv://aleenatim:mongodb123!@csci499.cderg.mongodb.net/', {/* , { useNewUrlParser: true, useUnifiedTopology: true }*/});
 
 const SECRET = 'your_secret_key'; // Replace with a secure secret key
   

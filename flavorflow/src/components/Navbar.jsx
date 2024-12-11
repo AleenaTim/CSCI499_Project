@@ -30,20 +30,21 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
       <div className="navbar-logo" onClick={() => navigate('/')}>
         <img id="homePageLogo" src={logo} alt="logo" />
       </div>
+      
       <ul className="navbar-links">
         <li onClick={() => navigate('/filter')} className={currentPage === '/filter' ? 'active' : ''}>
-          <div className="icon-container">
+          {/* <div className="icon-container">
             <RiMapPin2Line className="icon-line" />
             <RiMapPin2Fill className="icon-fill" />
-          </div>
+          </div> */}
           Map
         </li>
         <li id="team" onClick={() => navigate('/meet-the-team')} className={currentPage === '/meet-the-team' ? 'active' : ''}>
-          <div className="icon-container">
+          {/* <div className="icon-container">
             <RiTeamLine className="icon-line" />
             <RiTeamFill className="icon-fill" />
-          </div>
-          Meet the team
+          </div> */}
+          About Us
         </li>
         <div className={`navbar-actions ${currentPage === '/profile' ? 'profileButton' : ''}`}>
           {isLoggedIn ? (
@@ -67,10 +68,10 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
 
               !onLoginOrSignupPage && (
                 <button className="navbar-button navbar-button-login" onClick={handleLogin}>
-                  <div className="icon-container">
+                  {/* <div className="icon-container">
                     <RiLoginCircleLine className="icon-line"/>
                     <RiLoginCircleFill className="icon-fill"/>
-                  </div>
+                  </div> */}
                   Login / Signup
                 </button>
               )

@@ -41,7 +41,7 @@ You may also see any lint errors in the console.
 ### `npm dev`
 
 Runs the app in the development mode.\
-launch backend on [localhost:5000](http://localhost:5000) and React frontend on [http://localhost:3000](http://localhost:3000) concurrently.
+launch backend on [localhost:5001](http://localhost:5001) and React frontend on [http://localhost:3000](http://localhost:3000) concurrently.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 

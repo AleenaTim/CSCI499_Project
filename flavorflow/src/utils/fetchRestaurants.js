@@ -3,7 +3,7 @@ import axios from 'axios';
 export const fetchRestaurants = async (location, radius, keyword) => {
   const { lat, lng } = location;
   try {
-    const response = await axios.get(`http://localhost:5000/api/restaurants`, {
+    const response = await axios.get(`http://localhost:5001/api/restaurants`, {
       params: {
         lat,
         lng,
@@ -21,9 +21,9 @@ export const fetchRestaurants = async (location, radius, keyword) => {
 };
 
 export const fetchNextPageResults = async (nextPageToken) => {
-  // console.log('Fetching next page from URL:', `http://localhost:5000/api/restaurants/next`, 'with params:', { nextPageToken });
+  // console.log('Fetching next page from URL:', `http://localhost:5001/api/restaurants/next`, 'with params:', { nextPageToken });
   try {
-    const response = await axios.get(`http://localhost:5000/api/restaurants/next`, {
+    const response = await axios.get(`http://localhost:5001/api/restaurants/next`, {
       params: {
         nextPageToken, // Ensure nextPageToken is properly populated
       },
@@ -39,7 +39,7 @@ export const fetchNextPageResults = async (nextPageToken) => {
 export const fetchRestaurantDetails = async (place_id) => {
   //console.log('Fetching restaurant details for place_id in fetch:', place_id);
   try {
-    const response = await axios.get(`http://localhost:5000/api/restaurant/details`, {
+    const response = await axios.get(`http://localhost:5001/api/restaurant/details`, {
       params: {
         place_id,
       },

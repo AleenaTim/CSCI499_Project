@@ -27,17 +27,22 @@
 .profileHeader {
     position: relative;
     height: 280px;
+    display: flex;
+    justify-content: center;
     /* Adjusted to include banner and profile picture */
 }
 
 .profileInfo {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     top: 120px;
     /* Moves the profile info down to avoid overlap */
     z-index: 2;
     /* Ensures the profile info appears above the banner */
-    padding-left: 20px;
+    /* padding-left: 20px; */
 }
 
 
@@ -50,15 +55,18 @@
 }
 
 .name {
+    text-align: center;
     padding-top: 10px;
     color: #333;
 }
 
 
 .name h1 {
+    text-align: center;
     font-size: 24px;
     margin-bottom: 5px;
 }
+
 
 .verified {
     font-size: 18px;
@@ -69,6 +77,7 @@
 .username {
     color: #888;
     font-size: 16px;
+    text-align: center;
 }
 
 input[type="text"] {
@@ -84,16 +93,94 @@ input[type="text"] {
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    width: 142%;
+    width: 100%;
     /* Increase width as needed */
     margin: 0 auto;
     /* Center the container */
     margin-top: 20px;
 }
 
+.badges {
+    display: flex;
+    position: absolute;
+    top: 365px;
+}
+
+.badges ul {
+    display: flex;
+    gap: 10px;
+    text-align: center;
+}
+
+.mainContent {
+
+    text-align: center;
+}
+
+.mainContentTop {
+    display: flex;
+    justify-content: center;
+}
+
+.mainContentTop .contributionsBox {
+    display: flex;
+    justify-content: center;
+    width: 25.33%;
+}
+
+.bio {
+    display: table;
+    height: 75px;
+    width: 33.33%;
+    background-color: #f4f1de;
+    box-shadow: inset 0 0 0.5px 1px hsla(0, 0%, 100%, 0.01),
+        0 0 0 1px hsla(0, 0%, 0%, 0.1),
+        0 0.5px 0.5px hsla(0, 0%, 0%, 0.01),
+        0 1px 1.5px hsla(0, 0%, 0%, 0.045),
+        0 3.5px 5px hsla(0, 0%, 0%, 0.1);
+
+    border-radius: 12px;
+    padding: 10px;
+}
+
+
+.bio h2 {
+    font-size: 18px;
+}
+
+.funQuestion {
+    display: table;
+    height: 75px;
+    width: 33.33%;
+    background-color: #f4f1de;
+    box-shadow: inset 0 0 0.5px 1px hsla(0, 0%, 100%, 0.01),
+        0 0 0 1px hsla(0, 0%, 0%, 0.1),
+        0 0.5px 0.5px hsla(0, 0%, 0%, 0.01),
+        0 1px 1.5px hsla(0, 0%, 0%, 0.045),
+        0 3.5px 5px hsla(0, 0%, 0%, 0.1);
+    border-radius: 12px;
+    padding: 10px;
+}
+
+.editButton {
+    position: relative;
+}
+
+.editButton svg {
+    position: absolute;
+    bottom: 0px;
+    right: 0;
+    height: 13px;
+}
 
 .favorites {
-    flex: 3;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 25px;
+    /* flex: 3; */
     /* Takes up more space */
     padding-top: 65px;
 }
@@ -104,18 +191,18 @@ input[type="text"] {
     flex-direction: column;
     gap: 20px;
     /* Adds space between badges and contributions */
-    margin-left: auto;
+    /* margin-left: auto; */
     /* Pushes sidebar to the far right */
 }
 
 
-.badges,
 .contributions {
+    width: 75%;
     background: #ededed;
     padding: 10px;
     border-radius: 8px;
-    height: 250px;
-    width: 250px;
+    height: 200px;
+
 }
 
 .contributionGraph {
@@ -131,32 +218,102 @@ h2 {
     margin-bottom: 10px;
 }
 
-.favorites ul,
-.badges ul {
+.favorites ul {
     list-style: none;
     line-height: 1.8;
+    width: 50%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
+	gap: 1rem;
+    align-items: center;
 }
 
-.contributions {
-    text-align: center;
+.favorites .favoritesCuisine li {
+    font-size: 30px;
+    
+}
+
+.favorites .favoritesRestaurant li {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.favorites ul li h4{
+    font-variant: small-caps;
+    font-size: 15px;
+   
+}
+
+.favorites .favoritesCuisine > li:nth-child(3n){
+    background: #81b29a;
+	padding: 1rem;
+    width: 80%;
+}
+
+.favorites .favoritesCuisine > li:nth-child(3n-1){
+    background: #f2cc8f;
+    width: 80%;
+    padding: 1rem;
+}
+
+.favorites .favoritesCuisine > li:nth-child(3n-2){
+    background: #e07a5f;
+    width: 80%;
+    padding: 1rem;
+}
+
+.favorites .favoritesRestaurant  > li:nth-child(3n){
+    background: #f2cc8f;
+    width: 80%;
+    padding: 1rem;
+}
+
+.favorites .favoritesRestaurant > li:nth-child(3n-1){
+    background: #e07a5f;
+    width: 80%;
+    padding: 1rem;
+}
+
+.favorites .favoritesRestaurant > li:nth-child(3n-2){
+    background: #81b29a;
+    width: 80%;
+    padding: 1rem;
 }
 
 .reviews {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-top: 40px;
 }
 
 .reviewCard {
+    display: block;
     border: 1px solid #ddd;
     padding: 15px;
     border-radius: 8px;
     margin-top: 10px;
-    margin-right: 40px;
+    /* margin-right: 40px; */
+    width: 95%;
+
+    transform: rotateX(10deg) rotateY(-20deg) rotateZ(3deg);
+    border-radius: 0.375em;
+    box-shadow: 2px 10px 30px hsla(0, 0%, 0%, 0.25);
+    transition: .3s;
+}
+
+.reviewCard:hover {
+    transform: rotate(0deg);
 }
 
 .reviewInfo {
     display: flex;
     gap: 10px;
     align-items: center;
+}
+
+.reviewRestaurantInfo p {
+    margin-bottom: 3px;
 }
 
 .avatarSmall {
@@ -167,11 +324,13 @@ h2 {
 }
 
 .reviewText {
-    margin-top: 10px;
+    display: flex;
     color: #555;
+    padding-left: 15px;
 }
 
 .likes {
+    float: right;
     font-size: 12px;
     color: #888;
     margin-top: 10px;
@@ -179,11 +338,14 @@ h2 {
 
 .favorites ul {
     list-style: none;
-    padding: 0;
     display: flex;
-    gap: 55px;
+    flex-direction: column;
+
+    padding: 0;
+    /* gap: 55px; */
     /* Optional: add spacing between items */
 }
+
 
 /*[ FONT SIZE ]
 ///////////////////////////////////////////////////////////

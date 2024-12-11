@@ -15,7 +15,7 @@ const LoginPage = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    axios.post('http://localhost:5000/login', { email, password }).then((result) => {
+    axios.post('http://localhost:5001/login', { email, password }).then((result) => {
       if (result.data.token) {
         localStorage.setItem('token', result.data.token);
         alert('Login successful!');

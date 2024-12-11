@@ -33,15 +33,16 @@ function HomePage() {
   }, []);
 
   return (
-    
+
     <div>
       <div className="homepageContent">
         <div className="hero-section">
           {/*  <Carousel /> */}
           <h1 className="homepageTitle">Life is Gourd</h1>
-          <span>Discover the best restaurants and food options near you—quickly, easily, and tailored to your taste! Explore menus, read reviews, and find your next favorite meal in just a few clicks.
-          </span>
-          <SearchBar setRestaurants={setRestaurants} location={location} />
+          <span>Discover the best restaurants and food options near you—quickly, easily, and tailored to your taste! Explore menus, read reviews, and find your next favorite meal in just a few clicks.</span>
+          <div className="searchbar-container">
+            <SearchBar setRestaurants={setRestaurants} location={location} />
+          </div>
         </div>
         {loading ? (
           <div className="loader-container">
@@ -56,9 +57,9 @@ function HomePage() {
         )}
         {error && <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>}
       </div>
-    
+
     </div>
-    
+
   );
 }
 
