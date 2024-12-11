@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import styles from './ProfilePage.module.css'; // Import the CSS Module
+import styles from './ProfilePage.module.css';
+import loaderGif from '../assets/loader_food.gif';
+import RestaurantCard from '../components/RestaurantCard';
 
 const ProfilePage = () => {
   const [user, setUser] = useState(null);
+  const [savedRestaurants, setSavedRestaurants] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -12,24 +15,46 @@ const ProfilePage = () => {
       return;
     }
 
-    axios
-      .get('http://localhost:5000/user', {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((response) => {
-        console.log(response.data);
-        setUser(response.data);
-      })
-      .catch(() => {
+    const fetchUserData = async () => {
+      try {
+        const userResponse = await axios.get('http://localhost:5000/user', {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setUser(userResponse.data);
+
+        const restaurantsResponse = await axios.get('http://localhost:5000/user/saved-restaurants', {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        setSavedRestaurants(restaurantsResponse.data);
+      } catch (error) {
+        console.error('Failed to fetch data:', error);
         alert('Failed to fetch user data. Please log in again.');
         localStorage.removeItem('token');
         window.location.href = '/login';
-      });
+      }
+    };
+
+    fetchUserData();
   }, []);
 
   if (!user) {
-    return <p>Loading...</p>;
+    return <div className="loader-container">
+      <img src={loaderGif} alt="Loading..." id='loading'/>
+    </div>;
   }
+
+  const handleUnsaveRestaurant = async (place_id) => {
+    try {
+      const token = localStorage.getItem('token');
+      await axios.delete(`http://localhost:5000/user/saved-restaurants/${place_id}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      // Update the state to remove the unsaved restaurant
+      setSavedRestaurants(savedRestaurants.filter(restaurant => restaurant.place_id !== place_id));
+    } catch (error) {
+      console.error('Failed to unsave restaurant:', error);
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -39,9 +64,9 @@ const ProfilePage = () => {
           <div className={styles.avatar}></div>
           <div className={styles.name}>
             <h1>
-              John Doe <span className={styles.verified}>✔</span>
+              {user.firstName} {user.lastName}
             </h1>
-            <p className={styles.username}>{user.email}{user.password}{user.firstName}</p>
+            <p className={styles.username}>@{user.username}</p>
           </div>
         </div>
       </div>
@@ -49,56 +74,59 @@ const ProfilePage = () => {
       <div className={styles.profileContent}>
         <div className={styles.mainContent}>
           <div className={styles.favorites}>
-            <h2>Top Favorite Cuisines</h2>
-            <ul>
-              <li>✔ Korean</li>
-              <li>✔ German</li>
-              <li>✔ Caribbean</li>
-            </ul>
-            <br />
-            <br />
-            <h2>Top Favorite Restaurants</h2>
-            <ul>
-              <li>✔ Mikado</li>
-              <li>✔ Heidelberg</li>
-              <li>✔ Court Square Diner</li>
+          <div className={styles.mainContent}>
+          <h2>Saved Restaurants</h2>
+          {savedRestaurants.length > 0 ? (
+            <div className={styles.restaurantGrid}>
+              {savedRestaurants.map((restaurant) => (
+                <div key={restaurant.place_id} className={styles.restaurantCardWrapper}>
+                  <RestaurantCard restaurant={restaurant} />
+                  <button 
+                    onClick={() => handleUnsaveRestaurant(restaurant.place_id)}
+                    className={styles.unsaveButton}
+                  >
+                    Unsave Restaurant
+                  </button>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p>No saved restaurants yet. Start exploring to save your favorites!</p>
+          )}
+        </div>
+
+            <ul className={styles.favoritesRestaurant}>
+              <h2>Statistics</h2>
+              <li>
+                Total Saved
+                <h4>{savedRestaurants.length} restaurants</h4>
+              </li>
+              {savedRestaurants.length > 0 && (
+                <li>
+                  Average Rating
+                  <h4>
+                    {(savedRestaurants.reduce((acc, rest) => acc + (rest.rating || 0), 0) / 
+                    savedRestaurants.length).toFixed(1)} ⭐
+                  </h4>
+                </li>
+              )}
             </ul>
           </div>
 
           <div className={styles.reviews}>
-            <h2>Most Popular Reviews</h2>
-            <div className={styles.reviewCard}>
-              <div className={styles.reviewInfo}>
-                <div className={styles.avatarSmall}></div>
-                <div>
-                  <h3>Cho Dang Gol</h3>
-                  <p>Rating: ⭐⭐⭐⭐⭐</p>
-                  <p>Price Range: $30-$50</p>
+            <h2>Recent Activity</h2>
+            {savedRestaurants.slice(0, 3).map(restaurant => (
+              <div key={restaurant.place_id} className={styles.reviewCard}>
+                <div className={styles.reviewInfo}>
+                  <div className={styles.avatarSmall}></div>
+                  <div className={styles.reviewRestaurantInfo}>
+                    <h3>{restaurant.name}</h3>
+                    <p>Rating: {restaurant.rating ? '⭐'.repeat(Math.round(restaurant.rating)) : 'No rating'}</p>
+                    <p>{restaurant.vicinity}</p>
+                  </div>
                 </div>
               </div>
-              <p className={styles.reviewText}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
-              <p className={styles.likes}>1250 people liked this</p>
-            </div>
-          </div>
-        </div>
-
-        <div className={styles.sidebar}>
-          <div className={styles.badges}>
-            <h2>Badges</h2>
-            <ul>
-              <li>⭐ Top Reviewer</li>
-              <li>📅 3-year Veteran</li>
-            </ul>
-          </div>
-
-          <div className={styles.contributions}>
-            <h2>771 contributions in the last year</h2>
-            <div className={styles.contributionGraph}>
-              {/* Placeholder for contribution graph */}
-            </div>
+            ))}
           </div>
         </div>
       </div>

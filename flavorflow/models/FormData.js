@@ -6,6 +6,7 @@ const FormDataSchema = new mongoose.Schema({
   lastName: String,
   email: String,
   password: String,
+  savedRestaurants:[String]
 });
 
 const FormDataModel = mongoose.model('users', FormDataSchema);

@@ -18,6 +18,7 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
 
   const handleLogout = () => {
     setIsLoggedIn(false);
+    localStorage.removeItem('token');
     navigate('/'); // Redirect to home after logging out
     toast.success('Logged out successfully!', {
       autoClose: 3000,
