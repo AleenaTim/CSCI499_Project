@@ -30,4 +30,4 @@ function maxMapVal(container){
 function milesToMeters(mile){
     return Number(mile) * 1609.34; 
 }
-export{mainFeatures, seeMoreFeatures, seeMoreCategories, prices, upper, maxMapVal, milesToMeters}; 
+export{ seeMoreCategories, prices, upper, maxMapVal}; 
