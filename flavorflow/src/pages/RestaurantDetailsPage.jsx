@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { fetchRestaurantDetails } from '../utils/fetchRestaurants';
 import '../styles/RestaurantDetailsPage.css';
 import GoogleMapReact from 'google-map-react';
@@ -7,14 +7,23 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import loaderGif from '../assets/loader_food.gif';
 import placeholderImage from '../assets/placeholder-image.jpg';
+import axios from 'axios';
 
-function RestaurantDetailsPage() {
+function RestaurantDetailsPage({setIsLoggedIn, isLoggedIn}) {
   const { place_id } = useParams(); // Extract place_id from URL
   const [restaurantDetails, setRestaurantDetails] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isSaved, setIsSaved] = useState(false);
+  const navigate = useNavigate();
 
   //console.log('useParams() returned place_id:', place_id);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    //console.log('Token found:', !!token); // Debug log
+    setIsLoggedIn(!!token);
+  }, []);
 
   useEffect(() => {
     if (!place_id) {
@@ -115,7 +124,7 @@ function RestaurantDetailsPage() {
   
   
     return reviews.map((review, index) => (
-      console.log("Image URL:", review.profile_photo_url),
+      //console.log("Image URL:", review.profile_photo_url),
 
       <div key={index} className="review">
         <img
@@ -156,9 +165,35 @@ function RestaurantDetailsPage() {
     );
   };
 
-  const handleSaveClick = () => {
-    alert('Restaurant saved!');
-  }
+  const handleSaveRestaurant = async () => {
+    if (!isLoggedIn) {
+      //console.log('User is not logged in. Redirecting to login page...'); // Debug log
+      navigate('/login', { replace: true }); // Add replace: true for cleaner navigation
+      return;
+    }
+
+    try {
+      const token = localStorage.getItem('token');
+      await axios.post('http://localhost:5000/user/saved-restaurants', { 
+          restaurant: {
+            place_id: restaurantDetails.place_id,
+            name: restaurantDetails.name,
+            vicinity: restaurantDetails.formatted_address,
+            rating: restaurantDetails.rating,
+            user_ratings_total: restaurantDetails.user_ratings_total,
+            photos: restaurantDetails.photos,
+            opening_hours: restaurantDetails.opening_hours
+          }
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` }
+        }
+      );
+      setIsSaved(true);
+    } catch (error) {
+      console.error('Failed to save restaurant:', error);
+    }
+  };
 
   return (
     <div className="more-restaurant-details">
@@ -180,7 +215,16 @@ function RestaurantDetailsPage() {
           {website && <p> <a href={restaurantDetails.website} target="_blank" rel="noopener noreferrer">Visit Website</a></p>}
           
           <p>Phone Number: {formatted_phone_number}</p>
-          <button className="save-button" >Save Restaurant</button>
+          <button 
+            className="save-button" 
+            onClick={() => {
+              //console.log('Button clicked, isLoggedIn:', isLoggedIn); // Debug log
+              handleSaveRestaurant();
+            }}
+            title={!isLoggedIn ? "Please log in to save restaurants" : ""}
+          >
+            {!isLoggedIn ? 'Log in to Save' : (isSaved ? 'Unsave Restaurant' : 'Save Restaurant')}
+          </button>
           {editorial_summary && <p id="summary">{editorial_summary.overview}</p>}
         </div>
       </div>

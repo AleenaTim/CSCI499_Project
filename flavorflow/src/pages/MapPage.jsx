@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { ToastContainer, toast} from 'react-toastify';
 import '../styles/MapPage.css'; 
 
 
@@ -185,7 +186,7 @@ const RestaurantMap = ({filterValue}) => {
 
     window.calculateRoute = function(lat, lng) {
       if (!userLocation) {
-        alert("User location not found. Unable to calculate route.");
+        toast.error('Your location is not available. Please enable geolocation in your browser.');
         return;
       }
 
@@ -200,7 +201,7 @@ const RestaurantMap = ({filterValue}) => {
         if (status === window.google.maps.DirectionsStatus.OK) {
           directionsRenderer.setDirections(result);
         } else {
-          alert("Directions request failed due to " + status);
+          toast.error("Directions request failed due to " + status);
         }
       });
     };
@@ -208,7 +209,7 @@ const RestaurantMap = ({filterValue}) => {
     // Load the map once the component is mounted
     window.initMap = initMap;
     const script = document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyC0cNFE2yyEeftu8jiV8Us_zNDC6xsc2QE&libraries=places&callback=initMap`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyCsDGTIh135SW0lp2zP4sFDGRd10TZDLY0&libraries=places&callback=initMap`;
     script.async = true;
     script.defer = true;
     document.body.appendChild(script);

@@ -4,6 +4,7 @@ const cors = require('cors'); // Import cors package
 
 const mongoose = require('mongoose');
 const FormDataModel = require('./models/FormData.js');
+const Restaurant = require('./models/Restaurant');
 const { PORT, mongoDBURL } = require('./config.js');
 const jwt = require('jsonwebtoken');
 
@@ -52,13 +53,23 @@ const SECRET = 'your_secret_key'; // Replace with a secure secret key
   const authenticateToken = (req, res, next) => {
       const authHeader = req.headers['authorization'];
       const token = authHeader && authHeader.split(' ')[1];
-      if (!token) return res.status(401).json('Access Denied');
+      if (!token) {
+        return res.status(401).json({ 
+            error: 'Authentication required',
+            message: 'Access denied'
+        });
+    }
   
       jwt.verify(token, SECRET, (err, user) => {
-          if (err) return res.status(403).json('Invalid Token');
-          req.user = user;
-          next();
-      });
+        if (err) {
+            return res.status(403).json({ 
+                error: 'Invalid token',
+                message: 'Please log in again'
+            });
+        }
+        req.user = user;
+        next();
+    });
   };
   
   // Login Route (Update to return token)
@@ -80,7 +91,12 @@ const SECRET = 'your_secret_key'; // Replace with a secure secret key
   app.get('/user', authenticateToken, (req, res) => {
       FormDataModel.findById(req.user.id).then((user) => {
           if (!user) return res.status(404).json('User Not Found');
-          res.json({ name: user.name, email: user.email });
+          res.json({ 
+            username: user.username,
+            firstName: user.firstName, 
+            lastName: user.lastName,
+            email: user.email,                  
+          });
       });
   });
   
@@ -103,8 +119,65 @@ app.post('/register', (req, res)=>{
     });
 });
 
+// Save a restaurant
+app.post('/user/saved-restaurants', authenticateToken, async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const restaurantData = req.body.restaurant; // This will be the restaurant card data
 
-// Set up a route for fetching restaurants from Google Places API
+    // First, save or update the restaurant in the Restaurant collection
+    await Restaurant.findOneAndUpdate(
+      { place_id: restaurantData.place_id },
+      restaurantData,
+      { upsert: true, new: true }
+    );
+
+    // Then, add the place_id to the user's savedRestaurants array
+    const updatedUser = await FormDataModel.findByIdAndUpdate(
+      userId,
+      { $addToSet: { savedRestaurants: restaurantData.place_id } },
+      { new: true }
+    );
+
+    res.json({ success: true });
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to save restaurant' });
+  }
+});
+
+// Get user's saved restaurants
+app.get('/user/saved-restaurants', authenticateToken, async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const user = await FormDataModel.findById(userId);
+    const restaurants = await Restaurant.find({
+      place_id: { $in: user.savedRestaurants }
+    });
+    res.json(restaurants);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to fetch saved restaurants' });
+  }
+});
+
+// Remove a restaurant from saved list
+app.delete('/user/saved-restaurants/:place_id', authenticateToken, async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const { place_id } = req.params;
+
+    const updatedUser = await FormDataModel.findByIdAndUpdate(
+      userId,
+      { $pull: { savedRestaurants: place_id } },
+      { new: true }
+    );
+
+    res.json({ success: true });
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to remove restaurant' });
+  }
+});
+
+// fetching restaurants from Google Places API
 app.get('/api/restaurants', async (req, res) => {
     const { lat, lng, radius, keyword, type = 'restaurant' } = req.query;
     

@@ -79,7 +79,7 @@ function App() {
             path="/profile"
             element={
               <Layout isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}>
-                <Profile />
+                <Profile isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
               </Layout>
             }
           />
@@ -103,7 +103,7 @@ function App() {
             path="/restaurant/:place_id"
             element={
               <Layout isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}>
-                <RestaurantDetailsPage />
+                <RestaurantDetailsPage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
               </Layout>
             }
           />

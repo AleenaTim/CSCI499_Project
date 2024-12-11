@@ -35,7 +35,13 @@ const SignUpPage = () => {
         password,
       });
       if (result.data === 'Already registered') {
-        toast.error('E-mail already registered! Please login to proceed.');
+        console.log(result.data);
+        toast.error('E-mail already registered! Please login to proceed.',
+          {
+            autoClose: 3000,
+            onOpen: () => console.log('Toast Opened'),
+            onClose: () => console.log('Toast Closed'),
+      });
         navigate('/login');
       } else {
         toast.success('Registered successfully! Please login to proceed.');
@@ -143,7 +149,7 @@ const SignUpPage = () => {
         </div>
       </div>
       <ToastContainer
-        position="bottom-right"
+        position="top-right"
         autoClose={3000}
         hideProgressBar={false}
         newestOnTop={false}
