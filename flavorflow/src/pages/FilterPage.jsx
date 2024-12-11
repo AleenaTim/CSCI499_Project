@@ -23,7 +23,6 @@ function FilterPage() {
     const [clearFilter, setClear] = useState(false); 
     const clearAll = () => {
         selectedPriceButtons.clear(); 
-        selectedCategoryButtons.clear(); 
         selectedMainButtons.clear(); 
         selectedStars.clear(); 
         checkedBoxes.clear(); 
@@ -73,24 +72,7 @@ function FilterPage() {
             })
         }
     }
-    const [selectedCategoryButtons, setCategoryButtons] = useState(new Map()); 
-    const selectCategoryButton = (e) => {
-        let categoryButtonID = e.target.id; 
-        if(selectedCategoryButtons.has(categoryButtonID)){
-            for(let categoryButton of selectedCategoryButtons.keys()){
-                if(categoryButton === categoryButtonID){
-                    selectedCategoryButtons.delete(categoryButton); 
-                }
-            }
-            setCategoryButtons(new Map(selectedCategoryButtons)); 
-        }
-        else{
-            setCategoryButtons(() => {
-                let myMap = new Map(selectedCategoryButtons); 
-                return myMap.set(categoryButtonID, "category"); 
-            })
-        }
-    }
+
     const[selectedStars, setStars] = useState(new Map()); 
     const selectStars = (e) => {
         let starID = e.target.id; 
@@ -132,25 +114,25 @@ function FilterPage() {
     function appliedFilters(){
         if(selectedStars.size !== 0 && inputDistance !== "0 mi"){
             const highestStar = maxMapVal(selectedStars); 
-            let appliedfiltersmap1 =  [...selectedMainButtons, ...checkedBoxes, ...selectedCategoryButtons, ...selectedPriceButtons, [highestStar, "rating"], [milesToMeters(inputDistance.substring(0,inputDistance.length-3)), "distance"]];  
+            let appliedfiltersmap1 =  [...selectedMainButtons, ...checkedBoxes, ...selectedPriceButtons, [highestStar, "rating"], [milesToMeters(inputDistance.substring(0,inputDistance.length-3)), "distance"]];  
             return appliedfiltersmap1; 
         }
         else if(selectedStars.size !== 0){
             const highestStar = maxMapVal(selectedStars); 
-            let appliedfiltersmap1 =  [...selectedMainButtons, ...checkedBoxes, ...selectedCategoryButtons, ...selectedPriceButtons, [highestStar, "rating"]];  
+            let appliedfiltersmap1 =  [...selectedMainButtons, ...checkedBoxes, ...selectedPriceButtons, [highestStar, "rating"]];  
             return appliedfiltersmap1; 
         }
         else if(inputDistance !== "0 mi"){
-            let appliedfiltersmap1 =  [...selectedMainButtons, ...checkedBoxes, ...selectedCategoryButtons, ...selectedPriceButtons,[milesToMeters(inputDistance.substring(0,inputDistance.length-3)), "distance"]];  
+            let appliedfiltersmap1 =  [...selectedMainButtons, ...checkedBoxes, ...selectedPriceButtons,[milesToMeters(inputDistance.substring(0,inputDistance.length-3)), "distance"]];  
             return appliedfiltersmap1; 
         }
 
-        let appliedfiltersmap1 =  [...selectedMainButtons, ...checkedBoxes, ...selectedCategoryButtons, ...selectedPriceButtons]; 
+        let appliedfiltersmap1 =  [...selectedMainButtons, ...checkedBoxes,  ...selectedPriceButtons]; 
         return appliedfiltersmap1; 
     }
 
     function showAppliedFilters(){
-        let appliedfiltersmap1 =  [...selectedMainButtons, ...checkedBoxes, ...selectedCategoryButtons, ...selectedPriceButtons]; 
+        let appliedfiltersmap1 =  [...selectedMainButtons, ...checkedBoxes, ...selectedPriceButtons]; 
         appliedfiltersmap1.forEach((item)=>{
             if(item[0] === "affordable"){
                 item[0] = '$'; 
@@ -174,134 +156,133 @@ function FilterPage() {
         })
         return appliedfiltersmap1; 
     }
+
     let appliedfiltersmap = showAppliedFilters(); 
     let unchangedMap =  appliedFilters(); 
    
-
     function cancelFilter(){
         clearAll(); 
         setShow(false); 
     }
    
     return (
-      <>
-        <style>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-        </style>
-    <div id="theMainButtons">
-    <div id="mainContent">
-                <div id="mainButtons" className={`${show.sideButton ? 'addMarginLeft': 'noMargin'}`}>
-                <div id="section-one-buttons">
-                    <button id="priceDropDownBttns" value = "sideButton" className="sideButton buttons" onClick={showDisplay}>
-                        <IoFilterSharp />
-                        Filter
-                    </button>
-                    <div id="price-drop-down">
-                    <button id="priceDropDownBttn" value = "priceDropDown" className="buttons" onClick={showDisplay} >
-                        Price
-                        <IoMdArrowDropdown className={show.priceDropDown ? 'up-novis' : 'down-vis'}/>
-                        <IoMdArrowDropup className={show.priceDropDown ? 'down-vis' : 'up-novis'}/>
-                    </button>
-                    <ul id="price-checkboxes" className={show.priceDropDown ? 'down-vis' : 'up-novis'}>
-                    {prices.map((item, index)=>(
-                                            <li key={index}>
-                                                <input type="checkbox" id={item[1]} name="price" defaultValue={item[1].slice(0,-2)} checked={checkedBoxes.has(item[1].slice(0,-2)) ? true : false} onChange={selectCheckbox}/>
-                                                <label htmlFor={item[1]}>{item[0]}</label> 
-                                            </li>
-                                        ))} 
-                    </ul>
-                    </div>
-                </div>
-                </div>
-            </div>
-    </div>
-    <div id="pageContent">
-            <div className={`${'sidebar'} ${show.sideButton ? 'sidebar-vis' : 'sidebar-novis'}`} >
-                <div className='filterContainer'>
-                <div className="filter-box">
-                    <div className='closeContainer'>
-                        <button className='close-button' value="sideButton" onClick={showDisplay}>X</button>  
-                    </div>
-                <div className="filters">
-                    <div className="active-filters">
-                    <p className='filterHeading'>Applied Filters</p>
-                    <span id="distanceFilter">
-                        {inputDistance}
-                    </span>
-                    <div className="applied-filters">
-                        {appliedfiltersmap.map((appliedFilter, index)=>(
-                            <span key={index}>
-                                {" ◦ "  + appliedFilter[0]}
-                            </span>
-                            ))}
-                    </div>
-                    </div>
-                    <div className="price">
-                    <p className='filterHeading'>Price</p>
-                    <div className="price-buttons" > 
-                        <div>
-                            <button id="affordable" className= {(selectedPriceButtons.has("affordable") || checkedBoxes.has("affordable"))? 'buttonsOn' : 'buttonsOff' } onClick={selectPriceButton}>$</button>
-                            <button id="semi-affordable" className= {(selectedPriceButtons.has("semi-affordable") || checkedBoxes.has("semi-affordable") )? 'buttonsOn' : 'buttonsOff' } onClick={selectPriceButton}>$$</button>
-                        </div>
-                       <div>
-                            <button id="semi-expensive" className= {(selectedPriceButtons.has("semi-expensive") || checkedBoxes.has("semi-expensive"))? 'buttonsOn' : 'buttonsOff' } onClick={selectPriceButton}>$$$</button>
-                            <button id="expensive" className= {(selectedPriceButtons.has("expensive") || checkedBoxes.has("expensive") )? 'buttonsOn' : 'buttonsOff' } onClick={selectPriceButton}>$$$$</button>
-                       </div>
-                    </div>   
-                    </div>
-                    <div className="rating-range">
-                    <p className='filterHeading'>Rating</p> 
-                    <div className="rating-stars">
-                        <GoStar id="star1" className={selectedStars.has("star1") ? 'starColor' : 'noStarColor'} onClick={selectStars}/>
-                        <GoStar id="star2" className={selectedStars.has("star2") ? 'starColor' : 'noStarColor'} onClick={selectStars}/>
-                        <GoStar id="star3" className={selectedStars.has("star3") ? 'starColor' : 'noStarColor'} onClick={selectStars}/>
-                        <GoStar id="star4" className={selectedStars.has("star4") ? 'starColor' : 'noStarColor'} onClick={selectStars}/>
-                        <GoStar id="star5" className={selectedStars.has("star5") ? 'starColor' : 'noStarColor'} onClick={selectStars}/>
-                    </div>
-                    </div>
-                    <div className="distance">
-                    <p className='filterHeading'>Distance</p>
-                    <input type="range" min={0} max={60} defaultValue={5} step={5} className="slider" id="myRange"
-                            onChange={(event) => {
-                                setInputDistance(event.target.value + " " + "mi")
-                            }}
-                     />
-                    </div>
-                    <div className="category">
-                        <p className='filterHeading'>Category</p> 
-                        <div id="section-two-buttons">
-                            <button className= {selectedMainButtons.has("open-now") ? 'buttonsOn' : 'buttonsOff' } onClick={selectMainButton} id="open-now">Open Now</button> 
-                            <button className= {selectedMainButtons.has("offers-delivery") ? 'buttonsOn' : 'buttonsOff' } onClick={selectMainButton} id="offers-delivery">Delivery</button>
-                            <button className= {selectedMainButtons.has("offers-takeout") ? 'buttonsOn' : 'buttonsOff' } onClick={selectMainButton} id="offers-takeout">Takeout</button>
-                        </div>
-                        <button value="seeMoreC" className="see-more"  onClick={showDisplay}>See More</button> 
-                    
-                        <div id="seeMoreC" className={show.seeMoreC ? 'see-more-c-vis' : 'see-more-c-novis'}> 
-                            <button className='close-button' value="seeMoreC" onClick={showDisplay}>X</button> 
-                            <ul className="pageList">
-                                {seeMoreCategories.map((item, index)=>(
-                                            <li key={index}>
-                                                <input type="checkbox" id={item[1]} name="diet" defaultValue={item[1]} checked={checkedBoxes.has(item[1]) ? true : false} onChange={selectCheckbox}/>
-                                                <label htmlFor={item[1]}>{item[0]}</label> 
-                                            </li>
-                                        ))} 
-                            </ul>
+        <>
+            <style>
+                <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+            </style>
+            <div id="theMainButtons">
+                <div id="mainContent">
+                    <div id="mainButtons" className={`${show.sideButton ? 'addMarginLeft': 'noMargin'}`}>
+                        <div id="section-one-buttons">
+                            <button id="priceDropDownBttns" value = "sideButton" className="sideButton buttons" onClick={showDisplay}>
+                                <IoFilterSharp />
+                                Filter
+                            </button>
+                            <div id="price-drop-down">
+                                <button id="priceDropDownBttn" value = "priceDropDown" className="buttons" onClick={showDisplay} >
+                                    Price
+                                    <IoMdArrowDropdown className={show.priceDropDown ? 'up-novis' : 'down-vis'}/>
+                                    <IoMdArrowDropup className={show.priceDropDown ? 'down-vis' : 'up-novis'}/>
+                                </button>
+                                <ul id="price-checkboxes" className={show.priceDropDown ? 'down-vis' : 'up-novis'}>
+                                    {prices.map((item, index)=>(
+                                        <li key={index}>
+                                            <input type="checkbox" id={item[1]} name="price" defaultValue={item[1].slice(0,-2)} checked={checkedBoxes.has(item[1].slice(0,-2)) ? true : false} onChange={selectCheckbox}/>
+                                            <label htmlFor={item[1]}>{item[0]}</label> 
+                                        </li>
+                                    ))} 
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
-                </div>
-                <div className="exit-filter">
-                <button className="cancel" onClick={cancelFilter}>Cancel</button>
-                <button className="clear" onClick={clearAll}>Clear</button>
-                </div>
+            </div>
+            <div id="pageContent">
+                <div className={`${'sidebar'} ${show.sideButton ? 'sidebar-vis' : 'sidebar-novis'}`} >
+                    <div className='filterContainer'>
+                        <div className="filter-box">
+                            <div className='closeContainer'>
+                                <button className='close-button' value="sideButton" onClick={showDisplay}>X</button>  
+                            </div>
+                            <div className="filters">
+                                <div className="active-filters">
+                                    <p className='filterHeading'>Applied Filters</p>
+                                    <span id="distanceFilter">
+                                        {inputDistance}
+                                    </span>
+                                    <div className="applied-filters">
+                                        {appliedfiltersmap.map((appliedFilter, index)=>(
+                                            <span key={index}>
+                                                {" ◦ "  + appliedFilter[0]}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div className="price">
+                                    <p className='filterHeading'>Price</p>
+                                    <div className="price-buttons" > 
+                                        <div>
+                                            <button id="affordable" className= {(selectedPriceButtons.has("affordable") || checkedBoxes.has("affordable"))? 'buttonsOn' : 'buttonsOff' } onClick={selectPriceButton}>$</button>
+                                            <button id="semi-affordable" className= {(selectedPriceButtons.has("semi-affordable") || checkedBoxes.has("semi-affordable") )? 'buttonsOn' : 'buttonsOff' } onClick={selectPriceButton}>$$</button>
+                                        </div>
+                                        <div>
+                                                <button id="semi-expensive" className= {(selectedPriceButtons.has("semi-expensive") || checkedBoxes.has("semi-expensive"))? 'buttonsOn' : 'buttonsOff' } onClick={selectPriceButton}>$$$</button>
+                                                <button id="expensive" className= {(selectedPriceButtons.has("expensive") || checkedBoxes.has("expensive") )? 'buttonsOn' : 'buttonsOff' } onClick={selectPriceButton}>$$$$</button>
+                                        </div>
+                                    </div>   
+                                </div>
+                                <div className="rating-range">
+                                    <p className='filterHeading'>Rating</p> 
+                                    <div className="rating-stars">
+                                        <GoStar id="star1" className={selectedStars.has("star1") ? 'starColor' : 'noStarColor'} onClick={selectStars}/>
+                                        <GoStar id="star2" className={selectedStars.has("star2") ? 'starColor' : 'noStarColor'} onClick={selectStars}/>
+                                        <GoStar id="star3" className={selectedStars.has("star3") ? 'starColor' : 'noStarColor'} onClick={selectStars}/>
+                                        <GoStar id="star4" className={selectedStars.has("star4") ? 'starColor' : 'noStarColor'} onClick={selectStars}/>
+                                        <GoStar id="star5" className={selectedStars.has("star5") ? 'starColor' : 'noStarColor'} onClick={selectStars}/>
+                                    </div>
+                                </div>
+                                <div className="distance">
+                                    <p className='filterHeading'>Distance</p>
+                                    <input type="range" min={0} max={60} defaultValue={5} step={5} className="slider" id="myRange"
+                                            onChange={(event) => {
+                                                setInputDistance(event.target.value + " " + "mi")
+                                            }}
+                                    />
+                                </div>
+                                <div className="category">
+                                    <p className='filterHeading'>Category</p> 
+                                    <div id="section-two-buttons">
+                                        <button className= {selectedMainButtons.has("open-now") ? 'buttonsOn' : 'buttonsOff' } onClick={selectMainButton} id="open-now">Open Now</button> 
+                                        <button className= {selectedMainButtons.has("offers-delivery") ? 'buttonsOn' : 'buttonsOff' } onClick={selectMainButton} id="offers-delivery">Delivery</button>
+                                        <button className= {selectedMainButtons.has("offers-takeout") ? 'buttonsOn' : 'buttonsOff' } onClick={selectMainButton} id="offers-takeout">Takeout</button>
+                                    </div>
+                                    <button value="seeMoreC" className="see-more"  onClick={showDisplay}>See More</button> 
+                                    <div id="seeMoreC" className={show.seeMoreC ? 'see-more-c-vis' : 'see-more-c-novis'}> 
+                                        <div className='close-button-container'>
+                                            <button className='close-button' value="seeMoreC" onClick={showDisplay}>X</button> 
+                                        </div>
+                                        <ul className="pageList">
+                                            {seeMoreCategories.map((item, index)=>(
+                                                        <li key={index}>
+                                                            <input type="checkbox" id={item[1]} name="diet" defaultValue={item[1]} checked={checkedBoxes.has(item[1]) ? true : false} onChange={selectCheckbox}/>
+                                                            <label htmlFor={item[1]}>{item[0]}</label> 
+                                                        </li>
+                                                    ))} 
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <div className="exit-filter">
+                        <button className="cancel" onClick={cancelFilter}>Cancel</button>
+                        <button className="clear" onClick={clearAll}>Clear</button>
+                    </div>
                 </div>
             </div>
-            <div className={show.sidebar ? 'opacitySet' : 'noOpacity'}>
+            <div className={show.sidebar ? 'opacitySet' : 'noOpacity'}></div>
+                <MapPage filterValue={unchangedMap}/>
             </div>
-    
-            <MapPage filterValue={unchangedMap}/>
-    </div>
-      </>
+        </>
     );
   }
 
