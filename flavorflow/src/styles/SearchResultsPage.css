@@ -20,4 +20,17 @@
     align-items: center;
     margin: 20px auto;
     padding: 10px 20px;
+    border-radius: 4px;
+    border: 2px solid #ff4b2b;
+    color: #ff4b2b;
+    font-weight: bold;
+}
+
+.view-more-button:hover {
+    background-color: #ff4b2b;
+    color: white;
+}
+
+.search-bar-container {
+    background-color: #f5f5f5;
 }

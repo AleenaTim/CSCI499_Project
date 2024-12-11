@@ -6,6 +6,7 @@ import GoogleMapReact from 'google-map-react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import loaderGif from '../assets/loader_food.gif';
+import placeholderImage from '../assets/placeholder-image.jpg';
 
 function RestaurantDetailsPage() {
   const { place_id } = useParams(); // Extract place_id from URL
@@ -70,6 +71,7 @@ function RestaurantDetailsPage() {
     dine_in,
     wheelchair_accessible_entrance,
     editorial_summary,
+    website,
   } = restaurantDetails || {};
 
   const renderPhotos = () => {
@@ -111,7 +113,6 @@ function RestaurantDetailsPage() {
   const renderReviews = () => {
     if (!reviews || reviews.length === 0) return <p>No reviews available.</p>;
   
-    const placeholderImage = '..assets/placeholder-image.jpg'; 
   
     return reviews.map((review, index) => (
       console.log("Image URL:", review.profile_photo_url),
@@ -176,6 +177,8 @@ function RestaurantDetailsPage() {
               </ul>
             </div>
           )}
+          {website && <p> <a href={restaurantDetails.website} target="_blank" rel="noopener noreferrer">Visit Website</a></p>}
+          
           <p>Phone Number: {formatted_phone_number}</p>
           <button className="save-button" >Save Restaurant</button>
           {editorial_summary && <p id="summary">{editorial_summary.overview}</p>}

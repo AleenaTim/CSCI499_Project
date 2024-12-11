@@ -114,20 +114,90 @@
 }
  
 @media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
+
+  .navbar-links li {
+    font-size: 18px; /* Smaller font size */
   }
-  .navbar-links {
-    margin: 10px 0;
+  .navbar-button {
+    font-size: 18px; /* Smaller font size */
   }
-  .navbar-actions {
-    display: flex;
-  gap: 10px;
-  margin-left: auto; /* Pushes `navbar-actions` to the far right */
-  align-items: center;
+  
+  .profile-button {
+    font-size: 16px;
+    width: 130px;
+  }
+  
+  #logout-button{
+    font-size: 16px;
+    width: 110px;
   }
 }
+
+@media (max-width: 661px) {
+
+  .navbar-links li {
+    font-size: 12px; /* Smaller font size */
+  }
+  .navbar-button {
+    font-size: 12px; /* Smaller font size */
+  }
+
+  .login-button {
+    font-size: 14px;
+    width: 145px;
+  }
+  
+  .profile-button {
+    font-size: 14px;
+    width: 110px;
+  }
+  
+  #logout-button{
+    font-size: 14px;
+    width: 100px;
+  }
+}
+
+.hamburger-menu {
+  display: none;
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .hamburger-menu {
+    display: block;
+  }
+
+  .navbar-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 80px; /* Match the navbar height */
+    left: 0;
+    width: 100%;
+    background-color: #3D405B;
+    padding: 10px;
+    padding-bottom: 20px;
+  }
+
+  .navbar-links.open {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .navbar-actions {
+    padding-top: 5px;
+  }
+
+  .login-button{
+    font-size: 15px;
+  }
+}
+
 
 .navbar.scrolled {
   background-color: #ffe0dc; /* Light pink variation */
@@ -138,6 +208,7 @@
   position: relative;
   display: inline-block;
 }
+
 
 .icon-line {
   display: block;

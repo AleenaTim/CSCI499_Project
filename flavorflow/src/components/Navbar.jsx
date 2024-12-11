@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import '../styles/Navbar.css';
 import logo from '../assets/flavorflow.png';
@@ -10,6 +10,11 @@ import 'react-toastify/dist/ReactToastify.css';
 function Navbar({ isLoggedIn, setIsLoggedIn }) {
   const navigate = useNavigate();
   const location = useLocation();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   const handleLogout = () => {
     setIsLoggedIn(false);
@@ -38,7 +43,10 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
         <img id="homePageLogo" src={logo} alt="logo" />
         <p id="appName">Flavorflow</p>
       </div>
-      <ul className="navbar-links">
+      <button className="hamburger-menu" onClick={toggleMenu}>
+        ☰
+      </button>
+      <ul className={`navbar-links ${isMenuOpen ? 'open' : ''}`}>
         <li onClick={() => navigate('/filter')} className={currentPage === '/filter' ? 'active' : ''}>
           <div className="icon-container">
             <RiMapPin2Line className="icon-line" />

@@ -62,7 +62,7 @@ a:focus {
 
 a:hover {
   text-decoration: none;
-  color: #fff;
+  color: #ff4b2b;
 }
 
 /*---------------------------------------------*/
@@ -200,6 +200,12 @@ iframe {
   color: #e5e5e5;
   line-height: 1.5;
   cursor: pointer;
+}
+
+.txt1:hover {
+  color: #ff4b2b;
+  font-size: 14px;
+  transition: all 0.4s;
 }
 
 
@@ -479,14 +485,16 @@ iframe {
   height: 50px;
   border-radius: 25px;
 
-  background: #9df8d5;
+  background: #ff4b2b;
   position: relative;
   z-index: 1;
-
+  transform: translateY(-3px);
+  box-shadow: 0 7px 20px rgba(255, 75, 43, 0.4);
   -webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
   -moz-transition: all 0.4s;
   transition: all 0.4s;
+  
 }
 
 .login100-form-btn::before {
@@ -509,7 +517,7 @@ iframe {
 }
 
 .login100-form-btn:hover {
-  color: #1f1f1f;
+  color: white;
 }
 
 .login100-form-btn:hover:before {
