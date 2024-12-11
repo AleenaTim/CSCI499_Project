@@ -74,26 +74,26 @@ const ProfilePage = () => {
       <div className={styles.profileContent}>
         <div className={styles.mainContent}>
           <div className={styles.favorites}>
-          <div className={styles.mainContent}>
-          <h2>Saved Restaurants</h2>
-          {savedRestaurants.length > 0 ? (
-            <div className={styles.restaurantGrid}>
-              {savedRestaurants.map((restaurant) => (
-                <div key={restaurant.place_id} className={styles.restaurantCardWrapper}>
-                  <RestaurantCard restaurant={restaurant} />
-                  <button 
-                    onClick={() => handleUnsaveRestaurant(restaurant.place_id)}
-                    className={styles.unsaveButton}
-                  >
-                    Unsave Restaurant
-                  </button>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <p>No saved restaurants yet. Start exploring to save your favorites!</p>
-          )}
-        </div>
+              <div className={styles.mainContent}>
+                <h2>Saved Restaurants</h2>
+                {savedRestaurants.length > 0 ? (
+                  <div className={styles.restaurantGrid}>
+                    {savedRestaurants.map((restaurant) => (
+                      <div key={restaurant.place_id} className={styles.restaurantCardWrapper}>
+                        <RestaurantCard restaurant={restaurant} />
+                        <button 
+                          onClick={() => handleUnsaveRestaurant(restaurant.place_id)}
+                          className={styles.unsaveButton}
+                        >
+                          Unsave Restaurant
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p>No saved restaurants yet. Start exploring to save your favorites!</p>
+                )}
+              </div>
 
             <ul className={styles.favoritesRestaurant}>
               <h2>Statistics</h2>
