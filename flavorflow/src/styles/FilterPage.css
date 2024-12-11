@@ -116,6 +116,7 @@ ul.pageList{
 }
 
 .buttons{
+  box-shadow: 2px 1px 8px #3D405B;
   border: 1px solid #E07A5F; 
   background-color: #F4F1DE; 
   color: #3D405B;
