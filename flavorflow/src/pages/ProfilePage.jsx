@@ -13,7 +13,7 @@ const ProfilePage = () => {
     }
 
     axios
-      .get('http://localhost:5000/user', {
+      .get('http://localhost:5001/user', {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {

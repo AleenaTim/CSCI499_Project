@@ -7,11 +7,11 @@ const FormDataModel = require('./models/FormData.js');
 const { PORT, mongoDBURL } = require('./config.js');
 const jwt = require('jsonwebtoken');
 
-const port = 5000; // Run server on port 5000
+const port = 5001; // Run server on port 5000
 const app = express();
 app.use(express.json());
 // Dynamically allow credentials for all origins
-const allowedOrigins = ['http://localhost:3000', 'http://localhost:5000'];
+const allowedOrigins = ['http://localhost:3000', 'http://localhost:5001'];
 
 const corsOptions = {
   origin: (origin, callback) => {

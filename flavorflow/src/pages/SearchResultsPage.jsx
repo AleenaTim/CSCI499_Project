@@ -5,8 +5,8 @@ import RestaurantCard from '../components/RestaurantCard';
 import { fetchRestaurants, fetchNextPageResults } from '../utils/fetchRestaurants';
 import '../styles/SearchResultsPage.css';
 import loaderGif from '../assets/loader_food.gif';
-
-function SearchResultsPage() {
+import SearchFilter from './SearchFilter';
+function SearchResultsPage({filterValueSearch}) {
   const [restaurants, setRestaurants] = useState([]);
   const [location, setLocation] = useState(null);
   const [nextPageToken, setNextPageToken] = useState(null);
@@ -27,13 +27,50 @@ function SearchResultsPage() {
       );
     }
   }, []);
-
-  // Fetch restaurants based on keyword and location
   useEffect(() => {
     if (location && keyword) {
         const fetchData = async () => {
+            let filteredResults1 = [];
             const results = await fetchRestaurants(location, 1500, keyword);
-            setRestaurants(results.results || []);
+            if(filterValueSearch.length != 0){
+                  filteredResults1 = results.results.filter((restaurant) => 
+                  {
+                    for(let i =0; i < filterValueSearch.length; i++){
+                      if(filterValueSearch[i][1] == "rating"){
+                        if(restaurant.rating < filterValueSearch[i][0]){
+                          return false; 
+                        }
+                      }
+                      if(filterValueSearch[i][1] == "price"){
+                        if(
+                            (filterValueSearch[i][0] == "affordable" && restaurant.price_level != 1) 
+                            || (filterValueSearch[i][0] == "semi-affordable" && restaurant.price_level != 2) 
+                            || (filterValueSearch[i][0] == "semi-expensive" && restaurant.price_level != 3) 
+                            || (filterValueSearch[i][0] == "expensive" && restaurant.price_level != 4) 
+                          )
+                          {
+                            return false; 
+                          }
+                      }
+                      if(restaurant.opening_hours){
+                        if(filterValueSearch[i][0] == "open-now" && restaurant.opening_hours.open_now== false){
+                          return false; 
+                        }
+                      } 
+                      if(filterValueSearch[i][0] == "offers-delivery" && (restaurant.types.includes("meal_delivery") != true)){
+                        return false; 
+                      }
+                      if(filterValueSearch[i][0] == "offers-takeout" && (restaurant.types.includes("meal_takeaway") != true)){
+                        return false; 
+                      }      
+                    }
+                    return true; 
+                  }); 
+       
+            }
+      
+            let useResults = filteredResults1.length === 0 ? results.results : filteredResults1; 
+            setRestaurants( useResults|| []); 
             setNextPageToken(results.next_page_token || null);
             if (!results.next_page_token) {
               console.log('No next page token found');
@@ -41,7 +78,7 @@ function SearchResultsPage() {
         };
         fetchData();
     }
-  }, [location, keyword]);
+  }, [location, keyword, filterValueSearch]);
 
   const handleViewMore = async () => {
     if (!nextPageToken) return;
@@ -56,7 +93,9 @@ function SearchResultsPage() {
   };
 
   return (
+    <>
     <div>
+
       <div className="search-bar-container">
         <SearchBar setRestaurants={setRestaurants} location={location} />
       </div>
@@ -75,6 +114,7 @@ function SearchResultsPage() {
         )}
       </div>
     </div>
+    </>
   );
 }
 

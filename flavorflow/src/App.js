@@ -4,7 +4,7 @@ import HomePage from './pages/HomePage';
 import MeetTheTeam from './pages/MeetTheTeam';
 import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
-import SearchResultsPage from './pages/SearchResultsPage'; 
+import SearchResultsPage from './pages/SearchFilter'; 
 import FilterPage from './pages/FilterPage'; 
 import Layout from './components/Layout';
 import Map from './pages/MapPage';

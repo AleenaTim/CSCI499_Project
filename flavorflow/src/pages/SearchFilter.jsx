@@ -5,10 +5,9 @@ import { IoFilterSharp } from "react-icons/io5";
 import { IoMdArrowDropdown } from "react-icons/io"; 
 import { IoMdArrowDropup } from "react-icons/io"; 
 import { GoStar } from "react-icons/go";
-import {seeMoreCategories, prices, upper, maxMapVal, milesToMeters} from '../utils/filterData.js'; 
-import MapPage from './MapPage';
-
-function FilterPage() {
+import { seeMoreCategories, prices, upper, maxMapVal} from '../utils/filterData.js'; 
+import SearchResultsPage from './SearchResultsPage.jsx';
+function SearchFilter() {
     const [show, setShow] = useState({
         sideButton: false, 
         seeMoreC: false, 
@@ -116,7 +115,7 @@ function FilterPage() {
             }); 
         }
     }
-    const [inputDistance, setInputDistance] = useState("0 mi"); 
+
     const [checkedBoxes, setCheckedBoxes] = useState(new Map()); 
     const selectCheckbox = (e) => {
         let checkboxValue = e.target.defaultValue; 
@@ -130,20 +129,13 @@ function FilterPage() {
         setCheckedBoxes(new Map(checkedBoxes));   
     }
     function appliedFilters(){
-        if(selectedStars.size !== 0 && inputDistance !== "0 mi"){
-            const highestStar = maxMapVal(selectedStars); 
-            let appliedfiltersmap1 =  [...selectedMainButtons, ...checkedBoxes, ...selectedCategoryButtons, ...selectedPriceButtons, [highestStar, "rating"], [milesToMeters(inputDistance.substring(0,inputDistance.length-3)), "distance"]];  
-            return appliedfiltersmap1; 
-        }
-        else if(selectedStars.size !== 0){
+
+        if(selectedStars.size !== 0){
             const highestStar = maxMapVal(selectedStars); 
             let appliedfiltersmap1 =  [...selectedMainButtons, ...checkedBoxes, ...selectedCategoryButtons, ...selectedPriceButtons, [highestStar, "rating"]];  
             return appliedfiltersmap1; 
         }
-        else if(inputDistance !== "0 mi"){
-            let appliedfiltersmap1 =  [...selectedMainButtons, ...checkedBoxes, ...selectedCategoryButtons, ...selectedPriceButtons,[milesToMeters(inputDistance.substring(0,inputDistance.length-3)), "distance"]];  
-            return appliedfiltersmap1; 
-        }
+
 
         let appliedfiltersmap1 =  [...selectedMainButtons, ...checkedBoxes, ...selectedCategoryButtons, ...selectedPriceButtons]; 
         return appliedfiltersmap1; 
@@ -212,8 +204,14 @@ function FilterPage() {
                     </ul>
                     </div>
                 </div>
+                <div id="section-two-buttons">
+                            <button className= {selectedMainButtons.has("open-now") ? 'buttonsOn' : 'buttonsOff' } onClick={selectMainButton} id="open-now">Open Now</button> 
+                            <button className= {selectedMainButtons.has("offers-delivery") ? 'buttonsOn' : 'buttonsOff' } onClick={selectMainButton} id="offers-delivery">Delivery</button>
+                            <button className= {selectedMainButtons.has("offers-takeout") ? 'buttonsOn' : 'buttonsOff' } onClick={selectMainButton} id="offers-takeout">Takeout</button>
+                        </div>
                 </div>
             </div>
+            
     </div>
     <div id="pageContent">
             <div className={`${'sidebar'} ${show.sideButton ? 'sidebar-vis' : 'sidebar-novis'}`} >
@@ -225,9 +223,7 @@ function FilterPage() {
                 <div className="filters">
                     <div className="active-filters">
                     <p className='filterHeading'>Applied Filters</p>
-                    <span id="distanceFilter">
-                        {inputDistance}
-                    </span>
+                    
                     <div className="applied-filters">
                         {appliedfiltersmap.map((appliedFilter, index)=>(
                             <span key={index}>
@@ -259,21 +255,8 @@ function FilterPage() {
                         <GoStar id="star5" className={selectedStars.has("star5") ? 'starColor' : 'noStarColor'} onClick={selectStars}/>
                     </div>
                     </div>
-                    <div className="distance">
-                    <p className='filterHeading'>Distance</p>
-                    <input type="range" min={0} max={60} defaultValue={5} step={5} className="slider" id="myRange"
-                            onChange={(event) => {
-                                setInputDistance(event.target.value + " " + "mi")
-                            }}
-                     />
-                    </div>
                     <div className="category">
-                        <p className='filterHeading'>Category</p> 
-                        <div id="section-two-buttons">
-                            <button className= {selectedMainButtons.has("open-now") ? 'buttonsOn' : 'buttonsOff' } onClick={selectMainButton} id="open-now">Open Now</button> 
-                            <button className= {selectedMainButtons.has("offers-delivery") ? 'buttonsOn' : 'buttonsOff' } onClick={selectMainButton} id="offers-delivery">Delivery</button>
-                            <button className= {selectedMainButtons.has("offers-takeout") ? 'buttonsOn' : 'buttonsOff' } onClick={selectMainButton} id="offers-takeout">Takeout</button>
-                        </div>
+                        <p className='filterHeading'>Category</p>       
                         <button value="seeMoreC" className="see-more"  onClick={showDisplay}>See More</button> 
                     
                         <div id="seeMoreC" className={show.seeMoreC ? 'see-more-c-vis' : 'see-more-c-novis'}> 
@@ -298,11 +281,12 @@ function FilterPage() {
             </div>
             <div className={show.sidebar ? 'opacitySet' : 'noOpacity'}>
             </div>
-    
-            <MapPage filterValue={unchangedMap}/>
+        <SearchResultsPage filterValueSearch = {unchangedMap}/>
+        
     </div>
+            
       </>
     );
   }
 
-export default FilterPage;
+export default SearchFilter;

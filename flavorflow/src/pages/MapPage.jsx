@@ -97,6 +97,7 @@ const RestaurantMap = ({filterValue}) => {
     }
 
     function applyFilters(place){
+      console.log(place); 
       // Add null check for filterValue
       if(!filterValue || filterValue.length === 0){ 
         return true; 
@@ -137,6 +138,19 @@ const RestaurantMap = ({filterValue}) => {
         if(place.types.includes("meal_takeaway") && filterValue[i][0] == "offers-takeout"){
           count++; 
         }
+        if(place.types.includes("bar") && filterValue[i][0] == "bar"){
+          count++; 
+        }
+        if(place.types.includes("cafe") && filterValue[i][0] == "cafe"){
+          count++; 
+        }
+        if(place.types.includes("night_club") && filterValue[i][0] == "night-club"){
+          count++; 
+        }
+        if(place.types.includes("supermarket") && filterValue[i][0] == "supermarket"){
+          count++; 
+        }
+        
       }
       if(priceCount >= 2){
         filterLength = filterLength-priceCount+1; 
