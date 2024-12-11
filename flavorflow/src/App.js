@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import MeetTheTeam from './pages/MeetTheTeam';
+import ForgotPassword from './pages/ForgotPassword';
 import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import SearchResultsPage from './pages/SearchResultsPage'; 
@@ -64,6 +65,14 @@ function App() {
             element={
               <Layout isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}>
                 <LoginPage setIsLoggedIn={setIsLoggedIn} />
+              </Layout>
+            }
+          />
+          <Route
+            path="/forgot-password"
+            element={
+              <Layout isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}>
+                <ForgotPassword setIsLoggedIn={setIsLoggedIn} />
               </Layout>
             }
           />
