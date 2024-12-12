@@ -1,6 +1,7 @@
 const express = require('express');
 const axios = require('axios');
 const cors = require('cors'); // Import cors package
+const path = require('path');
 
 const mongoose = require('mongoose');
 const FormDataModel = require('./models/FormData.js');
@@ -8,11 +9,11 @@ const Restaurant = require('./models/Restaurant');
 const { PORT, mongoDBURL } = require('./config.js');
 const jwt = require('jsonwebtoken');
 
-const port = 5000; // Run server on port 5000
+const port = process.env.PORT || 5000; // Run server on port 5000
 const app = express();
 app.use(express.json());
 // Dynamically allow credentials for all origins
-const allowedOrigins = ['http://localhost:3000', 'http://localhost:5000'];
+const allowedOrigins = ['http://localhost:3000', 'http://localhost:5000', 'https://flavorflow-p16r.onrender.com'];
 
 const corsOptions = {
   origin: (origin, callback) => {
@@ -272,6 +273,14 @@ app.get('/api/restaurant/details', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch restaurant details from Google Places API' });
   }
 });
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, 'build')));
+  
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  });
+}
 
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);

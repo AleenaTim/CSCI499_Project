@@ -42,8 +42,8 @@
     "web-vitals": "^4.2.4"
   },
   "scripts": {
-    "start": "cross-env NODE_OPTIONS=--openssl-legacy-provider node server.js",
-    "client": "cross-env NODE_OPTIONS=--openssl-legacy-provider react-scripts start",
+    "start": "node server.js",
+    "client": "react-scripts start",
     "dev": "concurrently \"npm run start\" \"npm run client\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
