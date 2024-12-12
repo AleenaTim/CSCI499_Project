@@ -1,6 +1,6 @@
 #map {
   margin-top: 10px;
-  margin-bottom: 2%;
+  /* margin-bottom: 2%; */
   height: calc(100% - 10px);
   width: 100%;
 }

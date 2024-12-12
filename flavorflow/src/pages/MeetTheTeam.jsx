@@ -43,9 +43,10 @@ const MeetTheTeam = () => {
                 <div className="team-content">
                   <p className="text-blk name">Mahel Napo</p>
                   <p className="text-blk position">Full-Stack Software Engineer</p>
-                  <p className="text-blk testimonial">
+                  <p className="text-blk email">mnnap600@gmail.com</p>
+                  {/* <p className="text-blk testimonial">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                  </p>
+                  </p> */}
                 </div>
               </div>
               <div className="team">
@@ -58,9 +59,10 @@ const MeetTheTeam = () => {
                 <div className="team-content">
                   <p className="text-blk name">Miah Kirton</p>
                   <p className="text-blk position">Frontend Software Engineer</p>
-                  <p className="text-blk testimonial">
+                  <p className="text-blk email">miahkirton1@gmail.com</p>
+                  {/* <p className="text-blk testimonial">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                  </p>
+                  </p> */}
                 </div>
               </div>
               <div className="team">
@@ -73,9 +75,10 @@ const MeetTheTeam = () => {
                 <div className="team-content">
                   <p className="text-blk name">Steven Lin</p>
                   <p className="text-blk position">Frontend Software Engineer</p>
-                  <p className="text-blk testimonial">
+                  <p className="text-blk email">slin93010@gmail.com</p>
+                  {/* <p className="text-blk testimonial">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                  </p>
+                  </p> */}
                 </div>
               </div>
               <div className="team">
@@ -88,9 +91,10 @@ const MeetTheTeam = () => {
                 <div className="team-content">
                   <p className="text-blk name">Ilya Brandt</p>
                   <p className="text-blk position">Backend Software Engineer</p>
-                  <p className="text-blk testimonial">
+                  <p className="text-blk email">ilyalakki@gmail.com</p>
+                  {/* <p className="text-blk testimonial">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                  </p>
+                  </p> */}
                 </div>
               </div>
               <div className="team">
@@ -103,9 +107,10 @@ const MeetTheTeam = () => {
                 <div className="team-content">
                   <p className="text-blk name">Aleena Tim</p>
                   <p className="text-blk position">Backend Software Engineer</p>
-                  <p className="text-blk testimonial">
+                  <p className="text-blk email">aleenatim@gmail.com</p>
+                  {/* <p className="text-blk testimonial">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                  </p>
+                  </p> */}
                 </div>
               </div>
             </SwiperSlide>

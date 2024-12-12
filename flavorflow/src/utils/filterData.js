@@ -1,33 +1,8 @@
-const mainFeatures = [
-    ["Vegetarian", "vegetarian"], 
-    ["Gluten Free", "gluten-free"], 
-    ["Kosher", "kosher"]
-]; 
-
-const seeMoreFeatures = [
-    ["Halal", "halal"], 
-    ["Allergy Friendly", "allergy-friendly"], 
-    ["Vegan", "vegan"], 
-    ["Organic", "organic"], 
-    ["Low Sodium", "low-sodium"], 
-    ["Heart Healthy Menu", "heart-healthy-menu"], 
-    ["Kids Menu", "kids-menu"], 
-    ["Live Music", "live-music"], 
-    ["Eat In", "eat-in"], 
-    ["Take Out", "take-out"]
-]
-
 const seeMoreCategories = [
-    ["Food Court", "food-court"], 
-    ["Soul Food", "soul-food"], 
-    ["Hawaiian", "hawaiian"], 
-    ["Venezuelan", "venezuelan"], 
-    ["Thai", "thai"], 
-    ["Chinese", "chinese"], 
-    ["Mediterranean", "mediterranean"], 
-    ["Filipino", "filipino"], 
-    ["Greek", "greek"], 
-    ["Mexican", "mexican"]
+    ["Bar", "bar"], 
+    ["Cafe", "cafe"], 
+    ["Night Club", "night-club"], 
+    ["Supermarket", "supermarket"]
 ]
 
 const prices = [
@@ -54,4 +29,5 @@ function maxMapVal(container){
 function milesToMeters(mile){
     return Number(mile) * 1609.34; 
 }
-export{mainFeatures, seeMoreFeatures, seeMoreCategories, prices, upper, maxMapVal, milesToMeters}; 
+
+export{ seeMoreCategories, prices, upper, maxMapVal, milesToMeters}; 

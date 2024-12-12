@@ -7,6 +7,7 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import loaderGif from '../assets/loader_food.gif';
 import placeholderImage from '../assets/placeholder-image.jpg';
+import Marker from '../components/Marker.jsx'; 
 import axios from 'axios';
 
 function RestaurantDetailsPage({setIsLoggedIn, isLoggedIn}) {
@@ -168,15 +169,15 @@ function RestaurantDetailsPage({setIsLoggedIn, isLoggedIn}) {
 
   const renderMap = () => {
     if (!geometry) return null;
-
     return (
       <div className="details-map-container">
         <GoogleMapReact
           bootstrapURLKeys={{ key: 'AIzaSyCFN565EdWOPCGPr4nbdla6PAJZUY4F_h8' }}
           defaultCenter={geometry.location}
+          options={{ gestureHandling: 'none'}}
           defaultZoom={15}
         >
-          <div lat={geometry.location.lat} lng={geometry.location.lng} className="map-marker" />
+          <Marker lat={geometry.location.lat} lng={geometry.location.lng} />
         </GoogleMapReact>
       </div>
     );
@@ -206,7 +207,9 @@ function RestaurantDetailsPage({setIsLoggedIn, isLoggedIn}) {
             rating: restaurantDetails.rating,
             user_ratings_total: restaurantDetails.user_ratings_total,
             photos: restaurantDetails.photos,
-            opening_hours: restaurantDetails.opening_hours
+            opening_hours: {
+              open_now: restaurantDetails.opening_hours?.open_now || false
+            }
           }
         }, {
           headers: { Authorization: `Bearer ${token}` }
