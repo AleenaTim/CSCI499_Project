@@ -129,8 +129,8 @@ ul.pageList{
   background-color: #F4F1DE; 
   color: #3D405B;
   border-radius: 10px;
-  width : 80px; 
-  height : 25px; 
+  width : 130px; 
+  font-size: 18px;
 }
 
 .buttonsOn{

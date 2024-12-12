@@ -5,6 +5,8 @@
   margin: 2px; 
   margin-left: 10px;
   box-shadow: 2px 1px 8px #3D405B;
+  width: 150px;
+  font-size: 18px;
 }
 .searchFilterButtonOn{
   border: 2px #E07A5F  solid; 
@@ -14,6 +16,8 @@
   margin-left: 10px;
   color: #E07A5F;
   box-shadow: 2px 1px 8px #3D405B;
+  width: 150px;
+  font-size: 18px;
 } 
 .searchFilterContainer{
   margin: 10px 0px  0px 20px; 
@@ -30,9 +34,11 @@
 }
 .rating-stars-search{
   background-color: #F4F1DE; 
-  margin-left: 10px;; 
+  margin-left: 10px;
   border: 2px #E07A5F solid; 
   border-radius: 8px; 
   text-align: center; 
   box-shadow: 2px 1px 8px #3D405B;
+  width: 110px;
+  font-size: 18px;
 }
