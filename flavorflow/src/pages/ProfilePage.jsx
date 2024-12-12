@@ -3,6 +3,7 @@ import axios from 'axios';
 import styles from './ProfilePage.module.css';
 import loaderGif from '../assets/loader_food.gif';
 import RestaurantCard from '../components/RestaurantCard';
+import { ToastContainer, toast } from 'react-toastify';
 
 const ProfilePage = () => {
   const [user, setUser] = useState(null);
@@ -28,7 +29,7 @@ const ProfilePage = () => {
         setSavedRestaurants(restaurantsResponse.data);
       } catch (error) {
         console.error('Failed to fetch data:', error);
-        alert('Failed to fetch user data. Please log in again.');
+        toast.error('Failed to fetch user data. Please log in again.')
         localStorage.removeItem('token');
         window.location.href = '/login';
       }

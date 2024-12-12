@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import SearchBar from '../components/SearchBar';
 import RestaurantCard from '../components/RestaurantCard';
 import { fetchRestaurants, fetchNextPageResults } from '../utils/fetchRestaurants';
+import { ToastContainer, toast } from 'react-toastify';
 import '../styles/SearchResultsPage.css';
 import loaderGif from '../assets/loader_food.gif';
 
@@ -58,7 +59,8 @@ function SearchResultsPage({filterValueSearch}) {
         }
 
         if(filteredResults1.length == 0 && filterValueSearch.length != 0 ){
-            alert("No Results Found"); 
+             const failedFilters = filterValueSearch.map(filter => filter[0]).join(', ');
+             toast.error(`No results found with the selected filters: ${failedFilters}`);
         }
             let useResults = filteredResults1.length === 0 ? results.results : filteredResults1; 
             setRestaurants( useResults|| []); 

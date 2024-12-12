@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import '../styles/MapPage.css'; 
 
 const RestaurantMap = ({filterValue}) => {
@@ -98,7 +98,7 @@ const RestaurantMap = ({filterValue}) => {
     }
 
     function applyFilters(place){
-      console.log(place); 
+      //console.log(place); 
       // Add null check for filterValue
       if(!filterValue || filterValue.length === 0){ 
         return true; 
@@ -210,7 +210,7 @@ const RestaurantMap = ({filterValue}) => {
 
     window.calculateRoute = function(lat, lng) {
       if (!userLocation) {
-        alert("User location not found. Unable to calculate route.");
+        toast.error("User location not available. Please enable location services.");
         return;
       }
 
@@ -225,7 +225,7 @@ const RestaurantMap = ({filterValue}) => {
         if (status === window.google.maps.DirectionsStatus.OK) {
           directionsRenderer.setDirections(result);
         } else {
-          alert("Directions request failed due to " + status);
+          toast.error("Failed to calculate route. Please try again.");
         }
       });
     };

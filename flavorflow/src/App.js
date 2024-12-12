@@ -8,7 +8,6 @@ import SearchResultsPage from './pages/SearchFilter';
 import FilterPage from './pages/FilterPage'; 
 import Layout from './components/Layout';
 import Map from './pages/MapPage';
-import RestaurantPage from './pages/RestaurantPage';
 import RestaurantDetailsPage from './pages/RestaurantDetailsPage';
 import Profile from './pages/ProfilePage';
 import { ToastContainer } from 'react-toastify';
@@ -104,14 +103,6 @@ function App() {
             element={
               <Layout isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}>
                 <RestaurantDetailsPage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
-              </Layout>
-            }
-          />
-          <Route
-            path="/rp"
-            element={
-              <Layout isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}>
-                <RestaurantPage />
               </Layout>
             }
           />
