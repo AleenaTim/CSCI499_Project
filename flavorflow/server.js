@@ -13,7 +13,7 @@ const port = process.env.PORT || 5000; // Run server on port 5000
 const app = express();
 app.use(express.json());
 // Dynamically allow credentials for all origins
-const allowedOrigins = ['http://localhost:3000', 'http://localhost:5000', 'https://flavorflow-p16r.onrender.com'];
+const allowedOrigins = ['http://localhost:3000', 'http://localhost:5000', 'https://flavorflow-ovph.onrender.com'];
 
 const corsOptions = {
   origin: (origin, callback) => {
