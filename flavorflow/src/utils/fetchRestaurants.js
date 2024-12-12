@@ -1,9 +1,13 @@
 import axios from 'axios';
 
+const BASE_URL = process.env.NODE_ENV === 'production' 
+  ? 'https://flavorflow-ovph.onrender.com' 
+  : 'http://localhost:5000';
+
 export const fetchRestaurants = async (location, radius, keyword) => {
   const { lat, lng } = location;
   try {
-    const response = await axios.get(`http://localhost:5000/api/restaurants`, {
+    const response = await axios.get(`${BASE_URL}/api/restaurants`, {
       params: {
         lat,
         lng,
@@ -23,7 +27,7 @@ export const fetchRestaurants = async (location, radius, keyword) => {
 export const fetchNextPageResults = async (nextPageToken) => {
   // console.log('Fetching next page from URL:', `http://localhost:5000/api/restaurants/next`, 'with params:', { nextPageToken });
   try {
-    const response = await axios.get(`http://localhost:5000/api/restaurants/next`, {
+    const response = await axios.get(`${BASE_URL}/api/restaurants/next`, {
       params: {
         nextPageToken, // Ensure nextPageToken is properly populated
       },

@@ -20,11 +20,15 @@ const LoginPage = ({ setIsLoggedIn }) => {
     </div>
   );
 
+  const BASE_URL = process.env.NODE_ENV === 'production' 
+  ? 'https://flavorflow-ovph.onrender.com' 
+  : 'http://localhost:5000';
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const result = await axios.post('http://localhost:5000/login', { email, password });
+      const result = await axios.post(`${BASE_URL}/login`, { email, password });
       if (result.data.token) {
         localStorage.setItem('token', result.data.token);
         setIsLoggedIn(true);

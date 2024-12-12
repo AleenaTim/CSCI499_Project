@@ -9,6 +9,10 @@ const ProfilePage = () => {
   const [user, setUser] = useState(null);
   const [savedRestaurants, setSavedRestaurants] = useState([]);
 
+  const BASE_URL = process.env.NODE_ENV === 'production' 
+  ? 'https://flavorflow-ovph.onrender.com' 
+  : 'http://localhost:5000';
+
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
@@ -18,12 +22,12 @@ const ProfilePage = () => {
 
     const fetchUserData = async () => {
       try {
-        const userResponse = await axios.get('http://localhost:5000/user', {
+        const userResponse = await axios.get(`${BASE_URL}/user`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUser(userResponse.data);
 
-        const restaurantsResponse = await axios.get('http://localhost:5000/user/saved-restaurants', {
+        const restaurantsResponse = await axios.get(`${BASE_URL}/user/saved-restaurants`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setSavedRestaurants(restaurantsResponse.data);
@@ -47,7 +51,7 @@ const ProfilePage = () => {
   const handleUnsaveRestaurant = async (place_id) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:5000/user/saved-restaurants/${place_id}`, {
+      await axios.delete(`BASE_URL/user/saved-restaurants/${place_id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       // Update the state to remove the unsaved restaurant

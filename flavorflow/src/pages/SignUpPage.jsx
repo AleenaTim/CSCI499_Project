@@ -23,11 +23,15 @@ const SignUpPage = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
+  const BASE_URL = process.env.NODE_ENV === 'production' 
+  ? 'https://flavorflow-ovph.onrender.com' 
+  : 'http://localhost:5000';
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const result = await axios.post('http://localhost:5000/register', {
+      const result = await axios.post(`${BASE_URL}/register`, {
         username,
         firstName,
         lastName,

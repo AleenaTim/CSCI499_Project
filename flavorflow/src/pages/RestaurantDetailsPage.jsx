@@ -20,6 +20,10 @@ function RestaurantDetailsPage({setIsLoggedIn, isLoggedIn}) {
 
   //console.log('useParams() returned place_id:', place_id);
 
+  const BASE_URL = process.env.NODE_ENV === 'production' 
+  ? 'https://flavorflow-ovph.onrender.com' 
+  : 'http://localhost:5000';
+
   useEffect(() => {
     const token = localStorage.getItem('token');
     //console.log('Token found:', !!token); // Debug log
@@ -58,7 +62,7 @@ function RestaurantDetailsPage({setIsLoggedIn, isLoggedIn}) {
       if (isLoggedIn && place_id) {
         try {
           const token = localStorage.getItem('token');
-          const response = await axios.get('http://localhost:5000/user/saved-restaurants', {
+          const response = await axios.get(`${BASE_URL}/user/saved-restaurants`, {
             headers: { Authorization: `Bearer ${token}` }
           });
           setIsSaved(response.data.some(restaurant => restaurant.place_id === place_id));
@@ -193,13 +197,13 @@ function RestaurantDetailsPage({setIsLoggedIn, isLoggedIn}) {
       const token = localStorage.getItem('token');
       if (isSaved) {
         // Delete the restaurant if it's already saved
-        await axios.delete(`http://localhost:5000/user/saved-restaurants/${place_id}`, {
+        await axios.delete(`${BASE_URL}/user/saved-restaurants/${place_id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setIsSaved(false);
       } else {
         // Save the restaurant if it's not saved
-        await axios.post('http://localhost:5000/user/saved-restaurants', {
+        await axios.post(`${BASE_URL}/user/saved-restaurants`, {
           restaurant: {
             place_id: restaurantDetails.place_id,
             name: restaurantDetails.name,
