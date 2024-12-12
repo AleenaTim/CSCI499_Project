@@ -16,9 +16,23 @@ function RestaurantDetailsPage({setIsLoggedIn, isLoggedIn}) {
   const [error, setError] = useState(null);
   const [isSaved, setIsSaved] = useState(false);
   const navigate = useNavigate();
-
+  const [localReviews, setLocalReviews] = useState([]);
+  const [newReview, setNewReview] = useState({
+    rating: 0,
+    comment: '',
+  });
   //console.log('useParams() returned place_id:', place_id);
-
+  const fetchReviews = async () => {
+    try {
+      const response = await axios.get(`http://localhost:5000/reviews/${place_id}`);
+      setLocalReviews(response.data);
+    } catch (error) {
+      console.error('Failed to fetch reviews:', error);
+    }
+  };
+  useEffect(() => {
+    fetchReviews();
+  }, [place_id]);
   useEffect(() => {
     const token = localStorage.getItem('token');
     //console.log('Token found:', !!token); // Debug log
@@ -78,7 +92,36 @@ function RestaurantDetailsPage({setIsLoggedIn, isLoggedIn}) {
   if (!restaurantDetails && error) {
     return <p className="error-message">{error}</p>;
   }
-
+  
+  
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setNewReview({ ...newReview, [name]: value });
+  };
+  
+  const handleSubmitReview = async (e) => {
+    e.preventDefault();
+    if (!newReview.rating || !newReview.comment) {
+      alert('All fields are required!');
+      return;
+    }
+  
+    try {
+      const response = await axios.post('http://localhost:5000/reviews', {
+        restaurantId: place_id, // use the current restaurant's ID
+        ...newReview,
+      });
+      console.log('Review submitted:', response.data);
+  
+      // Clear the form
+      setNewReview({ rating: 0, comment: '' });
+  
+      // Optionally refresh the reviews section
+      fetchReviews();
+    } catch (error) {
+      console.error('Failed to submit review:', error);
+    }
+  };
   const {
     name,
     formatted_address,
@@ -137,33 +180,40 @@ function RestaurantDetailsPage({setIsLoggedIn, isLoggedIn}) {
   
 
   const renderReviews = () => {
-    if (!reviews || reviews.length === 0) return <p>No reviews available.</p>;
+    if ((!reviews || reviews.length === 0) && localReviews.length === 0) {
+      return <p>No reviews available.</p>;
+    }
   
-  
-    return reviews.map((review, index) => (
-      //console.log("Image URL:", review.profile_photo_url),
-
-      <div key={index} className="review">
-        <img
-          src={review.profile_photo_url} alt={review.author_name} className="review-author-photo"
-          onError={(e) => {
-            e.target.onerror = null; // Prevent infinite loop
-            e.target.src = placeholderImage; // Use a placeholder for broken images
-          }}
-          onLoad={(e) => {
-            e.target.style.display = "block"; // Ensure the image is displayed once loaded
-          }}
-          style={{ display: "none" }} // Hide the image until fully loaded
-        />
-        <div>
-          <h4>{review.author_name}</h4>
-          <p>{review.relative_time_description}</p>
-          <p>Rating: {review.rating}</p>
-          <p>{review.text}</p>
-        </div>
-      </div>
-    ));
+    return (
+      <>
+        {localReviews.map((review, index) => (
+          <div key={`local-${index}`} className="review">
+            <p>{new Date(review.date).toLocaleDateString()}</p>
+            <p>Rating: {review.rating}</p>
+            <p>{review.comment}</p>
+          </div>
+        ))}
+        {reviews && reviews.map((review, index) => (
+          <div key={index} className="review">
+            <img
+              src={review.profile_photo_url} alt={review.author_name} className="review-author-photo"
+              onError={(e) => {
+                e.target.onerror = null; // Prevent infinite loop
+                e.target.src = placeholderImage; // Use a placeholder for broken images
+              }}
+            />
+            <div>
+              <h4>{review.author_name}</h4>
+              <p>{review.relative_time_description}</p>
+              <p>Rating: {review.rating}</p>
+              <p>{review.text}</p>
+            </div>
+          </div>
+        ))}
+      </>
+    );
   };
+  
   
 
   const renderMap = () => {
@@ -272,12 +322,31 @@ function RestaurantDetailsPage({setIsLoggedIn, isLoggedIn}) {
       <div className="reviews-section">
         <h3>Reviews</h3>
         <div className="add-review">
-          <h4>Add Your Review</h4>
-          <form>
-            <textarea placeholder="Write your review here..." rows="5" />
-            <button type="submit">Submit Review</button>
-          </form>
-        </div>
+  <h4>Add Your Review</h4>
+  <form onSubmit={handleSubmitReview}>
+    <select
+      name="rating"
+      value={newReview.rating}
+      onChange={handleInputChange}
+    >
+      <option value="0">Select Rating</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+    <textarea
+      name="comment"
+      placeholder="Write your review here..."
+      rows="5"
+      value={newReview.comment}
+      onChange={handleInputChange}
+    />
+    <button type="submit">Submit Review</button>
+  </form>
+</div>
+
         {renderReviews()}
       </div>
     </div>

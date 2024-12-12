@@ -7,7 +7,7 @@ const FormDataModel = require('./models/FormData.js');
 const Restaurant = require('./models/Restaurant');
 const { PORT, mongoDBURL } = require('./config.js');
 const jwt = require('jsonwebtoken');
-
+const Review = require('./models/Review.js');
 const port = 5000; // Run server on port 5000
 const app = express();
 app.use(express.json());
@@ -48,74 +48,103 @@ app.use(cors(corsOptions));
 mongoose.connect('mongodb+srv://aleenatim:mongodb123!@csci499.cderg.mongodb.net/', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const SECRET = 'your_secret_key'; // Replace with a secure secret key
-  
-  // Middleware to authenticate JWT token
-  const authenticateToken = (req, res, next) => {
-      const authHeader = req.headers['authorization'];
-      const token = authHeader && authHeader.split(' ')[1];
-      if (!token) {
-        return res.status(401).json({ 
-            error: 'Authentication required',
-            message: 'Access denied'
-        });
-    }
-  
-      jwt.verify(token, SECRET, (err, user) => {
-        if (err) {
-            return res.status(403).json({ 
-                error: 'Invalid token',
-                message: 'Please log in again'
-            });
-        }
-        req.user = user;
-        next();
+
+// Middleware to authenticate JWT token
+const authenticateToken = (req, res, next) => {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+  if (!token) {
+    return res.status(401).json({
+      error: 'Authentication required',
+      message: 'Access denied'
     });
-  };
-  
-  // Login Route (Update to return token)
-  app.post('/login', (req, res) => {
-      const { email, password } = req.body;
-      FormDataModel.findOne({ email }).then((user) => {
-          if (!user || user.password !== password) {
-              return res.status(400).json('Invalid Credentials');
-          }
-  
-          const token = jwt.sign({ id: user._id, email: user.email }, SECRET, {
-              expiresIn: '1h',
-          });
-          res.json({ token });
+  }
+
+  jwt.verify(token, SECRET, (err, user) => {
+    if (err) {
+      return res.status(403).json({
+        error: 'Invalid token',
+        message: 'Please log in again'
       });
+    }
+    req.user = user;
+    next();
   });
-  
-  // Get User Data
-  app.get('/user', authenticateToken, (req, res) => {
-      FormDataModel.findById(req.user.id).then((user) => {
-          if (!user) return res.status(404).json('User Not Found');
-          res.json({ 
-            username: user.username,
-            firstName: user.firstName, 
-            lastName: user.lastName,
-            email: user.email,                  
-          });
-      });
+};
+// Endpoint to add a review
+router.post('/reviews', async (req, res) => {
+  const { restaurantId, rating, comment } = req.body;
+
+  if (!restaurantId || !rating || !comment) {
+    return res.status(400).json({ message: 'All fields are required.' });
+  }
+
+  try {
+    const newReview = new Review({ restaurantId, rating, comment });
+    await newReview.save();
+    res.status(201).json(newReview);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error saving the review.' });
+  }
+});
+
+// Endpoint to get reviews for a specific restaurant
+router.get('/reviews/:restaurantId', async (req, res) => {
+  const { restaurantId } = req.params;
+
+  try {
+    const reviews = await Review.find({ restaurantId });
+    res.status(200).json(reviews);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error fetching reviews.' });
+  }
+});
+// Login Route (Update to return token)
+app.post('/login', (req, res) => {
+  const { email, password } = req.body;
+  FormDataModel.findOne({ email }).then((user) => {
+    if (!user || user.password !== password) {
+      return res.status(400).json('Invalid Credentials');
+    }
+
+    const token = jwt.sign({ id: user._id, email: user.email }, SECRET, {
+      expiresIn: '1h',
+    });
+    res.json({ token });
   });
-  
+});
+
+// Get User Data
+app.get('/user', authenticateToken, (req, res) => {
+  FormDataModel.findById(req.user.id).then((user) => {
+    if (!user) return res.status(404).json('User Not Found');
+    res.json({
+      username: user.username,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+    });
+  });
+});
 
 
-app.post('/register', (req, res)=>{
-    // To post / insert data into database
 
-    const {email, password} = req.body;
-    FormDataModel.findOne({email: email})
+app.post('/register', (req, res) => {
+  // To post / insert data into database
+
+  const { email, password } = req.body;
+  FormDataModel.findOne({ email: email })
     .then(user => {
-        if(user){
-            res.json("Already registered")
-        }
-        else{
-            FormDataModel.create(req.body)
-            .then(users => res.json(users))
-            .catch(err => res.json(err))
-        }
+      if (user) {
+        res.json("Already registered")
+      }
+      else {
+        FormDataModel.create(req.body)
+          .then(users => res.json(users))
+          .catch(err => res.json(err))
+      }
     });
 });
 
@@ -179,11 +208,11 @@ app.delete('/user/saved-restaurants/:place_id', authenticateToken, async (req, r
 
 // fetching restaurants from Google Places API
 app.get('/api/restaurants', async (req, res) => {
-    const { lat, lng, radius, keyword, type = 'restaurant' } = req.query;
-    
-    if (!lat || !lng || !radius) {
-      return res.status(400).json({ error: 'Missing required parameters: lat, lng, and radius are required' });
-    }
+  const { lat, lng, radius, keyword, type = 'restaurant' } = req.query;
+
+  if (!lat || !lng || !radius) {
+    return res.status(400).json({ error: 'Missing required parameters: lat, lng, and radius are required' });
+  }
   const API_KEY = 'AIzaSyCFN565EdWOPCGPr4nbdla6PAJZUY4F_h8';
   const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json`;
 
@@ -221,24 +250,24 @@ app.get('/api/restaurants/next', async (req, res) => {
   const { nextPageToken } = req.query;
 
   if (!nextPageToken) {
-      return res.status(400).json({ error: 'Missing required parameter: nextPageToken' });
+    return res.status(400).json({ error: 'Missing required parameter: nextPageToken' });
   }
   const API_KEY = 'AIzaSyCFN565EdWOPCGPr4nbdla6PAJZUY4F_h8';
   const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json`;
 
   try {
-      // Fetch next page of results
-      const response = await axios.get(url, {
-          params: {
-              pagetoken: nextPageToken,
-              key: API_KEY,
-          },
-      });
+    // Fetch next page of results
+    const response = await axios.get(url, {
+      params: {
+        pagetoken: nextPageToken,
+        key: API_KEY,
+      },
+    });
 
-      res.json(response.data);
+    res.json(response.data);
   } catch (error) {
-      console.error('Error fetching next page data from Google Places API:', error);
-      res.status(500).json({ error: 'Failed to fetch data from Google Places API' });
+    console.error('Error fetching next page data from Google Places API:', error);
+    res.status(500).json({ error: 'Failed to fetch data from Google Places API' });
   }
 });
 
