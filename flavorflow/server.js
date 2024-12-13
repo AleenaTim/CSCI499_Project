@@ -13,17 +13,21 @@ const port = process.env.PORT || 5000; // Run server on port 5000
 const app = express();
 app.use(express.json());
 // Dynamically allow credentials for all origins
-const allowedOrigins = ['http://localhost:3000', 'http://localhost:5000', 'https://flavorflow-ovph.onrender.com', 'http://localhost:'];
+// const allowedOrigins = ['http://localhost:3000', 'http://localhost:5000', 'https://flavorflow-ovph.onrender.com', 'http://localhost:'];
+
+const allowedOrigins = '*';
 
 const corsOptions = {
   origin: (origin, callback) => {
     // Allow requests with no origin (like mobile apps or Postman)
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      console.error(`Blocked by CORS: ${origin}`);
-      callback(new Error('Not allowed by CORS'));
-    }
+    // if (!origin || allowedOrigins.includes(origin)) {
+    //   callback(null, true);
+    // } else {
+    //   console.error(`Blocked by CORS: ${origin}`);
+    //   callback(new Error('Not allowed by CORS'));
+    // }
+
+    callback(null, true);
   },
   credentials: true, // Allow credentials (cookies, headers, etc.)
   methods: ['GET', 'POST', 'DELETE', 'OPTIONS'], // Allow these HTTP methods
